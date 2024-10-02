@@ -1,12 +1,8 @@
+//TODO: header
+//TODO: make it faster
 #include "inttypes.h"
 #include "stdio.h"
 #include "stdlib.h"
-
-volatile uint8_t is_directed;
-volatile uint32_t num_of_vertices;
-volatile uint32_t num_of_edges;
-volatile uint8_t debug = 1;
-uint8_t** G;
 
 /* queue for BFS */
 
@@ -17,7 +13,20 @@ typedef struct Queue {
     uint32_t** data;
 } Queue;
 
-int main() {
+uint32_t* dequeue(Queue* Q);
+void enqueue(Queue* Q, uint32_t* temp);
+
+volatile uint8_t is_directed;
+volatile uint32_t num_of_vertices;
+volatile uint32_t num_of_edges;
+volatile int8_t tree = 0;
+volatile int8_t debug = 1;
+uint8_t** G;
+
+
+int main(int argc, char** argv) {
+
+    if ( argc > 1 ) if ( *argv[2] == 'T' ) tree = 1;
 
     if ( debug ) printf("(D)irected or (U)ndirected?\n");
     char temp;
@@ -58,9 +67,27 @@ int main() {
 }
 
 
-void BFS(uint32_t** G, uint32_t num_of_edges) {
+void BFS(uint32_t vertice) {
     // size of Q is number of vertices + 1
     Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t**)malloc((num_of_vertices + 1) * sizeof(uint32_t*))};
+
+    uint32_t* visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t*));
+
+    // TODO: validation or sth
+    enqueue(&Q, &vertice);
+    
+    uint32_t* u;
+    while ( (u = dequeue(&Q)) != NULL ) {
+        // what
+        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i) {
+            if ( !G[*u][i] ) continue;
+            
+            // cholibka musze dac jednak chyba ze visited.............
+
+        }
+    }
+
+    
 
 }
 
