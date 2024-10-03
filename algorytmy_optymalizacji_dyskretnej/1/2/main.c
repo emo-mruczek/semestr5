@@ -6,7 +6,7 @@
 #include <string.h>
 
 void DFS(void);
-void DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex); 
+uint8_t DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex, uint8_t* stack); 
 
 volatile uint8_t is_directed;
 volatile uint32_t num_of_vertices;
@@ -73,11 +73,19 @@ void DFS(void) {
     uint32_t iter = 0;
     uint8_t* visited = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
     memset(visited, 0, (num_of_vertices + 1) * sizeof(uint8_t));
+    uint8_t* stack = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
+    memset(stack, 0, (num_of_vertices + 1) * sizeof(uint8_t));
 
     /* algorithm starts */
     for ( uint32_t vertex = 1; vertex < num_of_vertices + 1; ++vertex ) {
         if ( !visited[vertex] ) {
-            DFS_visit(visited_in_order, &iter, visited, vertex);
+            if( DFS_visit(visited_in_order, &iter, visited, vertex, stack) ) {
+                printf("This graph has a cycle!!!\n");
+                free(stack);
+                free(visited);
+                free(visited_in_order);
+                return;
+            }
         }
     }
     /* algorithm ends */
@@ -88,23 +96,27 @@ void DFS(void) {
     }
     printf("\n");
 
+    free(stack);
     free(visited);
     free(visited_in_order);
 }
 
-void DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex) {
+uint8_t DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex, uint8_t* stack) {
     /* algorithm starts */
     visited[vertex] = 1;
-    
+    stack[vertex] = 1;
+
     for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
         if ( !G[vertex][i] ) continue;
         if ( !visited[i] ) {
-            DFS_visit(visited_in_order, iter, visited, i);
-        }
+            if ( DFS_visit(visited_in_order, iter, visited, i, stack) ) return 1;
+        } else if ( stack[i] ) return 1;
     }
+
+    stack[vertex] = 0;
     visited_in_order[*iter] = vertex;
     ++(*iter); 
-
+    return 0;
     /* algorithms ends */
 }
 
