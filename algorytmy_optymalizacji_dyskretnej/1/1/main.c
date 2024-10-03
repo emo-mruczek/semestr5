@@ -15,7 +15,7 @@ typedef struct Queue {
 
 uint32_t dequeue(Queue* Q);
 void enqueue(Queue* Q, uint32_t temp);
-void BFS(uint32_t vertice);
+void BFS();
 
 volatile uint8_t is_directed;
 volatile uint32_t num_of_vertices;
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
         }
     }
 
-    BFS(1);
+    BFS();
 
     for (uint32_t i = 0; i < num_of_vertices + 1; ++i) {
         free(G[i]);
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
 
 //TODO: tree
 
-void BFS(uint32_t vertice) {
+void BFS() {
     // size of Q is number of vertices + 1
     Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t*)malloc((num_of_vertices + 1) * sizeof(uint32_t))};
 
@@ -84,21 +84,24 @@ void BFS(uint32_t vertice) {
     uint32_t iter = 0;
     uint8_t* visited = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
 
-    enqueue(&Q, vertice);
-    visited_in_order[iter] = vertice;
-    ++iter;
-    visited[vertice] = 1;
+    for (uint32_t vertice = 1; vertice < num_of_vertices + 1; ++vertice) {
+        if ( !visited[vertice] ) {
+            enqueue(&Q, vertice);
+            visited_in_order[iter] = vertice;
+            ++iter;
+            visited[vertice] = 1;
 
-    uint32_t u;
-    while ( (u = dequeue(&Q)) != 0 ) {
-        // what
-        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i) {
-            if ( !G[u][i] ) continue;
-            if ( !visited[i] ) {
-                visited_in_order[iter] = i;
-                ++iter;
-                visited[i] = 1;
-                enqueue(&Q, i);
+            uint32_t u;
+            while ( (u = dequeue(&Q)) != 0 ) {
+            for ( uint32_t i = 1; i < num_of_vertices + 1; ++i) {
+                if ( !G[u][i] ) continue;
+                    if ( !visited[i] ) {
+                    visited_in_order[iter] = i;
+                    ++iter;
+                    visited[i] = 1;
+                    enqueue(&Q, i);
+                    }
+                }
             }
         }
     }
