@@ -10,11 +10,12 @@ typedef struct Queue {
     uint32_t head;
     uint32_t tail;
     uint32_t size;
-    uint32_t** data;
+    uint32_t* data;
 } Queue;
 
-uint32_t* dequeue(Queue* Q);
-void enqueue(Queue* Q, uint32_t* temp);
+uint32_t dequeue(Queue* Q);
+void enqueue(Queue* Q, uint32_t temp);
+void BFS(uint32_t vertice);
 
 volatile uint8_t is_directed;
 volatile uint32_t num_of_vertices;
@@ -39,9 +40,9 @@ int main(int argc, char** argv) {
     ++num_of_edges;
     if ( debug ) printf("Vertices:\n");
 
-    G = (uint8_t**)malloc(num_of_edges * sizeof(uint8_t*));
-    for ( uint8_t i = 0; i < num_of_edges; ++i ) {
-        G[i] = (uint8_t*)malloc(num_of_edges * sizeof(uint8_t));
+    G = (uint8_t**)malloc((num_of_vertices + 1) * sizeof(uint8_t*));
+    for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
+        G[i] = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
     }
 
     if ( !G ) {
@@ -64,44 +65,66 @@ int main(int argc, char** argv) {
             printf("\n");
         }
     }
+
+    BFS(1);
+
+    for (uint32_t i = 0; i < num_of_vertices + 1; ++i) {
+        free(G[i]);
+    }
+    free(G);
 }
 
+//TODO: tree
 
 void BFS(uint32_t vertice) {
     // size of Q is number of vertices + 1
-    Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t**)malloc((num_of_vertices + 1) * sizeof(uint32_t*))};
+    Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t*)malloc((num_of_vertices + 1) * sizeof(uint32_t))};
 
-    uint32_t* visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t*));
+    uint32_t* visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t));
+    uint32_t iter = 0;
+    uint8_t* visited = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
 
-    // TODO: validation or sth
-    enqueue(&Q, &vertice);
-    
-    uint32_t* u;
-    while ( (u = dequeue(&Q)) != NULL ) {
+    enqueue(&Q, vertice);
+    visited_in_order[iter] = vertice;
+    ++iter;
+    visited[vertice] = 1;
+
+    uint32_t u;
+    while ( (u = dequeue(&Q)) != 0 ) {
         // what
         for ( uint32_t i = 1; i < num_of_vertices + 1; ++i) {
-            if ( !G[*u][i] ) continue;
-            
-            // cholibka musze dac jednak chyba ze visited.............
-
+            if ( !G[u][i] ) continue;
+            if ( !visited[i] ) {
+                visited_in_order[iter] = i;
+                ++iter;
+                visited[i] = 1;
+                enqueue(&Q, i);
+            }
         }
     }
 
-    
+    if ( debug ) printf("Order of visiting:\n");
+    for (uint32_t i = 0; i < num_of_vertices; ++i) {
+        printf("%" PRIu32 " ", visited_in_order[i]);
+    }
+    printf("\n");
 
+    free(Q.data);
+    free(visited);
+    free(visited_in_order);
 }
 
 /* https://gist.github.com/ryankurte/61f95dc71133561ed055ff62b33585f8 */
 
-uint32_t* dequeue(Queue *Q) {
-    if (Q->tail == Q->head) return NULL;
-    uint32_t* temp = Q->data[Q->tail];
-    Q->data[Q->tail] = NULL;
+uint32_t dequeue(Queue *Q) {
+    if (Q->tail == Q->head) return 0;
+    uint32_t temp = Q->data[Q->tail];
+    Q->data[Q->tail] = 0;
     Q->tail = (Q->tail + 1) % Q->size;
     return temp;
 }
 
-void enqueue(Queue *Q, uint32_t* temp) {
+void enqueue(Queue *Q, uint32_t temp) {
     if (((Q->head + 1) % Q->size) == Q->tail) {
         printf("Queue overflow!\n");
         exit(1);
