@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
-find "$1" -type f -exec cat {} + | grep -v '^[ ]*$' | sort | uniq -c | sort -nr
+words=$(find "$1" -type f -exec cat {} + | grep -v '^[ ]*$' | sort | uniq)
+for word in $words
+do
+    count=$(grep -l -R -w "$word" "$1" | wc -l)
+    echo "$count $word"
+done | sort -r
 
 
