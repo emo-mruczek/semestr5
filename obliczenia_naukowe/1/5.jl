@@ -39,22 +39,25 @@ function c(x, y, T)
     S_pos = S[S .>= 0]
     S_neg = S[S .< 0]
 
-    println(S)
-    println(S_pos)
-    println(S_neg)
-
     # https://docs.julialang.org/en/v1/base/sort/
     sort!(S_pos, rev=true)
     sort!(S_neg)
 
-    println(S_pos)
-    println(S_neg)
+    # there is something wrong with sum function
+    # when it comes to specification of this ex
+    # probably something with order of sumation idk idc
+    # but its still not worky for Float64 (or it does?)
+    #sum_pos = sum(S_pos)
+    #sum_neg = sum(S_neg)
+    sum_pos = 0.0
+    for i in 1:length(S_pos)
+        sum_pos += S_pos[i]
+    end
 
-    sum_pos = sum(S_pos)
-    sum_neg = sum(S_neg)
-
-    println(sum_pos)
-    println(sum_neg)
+    sum_neg = 0.0
+    for i in 1:length(S_neg)
+        sum_neg += S_neg[i]
+    end
 
     return sum_pos + sum_neg
 end
@@ -77,8 +80,15 @@ function d(x, y, T)
     sort!(S_pos)
     sort!(S_neg, rev=true)
 
-    sum_pos = sum(S_pos)
-    sum_neg = sum(S_neg)
+    sum_pos = 0.0
+    for i in 1:length(S_pos)
+        sum_pos += S_pos[i]
+    end
+
+    sum_neg = 0.0
+    for i in 1:length(S_neg)
+        sum_neg += S_neg[i]
+    end
 
     return sum_pos + sum_neg
 end
