@@ -1,4 +1,6 @@
 //TODO: free
+//TODO:undirected graph??????
+//TODO: printing only for small num of ver
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -133,9 +135,12 @@ void BFS(void) {
         }
     }
     /* algorithm ends */
-   
+
     printf("It's a bipartite graph!\n");
-    printf("\n");
+    printf("V0\tV1\n");
+    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
+        printf((colors[i] == GREEN ? "%" PRIu32 "\n" : "\t%" PRIu32 "\n"), i);
+    }
 
     free(colors);
     free(Q.data);
