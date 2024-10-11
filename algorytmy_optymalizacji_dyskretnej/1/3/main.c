@@ -1,6 +1,6 @@
 //TODO: refactor
-//TODO: free
 //TODO: should print scc
+//TODO: velgrind
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -70,7 +70,6 @@ int main(int argc, char** argv) {
     visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t));
     memset(visited_in_order, 0, (num_of_vertices) * sizeof(uint32_t));
 
-
     DFS();
 
     transpose();
@@ -88,9 +87,15 @@ int main(int argc, char** argv) {
 
     DFS_T();
 
-   
-
-    //TODO: free
+    for ( uint32_t i = 0; i <= num_of_vertices; ++i ) {
+        node* temp = T[i];
+        while ( temp ) {
+            node* to_free = temp;
+            temp = temp->next;
+            free(to_free);
+        }
+    }
+    free(T);
     for ( uint32_t i = 0; i < num_of_vertices + 1; ++i ) {
         free(G[i]);
     }
@@ -135,6 +140,7 @@ void DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uin
 
 void transpose(void) {
     T = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
+    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) T[i] = NULL;
 
     for ( uint32_t i = 1; i <= num_of_vertices; ++i ) {
         node *temp = G[i];
@@ -152,47 +158,44 @@ void DFS_T(void) {
     memset(component_order, 0, (num_of_vertices) * sizeof(uint32_t));
     uint8_t* visited = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
     memset(visited, 0, (num_of_vertices + 1) * sizeof(uint8_t));
+    
     uint32_t iter = 0;
-    uint32_t prev = 0;
-    uint32_t* to_print;
-    uint32_t number = 0;
+    uint32_t num_of_scc = 0;
 
-    /* algorithm starts */
-    for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
-        if ( !visited[i] ) {
-            to_print = DFS_visit_T(component_order, &iter, visited, visited_in_order[num_of_vertices - i]);
+    /* algorithm starts*/
+    for ( int32_t i = num_of_vertices - 1; i >= 0; --i ) { 
+        uint32_t vertex = visited_in_order[i];
+        if ( !visited[vertex] ) {
+            printf("\nSCC %u: ", ++num_of_scc);
+            DFS_visit_T(component_order, &iter, visited, vertex);
+            for (uint32_t j = 0; j < iter; ++j) {
+                printf("%u ", component_order[j]);
+            }
+            iter = 0;
         }
-        ++number;
-        printf("\nNo of scc: %" PRIu32 "\n", number);
-        for ( uint32_t i = prev; i < iter; ++i ) printf("%" PRIu32 " ", to_print[i]);
-        prev = iter;
     }
     /* algorithm ends */
 
-    printf("\nvisited in order:\n");
-
-    for ( uint32_t i = 0; i < num_of_vertices; ++i ) printf("%" PRIu32 " ", component_order[i]);
-
-    printf("\nNum of componens %" PRIu32, number);
-
     free(visited);
+    free(component_order);
 }
 
-uint32_t* DFS_visit_T(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex) {
-    /* algorithm starts */
+uint32_t* DFS_visit_T(uint32_t* component_order, uint32_t* iter, uint8_t* visited, uint32_t vertex) {
     visited[vertex] = 1;
+    component_order[*iter] = vertex;
+    (*iter)++;
 
+    /* algorithm starts */
     node* temp = T[vertex];
-    while ( temp ) {
-        if ( !visited[temp->vertex] ) DFS_visit_T(visited_in_order, iter, visited, temp->vertex);
+    while (temp) {
+        if (!visited[temp->vertex]) {
+            DFS_visit_T(component_order, iter, visited, temp->vertex);
+        }
         temp = temp->next;
     }
+    /* algorithm ends */
 
-    visited_in_order[*iter] = vertex;
-    ++(*iter);
-
-    return visited_in_order;
-    /* algorithms ends */
+    return component_order;
 }
 
 void add_edge_T(uint32_t v, uint32_t u) {
