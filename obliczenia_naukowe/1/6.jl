@@ -9,7 +9,7 @@ function g(x, T)
     return x^2 / ( sqrt(x ^ one(T)) + one(T) )
 end
 
-x = 8.0
+x::Float64 = 8.0
 for p in 1:10
     println("f(", x, "^-", p, "): ", f(x^(-p), Float64))
     println("g(", x, "^-", p, "): ", g(x^(-p), Float64))
