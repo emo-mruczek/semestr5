@@ -5,6 +5,6 @@ for word in $words
 do
     count=$(grep -l -R -w "$word" "$1" | wc -l)
     echo "$count $word"
-done | sort -r
+done | sort -r | uniq
 
 
