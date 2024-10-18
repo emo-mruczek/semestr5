@@ -1,5 +1,8 @@
 //TODO: tests (gotfryd's graphs)
+//TODO: free in different function
+//TODO: formatting
 #include <inttypes.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,14 +22,22 @@ void BFS(void);
 void DFS(void);
 void DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex); 
 void print_tree(void);
+void add_edge(uint32_t v, uint32_t u);
+void add_edge_T(uint32_t v, uint32_t u);
 
 volatile uint8_t is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
 volatile int8_t tree = 0;
-volatile int8_t debug = 1;
-uint8_t** G;
-uint8_t** T;
+volatile int8_t debug = 0;
+
+typedef struct node {
+    uint32_t vertex;
+    struct node* next;
+} node;
+
+struct node** G;
+struct node** T;
 
 int main(int argc, char** argv) {
 
@@ -36,73 +47,97 @@ int main(int argc, char** argv) {
     char temp;
     scanf("%c", &temp);
     is_directed = ( temp == 'D' ) ? 1 : 0;
+
     if ( debug ) printf("No. of vertices:\n");
     scanf("%" SCNu32, &num_of_vertices);
+
     if ( debug ) printf("No. of edges:\n");
     scanf("%" SCNu32, &num_of_edges);
+
     if ( debug ) printf("Vertices:\n");
 
-    G = (uint8_t**)malloc((num_of_vertices + 1) * sizeof(uint8_t*));
-    for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
-        G[i] = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-        memset(G[i], 0, (num_of_vertices + 1) * sizeof(uint8_t));
-    }
-
-    if ( !G ) {
-        printf("Memory allocation error!\n");
-        exit(EXIT_FAILURE);
-    }
+    G = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
+    for (uint32_t i = 1; i <= num_of_vertices; ++i) G[i] = NULL;
 
     uint32_t u, v;
     for ( uint32_t i = 0; i < num_of_edges; ++i ) {
         scanf("%" SCNu32 "%" SCNu32, &u, &v);
-        G[u][v] = 1;
-        if ( !is_directed ) G[v][u] = 1;
+        add_edge(u, v);
+        if ( !is_directed ) add_edge(v, u);
     }
 
-    if ( debug ) {
-        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-            for ( uint32_t j = 1; j < num_of_vertices + 1; ++j ) {
-                printf("%" PRIu32 " ", G[i][j] );
+     if ( debug ) {
+        for ( uint32_t i = 1; i <= num_of_vertices; ++i ) {
+            node* temp = G[i];
+            printf("\n %" PRIu32 "\n\t", i);
+            while ( temp ) {
+                printf("%" PRIu32 " ", temp->vertex);
+                temp = temp->next;
             }
-            printf("\n");
         }
         printf("\n");
     }
 
-    if ( tree ) {
-        T = (uint8_t**)malloc((num_of_vertices + 1) * sizeof(uint8_t*));
-        for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
-            T[i] = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-            memset(T[i], 0, (num_of_vertices + 1) * sizeof(uint8_t));
-        }
+    if (tree) {
+        T = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
+        for (uint32_t i = 1; i <= num_of_vertices; ++i) T[i] = NULL;
     }
 
     BFS();
 
-    if ( tree ) print_tree();
+    if ( tree ) {print_tree();
+
+    for (uint32_t i = 1; i <= num_of_vertices; ++i) {
+        node* current = T[i];
+        while (current != NULL) {
+            node* temp = current;
+            current = current->next;
+            free(temp); 
+        }
+    }
+
+    free(T); 
+    T = NULL; 
+    }
 
     if ( tree ) {
-        for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
-            memset(T[i], 0, (num_of_vertices + 1) * sizeof(uint8_t));
-        }
+T = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
+        for (uint32_t i = 1; i <= num_of_vertices; ++i) T[i] = NULL;
+
     }
 
     DFS();
 
     if ( tree ) print_tree();
 
-    for ( uint32_t i = 0; i < num_of_vertices + 1; ++i ) {
-        free(G[i]);
+    for (uint32_t i = 1; i <= num_of_vertices; ++i) {
+        node* current = G[i];
+        while (current) {
+            node* next = current->next;
+            free(current);
+            current = next;
+        }
     }
-    free(G);
-}
 
-//TODO: tree
+    free(G);
+
+    if (tree) {
+        for (uint32_t i = 1; i <= num_of_vertices; ++i) {
+            node* current = T[i];
+            while (current) {
+                node* next = current->next;
+                free(current);
+                current = next;
+            }
+        }
+        free(T);
+    }
+
+    return 0;
+}
 
 void BFS(void) {
     printf("BFS:\n");
-    // size of Q is number of vertices + 1
     Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t*)malloc((num_of_vertices + 1) * sizeof(uint32_t))};
 
     uint32_t* visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t));
@@ -112,38 +147,45 @@ void BFS(void) {
     memset(visited, 0, (num_of_vertices + 1) * sizeof(uint8_t));
 
     /* algorithm starts */
-    for ( uint32_t vertex = 1; vertex < num_of_vertices + 1; ++vertex ) {
+    for ( uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex ) {
         if ( !visited[vertex] ) {
             enqueue(&Q, vertex);
+            visited[vertex] = 1;
             visited_in_order[iter] = vertex;
             ++iter;
-            visited[vertex] = 1;
 
             uint32_t u;
             while ( (u = dequeue(&Q)) != 0 ) {
-                for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-                    if ( !G[u][i] ) continue;
-                    if ( !visited[i] ) {
-                        visited_in_order[iter] = i;
+                node* neighbor = G[u];
+                while ( neighbor ) {
+                    uint32_t v = neighbor->vertex;
+                    if ( !visited[v] ) {
+                        visited[v] = 1;
+                        visited_in_order[iter] = v;
                         ++iter;
-                        visited[i] = 1;
 
-                        if ( tree ) T[u][i] = 1;
+                        if ( tree ) add_edge_T(u, v);
 
-                        enqueue(&Q, i);
+                        enqueue(&Q, v);
                     }
+                    neighbor = neighbor->next;
+                }
+
+
                 }
             }
         }
-    }
+    
     /* algorithm ends */
 
-    if ( debug ) printf("Visiting order:\n");
-    for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
-        printf("%" PRIu32 " ", visited_in_order[i]);
+    if ( debug ) {
+        printf("Visiting order:\n");
+        for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
+            printf("%" PRIu32 " ", visited_in_order[i]);
+        }
+        printf("\n\n");
     }
-    printf("\n\n");
-
+    
     free(Q.data);
     free(visited);
     free(visited_in_order);
@@ -158,18 +200,20 @@ void DFS(void) {
     memset(visited, 0, (num_of_vertices + 1) * sizeof(uint8_t));
 
     /* algorithm starts */
-    for ( uint32_t vertex = 1; vertex < num_of_vertices + 1; ++vertex ) {
+    for ( uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex ) {
         if ( !visited[vertex] ) {
             DFS_visit(visited_in_order, &iter, visited, vertex);
         }
     }
     /* algorithm ends */
 
-    if ( debug ) printf("Visiting order:\n");
-    for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
-        printf("%" PRIu32 " ", visited_in_order[i]);
+    if ( debug ) {
+        printf("Visiting order:\n");
+        for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
+            printf("%" PRIu32 " ", visited_in_order[i]);
+        }
+        printf("\n\n");
     }
-    printf("\n\n");
 
     free(visited);
     free(visited_in_order);
@@ -177,17 +221,20 @@ void DFS(void) {
 
 void DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex) {
     /* algorithm starts */
-    visited_in_order[*iter] = vertex;
-    ++(*iter);
     visited[vertex] = 1;
 
-    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-        if ( !G[vertex][i] ) continue;
-        if ( !visited[i] ) {
-            if ( tree ) T[vertex][i] = 1;
-            DFS_visit(visited_in_order, iter, visited, i);
+    node* temp = G[vertex];
+    while ( temp ) {
+        if ( !visited[temp->vertex] ) {
+            if ( tree ) add_edge_T(vertex, temp->vertex);
+            DFS_visit(visited_in_order, iter, visited, temp->vertex);
         }
-    } 
+        temp = temp->next;
+    }
+
+    visited_in_order[*iter] = vertex;
+    ++(*iter);
+
     /* algorithms ends */
 }
 
@@ -211,11 +258,28 @@ void enqueue(Queue *Q, uint32_t temp) {
 }
 
 void print_tree(void) {
-    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-        for ( uint32_t j = 1; j < num_of_vertices + 1; ++j ) {
-                printf("%" PRIu32 " ", T[i][j] );
+        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
+            node* temp = T[i];
+            printf("\n %" PRIu32 "\n\t", i);
+            while ( temp ) {
+                printf("%" PRIu32 " ", temp->vertex);
+                temp = temp->next;
             }
-            printf("\n");
         }
-    printf("\n");
+        printf("\n");
+}
+
+
+void add_edge_T(uint32_t v, uint32_t u) {
+    node* new = (node*)malloc(sizeof(node));
+    new->vertex = u;
+    new->next = T[v];
+    T[v] = new;
+}
+
+void add_edge(uint32_t v, uint32_t u) {
+    node* new = (node*)malloc(sizeof(node));
+    new->vertex = u;
+    new->next = G[v];
+    G[v] = new;
 }
