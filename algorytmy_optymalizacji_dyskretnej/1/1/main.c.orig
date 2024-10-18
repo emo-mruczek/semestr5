@@ -38,7 +38,7 @@ struct node** T;
 
 int main(int argc, char** argv) {
 
-    if (argc > 1 && * argv[1] == 'T') tree = 1;
+    if (argc > 1 && *argv[1] == 'T') tree = 1;
 
     get_inputs();
 
@@ -46,21 +46,17 @@ int main(int argc, char** argv) {
 
     if (tree) {
         print_graph(T);
-
         for (uint32_t i = 1; i <= num_of_vertices; ++i) {
             node* current = T[i];
-
             while (current != NULL) {
                 node* temp = current;
                 current = current->next;
                 free(temp);
             }
         }
-
         free(T);
         T = NULL;
         T = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
-
         for (uint32_t i = 1; i <= num_of_vertices; ++i) T[i] = NULL;
     }
 
@@ -86,13 +82,12 @@ void BFS(void) {
     /* algorithm starts */
     for (uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex) {
         if (!visited[vertex]) {
-            enqueue( & Q, vertex);
+            enqueue(&Q, vertex);
             visited[vertex] = true;
             visited_in_order[iter++] = vertex;
 
             uint32_t u;
-
-            while ((u = dequeue( & Q))) {
+            while ((u = dequeue(&Q))) {
                 node* neighbor = G[u];
 
                 while (neighbor) {
@@ -104,9 +99,8 @@ void BFS(void) {
 
                         if (tree) add_edge(u, v, T);
 
-                        enqueue( & Q, v);
+                        enqueue(&Q, v);
                     }
-
                     neighbor = neighbor->next;
                 }
             }
@@ -117,11 +111,9 @@ void BFS(void) {
 
     if (debug) {
         printf("Visiting order:\n");
-
         for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
             printf("%" PRIu32 " ", visited_in_order[i]);
         }
-
         printf("\n\n");
     }
 
@@ -148,11 +140,9 @@ void DFS(void) {
 
     if (debug) {
         printf("Visiting order:\n");
-
         for (uint32_t i = 0; i < num_of_vertices; ++i) {
             printf("%" PRIu32 " ", visited_in_order[i]);
         }
-
         printf("\n\n");
     }
 
@@ -165,18 +155,15 @@ void DFS_visit(uint32_t* visited_in_order, uint32_t* iter, bool* visited, uint32
     visited[vertex] = true;
 
     node* temp = G[vertex];
-
     while (temp) {
         if (!visited[temp->vertex]) {
             if (tree) add_edge(vertex, temp->vertex, T);
-
             DFS_visit(visited_in_order, iter, visited, temp->vertex);
         }
-
         temp = temp->next;
     }
 
-    visited_in_order[( * iter)++] = vertex;
+    visited_in_order[(* iter)++] = vertex;
     /* algorithms ends */
 }
 
@@ -213,7 +200,6 @@ void print_graph(node** Graph) {
             temp = temp->next;
         }
     }
-
     printf("\n");
 }
 
