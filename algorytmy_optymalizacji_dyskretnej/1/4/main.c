@@ -160,7 +160,7 @@ uint32_t dequeue(Queue *Q) {
 void enqueue(Queue *Q, uint32_t temp) {
     if (((Q->head + 1) % Q->size) == Q->tail) {
         printf("Queue overflow!\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     Q->data[Q->head] = temp;
     Q->head = (Q->head + 1) % Q->size;

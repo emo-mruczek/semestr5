@@ -30,15 +30,15 @@ void cleanup(void);
 volatile bool is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
-volatile int8_t tree = 0;
-volatile int8_t debug = 1;
+volatile bool tree = false;
+volatile bool debug = true;
 
-struct node** G;
-struct node** T;
+node** G;
+node** T;
 
 int main(int argc, char** argv) {
 
-    if (argc > 1 && * argv[1] == 'T') tree = 1;
+    if (argc > 1 && * argv[1] == 'T') tree = true;
 
     get_inputs();
 
@@ -255,6 +255,7 @@ void get_inputs(void) {
     }
 
     if (debug) {
+        printf("\nInput graph:\n");
         print_graph(G);
         printf("\n");
     }

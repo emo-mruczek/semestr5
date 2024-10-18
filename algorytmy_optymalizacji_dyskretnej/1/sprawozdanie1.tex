@@ -1,0 +1,436 @@
+\documentclass[15pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\title{Algorytmy Optymalizacji Dyskretnej}
+\author{Felix Zieliński 272336}
+\date{Lista 1}
+\begin{document}
+\maketitle
+Wszystkie programy napisałem w języku C. Początkowo reprezentowałem grafy jako macierz sąsiedztwa ze względu na łatwość implementacji, jednakże szybko przekonałem się, że taka reprezentacja jest nieodpowiednia dla dużych danych i proces był zabijany przez brak pamięci. Dlatego też obecnie moje programy używają listy sąsiedztwa do reprezentacji grafów, która nie tylko wymaga mniej zasobów, ale jest także wydajniejsza.
+Programy były wywoływane poprzez:
+\textit{cat \{plik.txt\} | \{program\} \{argumenty\}}, gdzie argumentem dla wyświetlenia drzewa przeszukań jest 'T' (tylko Zadanie 1).
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 1.} 
+
+\noindent DFS oraz BFS zaimplementowałem na podstawie ich opisów z książki Thomasa H. Cormena. Oba algorytmy tworzą listę sąsiedztwa według kolejności podanych krawędzi, i tak też przeszukują graf (więc nie kierują się numeracją wierzchołków). Kolejność odwiedziń w DFS jest zapisywana post-order. Poniżej prezentuję wyniki dla grafów z polecenia, przypadki skierowane oraz nieskierowane:
+
+\vspace{0.5cm}
+
+% pierwszy
+
+\begin{center}
+    \textbf{1. graf, przypadek skierowany}
+\end{center}
+
+\begin{center}
+    \textbf{BFS} \hspace{4cm} \textbf{DFS}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {4};
+        \node[circle, draw] (E) at (4, 2) {5};
+        \node[circle, draw] (F) at (4, 1) {6};
+        
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (B) -- (D);
+        \draw[->] (C) -- (E);
+        \draw[->] (C) -- (F);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {4};
+        \node[circle, draw] (E) at (4, 2) {5};
+        \node[circle, draw] (F) at (4, 1) {6};
+        
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (B) -- (D);
+        \draw[->] (C) -- (E);
+        \draw[->] (C) -- (F);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm} 
+
+\begin{center}
+    \textbf{Kolejność odwiedzin:}
+\end{center}
+
+\vspace{0.3cm} 
+
+\noindent
+\textbf{BFS:} 1 3 2 6 5 4 \hfill \textbf{DFS:} 6 3 5 4 2 1
+
+\vspace{1.5cm}
+
+% drugi
+\begin{center}
+    \textbf{1. graf, przypadek nieskierowany}
+\end{center}
+
+\begin{center}
+    \textbf{BFS} \hspace{4cm} \textbf{DFS}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {4};
+        \node[circle, draw] (E) at (4, 2) {5};
+        \node[circle, draw] (F) at (4, 1) {6};
+        
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (B) -- (D);
+        \draw[->] (C) -- (E);
+        \draw[->] (C) -- (F);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {4};
+        \node[circle, draw] (E) at (4, 2) {5};
+        \node[circle, draw] (F) at (4, 1) {6};
+        
+        \draw[->] (A) -- (C);
+        \draw[->] (C) -- (F);
+        \draw[->] (D) -- (B);
+        \draw[->] (E) -- (D);
+        \draw[->] (F) -- (E);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm} 
+
+\begin{center}
+    \textbf{Kolejność odwiedzin:}
+\end{center}
+
+\vspace{0.3cm} 
+
+\noindent
+\textbf{BFS:} 1 3 2 6 5 4 \hfill \textbf{DFS:} 2 4 5 6 3 1
+
+\vspace{1.5cm}
+
+% trzeci
+
+\begin{center}
+    \textbf{2. graf, przypadek skierowany}
+\end{center}
+
+\begin{center}
+    \textbf{BFS} \hspace{4cm} \textbf{DFS}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {4};
+        \node[circle, draw] (D) at (4, 3) {3};
+        \node[circle, draw] (E) at (4, 2) {6};
+        \node[circle, draw] (F) at (4, 1) {8};
+        \node[circle, draw] (G) at (6, 2) {5};
+        \node[circle, draw] (H) at (6, 1) {7};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (B) -- (D);
+        \draw[->] (B) -- (E);
+        \draw[->] (C) -- (F);
+        \draw[->] (E) -- (G);
+        \draw[->] (F) -- (H);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {4};
+        \node[circle, draw] (D) at (4, 3) {3};
+        \node[circle, draw] (E) at (4, 2) {5};
+        \node[circle, draw] (F) at (4, 1) {6};
+        \node[circle, draw] (G) at (6, 1) {7};
+        \node[circle, draw] (H) at (6, 2) {8};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (C) -- (F);
+        \draw[->] (E) -- (D);
+        \draw[->] (F) -- (G);
+        \draw[->] (H) -- (D);
+        \draw[->] (H) -- (G);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm} 
+
+\begin{center}
+    \textbf{Kolejność odwiedzin:}
+\end{center}
+
+\vspace{0.3cm} 
+
+\noindent
+\textbf{BFS:} 1 4 2 8 6 3 7 5 \hfill \textbf{DFS:} 3 7 8 4 5 6 2 1
+
+\vspace{1.5cm}
+
+% czwarty
+
+\begin{center}
+    \textbf{2. graf, przypadek nieskierowany}
+\end{center}
+
+\begin{center}
+    \textbf{BFS} \hspace{4cm} \textbf{DFS}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 1) {2};
+        \node[circle, draw] (C) at (2, 3) {4};
+        \node[circle, draw] (D) at (4, 3) {3};
+        \node[circle, draw] (E) at (4, 2) {8};
+        \node[circle, draw] (F) at (4, 1) {5};
+        \node[circle, draw] (G) at (6, 2) {7};
+        \node[circle, draw] (H) at (6, 1) {6};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (A) -- (F);
+        \draw[->] (F) -- (E);
+        \draw[->] (F) -- (H);
+        \draw[->] (H) -- (G);
+        \draw[->] (C) -- (D);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {5};
+        \node[circle, draw] (C) at (2, 1) {4};
+        \node[circle, draw] (D) at (4, 3) {6};
+        \node[circle, draw] (E) at (4, 2) {8};
+        \node[circle, draw] (F) at (6, 3) {7};
+        \node[circle, draw] (G) at (6, 2) {2};
+        \node[circle, draw] (H) at (6, 1) {3};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (B) -- (D);
+        \draw[->] (D) -- (F);
+        \draw[->] (F) -- (E);
+        \draw[->] (E) -- (C);
+        \draw[->] (C) -- (H);
+        \draw[->] (H) -- (G);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm} 
+
+\begin{center}
+    \textbf{Kolejność odwiedzin:}
+\end{center}
+
+\vspace{0.3cm} 
+
+\noindent
+\textbf{BFS:} 1 5 4 2 6 8 3 7 \hfill \textbf{DFS:} 2 3 4 8 7 6 5 1
+
+\vspace{1.5cm}
+
+% piaty
+
+\begin{center}
+    \textbf{3. graf, przypadek skierowany}
+\end{center}
+
+\begin{center}
+    \textbf{BFS} \hspace{4cm} \textbf{DFS}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 2) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {5};
+        \node[circle, draw] (E) at (4, 2) {4};
+        \node[circle, draw] (F) at (6, 3) {6};
+        \node[circle, draw] (G) at (5, 2) {9};
+        \node[circle, draw] (H) at (6, 1) {7};
+        \node[circle, draw] (I) at (4, 1) {8};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (A) -- (D);
+        \draw[->] (B) -- (E);
+        \draw[->] (D) -- (F);
+        \draw[->] (F) -- (G);
+        \draw[->] (F) -- (H);
+        \draw[->] (E) -- (I);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {5};
+        \node[circle, draw] (E) at (4, 2) {4};
+        \node[circle, draw] (F) at (6, 3) {6};
+        \node[circle, draw] (G) at (8, 2) {9};
+        \node[circle, draw] (H) at (6, 1) {7};
+        \node[circle, draw] (I) at (8, 1) {8};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (A) -- (D);
+        \draw[->] (D) -- (F);
+        \draw[->] (F) -- (G);
+        \draw[->] (F) -- (H);
+        \draw[->] (H) -- (E);
+        \draw[->] (H) -- (I);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm} 
+
+\begin{center}
+    \textbf{Kolejność odwiedzin:}
+\end{center}
+
+\vspace{0.3cm} 
+
+\noindent
+\textbf{BFS:} 1 5 3 2 6 4 7 9 8 \hfill \textbf{DFS:} 8 4 7 9 6 5 3 2 1
+
+\vspace{1.5cm}
+
+% szósty
+
+\begin{center}
+    \textbf{3. graf, przypadek nieskierowany}
+\end{center}
+
+\begin{center}
+    \textbf{BFS} \hspace{4cm} \textbf{DFS}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {2};
+        \node[circle, draw] (C) at (2, 1) {3};
+        \node[circle, draw] (D) at (4, 3) {5};
+        \node[circle, draw] (E) at (4, 2) {4};
+        \node[circle, draw] (F) at (6, 3) {6};
+        \node[circle, draw] (G) at (6, 2) {9};
+        \node[circle, draw] (H) at (6, 1) {7};
+        \node[circle, draw] (I) at (4, 1) {8};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (C);
+        \draw[->] (A) -- (D);
+        \draw[->] (D) -- (F);
+        \draw[->] (D) -- (E);
+        \draw[->] (D) -- (H);
+        \draw[->] (H) -- (I);
+        \draw[->] (H) -- (G);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (2, 3) {5};
+        \node[circle, draw] (C) at (2, 1) {4};
+        \node[circle, draw] (D) at (4, 3) {7};
+        \node[circle, draw] (E) at (4, 2) {3};
+        \node[circle, draw] (F) at (6, 3) {6};
+        \node[circle, draw] (G) at (6, 2) {9};
+        \node[circle, draw] (H) at (6, 1) {8};
+        \node[circle, draw] (I) at (2, 2) {2};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (B) -- (D);
+        \draw[->] (D) -- (F);
+        \draw[->] (F) -- (E);
+        \draw[->] (F) -- (G);
+        \draw[->] (G) -- (H);
+        \draw[->] (H) -- (C);
+        \draw[->] (C) -- (I);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm} 
+
+\begin{center}
+    \textbf{Kolejność odwiedzin:}
+\end{center}
+
+\vspace{0.3cm} 
+
+\noindent
+\textbf{BFS:} 1 5 3 2 7 4 6 9 8 \hfill \textbf{DFS:} 2 4 8 9 3 6 7 5 1
+
+\vspace{1.5cm}
+
+% siódmy
+
+\begin{center}
+    \textbf{Mój graf:}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

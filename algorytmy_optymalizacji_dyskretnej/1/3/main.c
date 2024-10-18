@@ -18,7 +18,7 @@ uint32_t* DFS_visit_T(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visit
 volatile uint8_t is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
-volatile int8_t debug = 1;
+volatile int8_t debug = 0;
 
 typedef struct node {
     uint32_t vertex;
@@ -67,12 +67,20 @@ int main(int argc, char** argv) {
         } 
     }
 
+    printf("dupa\n");
+
     visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t));
     memset(visited_in_order, 0, (num_of_vertices) * sizeof(uint32_t));
 
+    printf("dupa2137\n");
+
     DFS();
 
+    printf("dupa1\n");
+
     transpose();
+
+    printf("dupa3\n");
 
     if ( debug ) {
         for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
