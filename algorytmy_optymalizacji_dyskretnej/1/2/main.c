@@ -1,85 +1,60 @@
-//TODO: wykrywanie skierowanego cyklu
-
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+
+typedef struct node {
+    uint32_t vertex;
+    struct node* next;
+} node;
 
 void DFS(void);
-uint8_t DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex, uint8_t* stack); 
+bool DFS_visit(uint32_t* visited_in_order, uint32_t* iter, bool* visited, uint32_t vertex, bool* stack);
+void print_graph(node** Graph);
+void add_edge(uint32_t v, uint32_t u, node** Graph);
+void get_inputs(void);
+void cleanup(void);
 
-volatile uint8_t is_directed;
+volatile bool is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
-volatile int8_t tree = 0;
-volatile int8_t debug = 1;
-uint8_t** G;
+volatile bool debug = true;
+volatile bool should_print = false;
+node** G;
 
-int main(int argc, char** argv) {
-    if ( debug ) printf("(D)irected or (U)ndirected?\n");
-    char temp;
-    scanf("%c", &temp);
-    is_directed = ( temp == 'D' ) ? 1 : 0;
-    if ( !temp ) {
-        printf("But it is supposed to be directed...\n");
-        exit(1);
-    }
-    if ( debug ) printf("No. of vertices:\n");
-    scanf("%" SCNu32, &num_of_vertices);
-    if ( debug ) printf("No. of edges:\n");
-    scanf("%" SCNu32, &num_of_edges);
-    //++num_of_edges;
-    if ( debug ) printf("Vertices:\n");
+int main() {
 
-    G = (uint8_t**)malloc((num_of_vertices + 1) * sizeof(uint8_t*));
-    for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
-        G[i] = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-        memset(G[i], 0, (num_of_vertices + 1) * sizeof(uint8_t));
-    }
-
-    if ( !G ) {
-        printf("Memory allocation error!\n");
-        exit(1);
-    }
-
-    uint32_t u, v;
-    for ( uint32_t i = 0; i < num_of_edges; ++i ) {
-        scanf("%" SCNu32 "%" SCNu32, &u, &v);
-        G[u][v] = 1;
-        if ( !is_directed ) G[v][u] = 1;
-    }
-
-    if ( debug ) {
-        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-            for ( uint32_t j = 1; j < num_of_vertices + 1; ++j ) {
-                printf("%" PRIu32 " ", G[i][j] );
-            }
-            printf("\n");
-        }
-    }
+    get_inputs();
 
     DFS();
 
-    for ( uint32_t i = 0; i < num_of_vertices + 1; ++i ) {
-        free(G[i]);
+    for (uint32_t i = 0; i <= num_of_vertices; ++i) {
+        node* current = G[i];
+
+        while (current) {
+            node* next = current->next;
+            free(current);
+            current = next;
+        }
     }
+
     free(G);
+    return 0;
 }
 
 void DFS(void) {
-    printf("DFS:\n");
-    uint32_t* visited_in_order = (uint32_t*)malloc(num_of_vertices * sizeof(uint32_t));
-    memset(visited_in_order, 0, (num_of_vertices) * sizeof(uint32_t));
+    printf("\nDFS:\n");
+
+    bool* visited = (bool*)calloc(num_of_vertices + 1, sizeof(bool));
+    uint32_t* visited_in_order = (uint32_t*)calloc(num_of_vertices, sizeof(uint32_t));
+    bool* stack = (bool*)calloc(num_of_vertices + 1, sizeof(bool));
     uint32_t iter = 0;
-    uint8_t* visited = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-    memset(visited, 0, (num_of_vertices + 1) * sizeof(uint8_t));
-    uint8_t* stack = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-    memset(stack, 0, (num_of_vertices + 1) * sizeof(uint8_t));
 
     /* algorithm starts */
-    for ( uint32_t vertex = 1; vertex < num_of_vertices + 1; ++vertex ) {
-        if ( !visited[vertex] ) {
-            if( DFS_visit(visited_in_order, &iter, visited, vertex, stack) ) {
+    for ( uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex ) {
+        if (!visited[vertex]) {
+            if (DFS_visit(visited_in_order, & iter, visited, vertex, stack) ) {
                 printf("This graph has a cycle!!!\n");
                 free(stack);
                 free(visited);
@@ -88,37 +63,109 @@ void DFS(void) {
             }
         }
     }
+
     /* algorithm ends */
 
-    if ( debug ) printf("Visiting order:\n");
-    for ( int32_t i = num_of_vertices - 1; i >= 0 ; --i ) {
-        printf("%" PRIu32 " ", visited_in_order[i]);
+    printf("This graph is acyclic\n");
+
+    if (should_print) {
+        printf("Visiting order:\n");
+
+        for (uint32_t i = 0; i < num_of_vertices; ++i) {
+            printf("%" PRIu32 " ", visited_in_order[i]);
+        }
+
+        printf("\n\n");
     }
-    printf("\n");
 
     free(stack);
     free(visited);
     free(visited_in_order);
 }
 
-uint8_t DFS_visit(uint32_t* visited_in_order, uint32_t* iter, uint8_t* visited, uint32_t vertex, uint8_t* stack) {
+bool DFS_visit(uint32_t* visited_in_order, uint32_t* iter, bool* visited, uint32_t vertex, bool* stack) {
     /* algorithm starts */
-    visited[vertex] = 1;
-    stack[vertex] = 1;
+    visited[vertex] = true;
+    stack[vertex] = true;
 
-    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-        if ( !G[vertex][i] ) continue;
-        if ( !visited[i] ) {
-            if ( DFS_visit(visited_in_order, iter, visited, i, stack) ) return 1;
-        } else if ( stack[i] ) return 1;
+    node* temp = G[vertex];
+
+    while (temp) {
+        if (!visited[temp->vertex]) {
+            if (DFS_visit(visited_in_order, iter, visited, temp->vertex, stack)) return true;
+        } else if (stack[temp->vertex]) return true;
+
+        temp = temp->next;
     }
 
-    stack[vertex] = 0;
-    visited_in_order[*iter] = vertex;
-    ++(*iter); 
-    return 0;
+    stack[vertex] = false;
+    visited_in_order[( * iter)++] = vertex;
+    return false;
     /* algorithms ends */
 }
 
+void print_graph(node** Graph) {
+    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
+        node* temp = Graph[i];
+        printf("\n %" PRIu32 "\n\t", i);
 
+        while ( temp ) {
+            printf("%" PRIu32 " ", temp->vertex);
+            temp = temp->next;
+        }
+    }
+
+    printf("\n");
+}
+
+void add_edge(uint32_t v, uint32_t u, node** Graph) {
+    node* new = (node*)malloc(sizeof(node));
+    new->vertex = u;
+    new->next = Graph[v];
+    Graph[v] = new;
+}
+
+void get_inputs(void) {
+
+    if (debug) printf("(D)irected or (U)ndirected?\n");
+
+    char temp;
+    scanf("%c", & temp);
+    is_directed = ( temp == 'D' ) ? 1 : 0;
+
+    if (!temp) {
+        printf("But it is supposed to be directed...\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (debug) printf("No. of vertices:\n");
+
+    scanf("%" SCNu32, & num_of_vertices);
+    if (num_of_vertices <= 200) should_print = true;
+
+    if (debug) printf("No. of edges:\n");
+
+    scanf("%" SCNu32, & num_of_edges);
+
+    if (debug) printf("Vertices:\n");
+
+    G = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
+
+    for (uint32_t i = 1; i <= num_of_vertices; ++i) G[i] = NULL;
+
+    uint32_t u, v;
+
+    for (uint32_t i = 0; i < num_of_edges; ++i) {
+        scanf("%" SCNu32 "%" SCNu32, & u, & v);
+        add_edge(u, v, G);
+
+        if (!is_directed) add_edge(v, u, G);
+    }
+
+    if (debug) {
+        printf("\nInput graph:\n");
+        print_graph(G);
+        printf("\n");
+    }
+}
 
