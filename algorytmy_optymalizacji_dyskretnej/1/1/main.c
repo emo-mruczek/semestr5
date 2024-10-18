@@ -1,6 +1,3 @@
-//TODO: header
-//TODO: make it faster
-//TODO: valgrind check
 //TODO: tests (gotfryd's graphs)
 #include <inttypes.h>
 #include <stdio.h>
@@ -53,7 +50,7 @@ int main(int argc, char** argv) {
 
     if ( !G ) {
         printf("Memory allocation error!\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     uint32_t u, v;
@@ -70,6 +67,7 @@ int main(int argc, char** argv) {
             }
             printf("\n");
         }
+        printf("\n");
     }
 
     if ( tree ) {
@@ -144,7 +142,7 @@ void BFS(void) {
     for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
         printf("%" PRIu32 " ", visited_in_order[i]);
     }
-    printf("\n");
+    printf("\n\n");
 
     free(Q.data);
     free(visited);
@@ -171,7 +169,7 @@ void DFS(void) {
     for ( uint32_t i = 0; i < num_of_vertices; ++i ) {
         printf("%" PRIu32 " ", visited_in_order[i]);
     }
-    printf("\n");
+    printf("\n\n");
 
     free(visited);
     free(visited_in_order);
@@ -206,7 +204,7 @@ uint32_t dequeue(Queue *Q) {
 void enqueue(Queue *Q, uint32_t temp) {
     if (((Q->head + 1) % Q->size) == Q->tail) {
         printf("Queue overflow!\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     Q->data[Q->head] = temp;
     Q->head = (Q->head + 1) % Q->size;
@@ -219,5 +217,5 @@ void print_tree(void) {
             }
             printf("\n");
         }
-
+    printf("\n");
 }
