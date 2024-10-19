@@ -19,7 +19,7 @@ void cleanup(void);
 volatile bool is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
-volatile bool debug = true;
+volatile bool debug = false;
 volatile bool should_print = false;
 node** G;
 

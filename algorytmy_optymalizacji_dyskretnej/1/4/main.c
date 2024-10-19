@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-/* queue for BFS */
+#include <stdbool.h>
 
 typedef struct Queue {
     uint32_t head;
@@ -20,6 +19,11 @@ typedef enum COLOR {
     BLUE,
     NONE
 } COLOR;
+
+typedef struct node {
+    uint32_t vertex;
+    struct node* next;
+} node;
 
 uint32_t dequeue(Queue* Q);
 void enqueue(Queue* Q, uint32_t temp);
