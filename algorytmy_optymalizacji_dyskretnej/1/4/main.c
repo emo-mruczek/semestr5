@@ -1,4 +1,3 @@
-//TODO: free
 //TODO:undirected graph??????
 //TODO: printing only for small num of ver
 //TODO: change colors to colours lolololol
@@ -37,16 +36,14 @@ void cleanup(void);
 volatile bool is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
-volatile int8_t tree = false;
-volatile int8_t debug = true;
+volatile bool debug = false;
+volatile bool should_print = false;
 
 node** G;
 
 int main() {
 
     get_inputs();
-
-    print_graph(G); 
 
     BFS();
 
@@ -80,7 +77,7 @@ void BFS(void) {
                         visited[v] = true;
 
                         colors[v] = (colors[u] == GREEN) ? BLUE : GREEN;
-                        for ( int k = 0; k <= num_of_vertices; ++k) printf("%d ", colors[k]);
+                        if (debug) for ( int k = 0; k <= num_of_vertices; ++k) printf("%d ", colors[k]);
                         printf("\n");
                         enqueue( & Q, v);
                     } else if (v != u && colors[v] == colors[u]) {
@@ -163,7 +160,8 @@ void get_inputs(void) {
     if ( debug ) printf("No. of edges:\n");
 
     scanf("%" SCNu32, & num_of_edges);
-
+    if (num_of_edges <= 200) should_print = true;
+ 
     if ( debug ) printf("Vertices:\n");
 
     G = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
