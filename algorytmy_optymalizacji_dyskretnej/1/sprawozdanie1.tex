@@ -611,7 +611,7 @@ Programy były wywoływane poprzez:
 
 \noindent\textbf{Zadanie 2.} 
 
-\noindent W tym zadaniu również kierowałem się algorytmem opisanym w książce Cormena. Używam tutaj lekko zmodyfikowanego DFS-a - dodałem tablicę, aby trzymać informacje o obecnie przechodzonej trasie. Jeżeli obecnie odwiedzany wierzchołek znajduje się na niej, oznacza to, że graf zawiera skierowany cykl. Program wtedy wypisuje tę informację oraz przerywa działanie. Aby posortować wierzchołki w porządku topologicznym, program dodaje wierzchołek do odpowiedniej tablicy po odwiedzeniu wszystkich jego sąsiadów.
+\noindent W tym zadaniu również kierowałem się algorytmem opisanym w książce Cormena. Używam tutaj lekko zmodyfikowanego DFS-a - dodałem tablicę, aby trzymać informacje o obecnie przechodzonej trasie. Jeżeli obecnie odwiedzany wierzchołek znajduje się na niej, oznacza to, że graf zawiera skierowany cykl. Program wtedy wypisuje tę informację oraz przerywa działanie. Aby posortować wierzchołki w porządku topologicznym, program dodaje wierzchołek do odpowiedniej tablicy po odwiedzeniu wszystkich jego sąsiadów. Czasy wykonywania są podane na podstawie jednego wywołania, w mikrosekundach.
 
 \vspace{0.5cm}
 
@@ -687,6 +687,30 @@ Programy były wywoływane poprzez:
 \noindent
 \textbf{Kolejonść:} 9 8 7 6 5 4 3 2 1 10  \hfill \textbf{Ten graf ma cykl!}
 
+\begin{center}
+    \textbf{Grafy testowe}
+\end{center}
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|p{10cm}|}
+        \hline
+        Plik & Czy ma cykl? & Przykładowy czas wykonania & Kolejność topologiczna \\ \hline
+        g2a-1 & nie & 0 & 16 15 12 11 14 10 8 7 6 13 9 5 4 3 2 1 \\ \hline
+        g2a-2 & nie & 0 & 100 99 90 89 98 88 80 79 78 97 87 77 70 69 68 67 96 86 76 66 60 59 58 57 56 95 85 75 65 55 50 49 48 47 46 45 94 84 74 64 54 44 40 39 38 37 36 35 34 93 83 73 63 53 43 33 30 29 28 27 26 25 24 23 92 82 72 62 52 42 32 22 20 19 18 17 16 15 14 13 12 91 81 71 61 51 41 31 21 11 10 9 8 7 6 5 4 3 2 1 \\ \hline
+        g2a-3 & nie & 0 & N/A \\ \hline
+        g2a-4 & nie & 0 & N/A \\ \hline
+        g2a-5 & nie & 0 & N/A \\ \hline
+        g2a-6 & nie & 0 & N/A \\ \hline
+        g2b-1 & tak & 0 & N/A \\ \hline
+        g2b-2 & tak & 0 & N/A \\ \hline
+        g2b-3 & tak & 0 & N/A \\ \hline
+        g2b-4 & tak & 0 & N/A \\ \hline
+        g2b-5 & tak & 0 & N/A \\ \hline
+        g2b-6 & tak & 0 & N/A \\ \hline
+    \end{tabular}
+    \label{tab:grafy testowe 1}
+\end{table}
 
 
-\end{document}end{document}
+
+\end{document}end{document}end{document}

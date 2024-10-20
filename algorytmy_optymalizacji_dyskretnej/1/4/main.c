@@ -1,6 +1,7 @@
 //TODO: free
 //TODO:undirected graph??????
 //TODO: printing only for small num of ver
+//TODO: change colors to colours lolololol
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,116 +29,73 @@ typedef struct node {
 uint32_t dequeue(Queue* Q);
 void enqueue(Queue* Q, uint32_t temp);
 void BFS(void);
-void print_tree(void);
+void print_graph(node** Graph);
+void add_edge(uint32_t v, uint32_t u, node** Graph);
+void get_inputs(void);
+void cleanup(void);
 
-volatile uint8_t is_directed;
+volatile bool is_directed;
 volatile uint32_t num_of_vertices;
 volatile uint32_t num_of_edges;
-volatile int8_t tree = 0;
-volatile int8_t debug = 1;
-uint8_t** G;
-uint8_t** T;
+volatile int8_t tree = false;
+volatile int8_t debug = true;
 
-int main(int argc, char** argv) {
+node** G;
 
-    if ( argc > 1 && *argv[1] == 'T' ) tree = 1;
+int main() {
 
-    if ( debug ) printf("(D)irected or (U)ndirected?\n");
-    char temp;
-    scanf("%c", &temp);
-    is_directed = ( temp == 'D' ) ? 1 : 0;
-    if ( debug ) printf("No. of vertices:\n");
-    scanf("%" SCNu32, &num_of_vertices);
-    if ( debug ) printf("No. of edges:\n");
-    scanf("%" SCNu32, &num_of_edges);
-    if ( debug ) printf("Vertices:\n");
+    get_inputs();
 
-    G = (uint8_t**)malloc((num_of_vertices + 1) * sizeof(uint8_t*));
-    for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
-        G[i] = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-        memset(G[i], 0, (num_of_vertices + 1) * sizeof(uint8_t));
-    }
-
-    if ( !G ) {
-        printf("Memory allocation error!\n");
-        exit(1);
-    }
-
-    uint32_t u, v;
-    for ( uint32_t i = 0; i < num_of_edges; ++i ) {
-        scanf("%" SCNu32 "%" SCNu32, &u, &v);
-        G[u][v] = 1;
-        if ( !is_directed ) G[v][u] = 1;
-    }
-
-    if ( debug ) {
-        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-            for ( uint32_t j = 1; j < num_of_vertices + 1; ++j ) {
-                printf("%" PRIu32 " ", G[i][j] );
-            }
-            printf("\n");
-        }
-    }
-
-    if ( tree ) {
-        T = (uint8_t**)malloc((num_of_vertices + 1) * sizeof(uint8_t*));
-        for ( uint8_t i = 0; i < num_of_vertices + 1; ++i ) {
-            T[i] = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-            memset(T[i], 0, (num_of_vertices + 1) * sizeof(uint8_t));
-        }
-    }
+    print_graph(G); 
 
     BFS();
 
-    for ( uint32_t i = 0; i < num_of_vertices + 1; ++i ) {
-        free(G[i]);
-    }
-    free(G);
+    cleanup(); 
 }
 
-//TODO: tree
-
 void BFS(void) {
-    printf("BFS:\n");
-    // size of Q is number of vertices + 1
     Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t*)malloc((num_of_vertices + 1) * sizeof(uint32_t))};
-    uint8_t* visited = (uint8_t*)malloc((num_of_vertices + 1) * sizeof(uint8_t));
-    memset(visited, 0, (num_of_vertices + 1) * sizeof(uint8_t));
+    bool* visited = (bool*)calloc(num_of_vertices + 1, sizeof(bool));
     COLOR* colors = (COLOR*)malloc((num_of_vertices + 1) * sizeof(COLOR));
-    for (uint32_t i = 0; i < num_of_vertices + 1; i++) {
+    for (uint32_t i = 0; i <= num_of_vertices; i++) {
         colors[i] = NONE;
     }
 
     /* algorithm starts */
-    for ( uint32_t vertex = 1; vertex < num_of_vertices + 1; ++vertex ) {
-        if ( !visited[vertex] ) {
+    for (uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex) {
+        if (!visited[vertex]) {
             colors[vertex] = GREEN;
             enqueue(&Q, vertex);
-            visited[vertex] = 1;
+            visited[vertex] = true;
 
             uint32_t u;
-            while ( (u = dequeue(&Q)) != 0 ) {
-                for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-                    if ( !G[u][i] ) continue;
 
-                    if ( !visited[i] ) {
-                        visited[i] = 1;
-                        colors[i] = (colors[u] == GREEN) ? BLUE : GREEN;
-                        if (tree) T[u][i] = 1;
-                        enqueue(&Q, i);
-                        for ( int k = 0; k < num_of_vertices + 1; ++k) printf("%d ", colors[k]);
+            while ((u = dequeue( & Q))) {
+                node* neighbor = G[u];
+
+                while (neighbor) {
+                    uint32_t v = neighbor->vertex;
+
+                    if (!visited[v]) {
+                        visited[v] = true;
+
+                        colors[v] = (colors[u] == GREEN) ? BLUE : GREEN;
+                        for ( int k = 0; k <= num_of_vertices; ++k) printf("%d ", colors[k]);
                         printf("\n");
-                    } else if ( i != u && colors[i] == colors[u] ) {
-                        printf("It's NOT a bipartite graph! %" PRIu32 " %" PRIu32 "\n", i, u);
+                        enqueue( & Q, v);
+                    } else if (v != u && colors[v] == colors[u]) {
+                        printf("It's NOT a bipartite graph! %" PRIu32 " %" PRIu32 "\n", v, u);
                         free(Q.data);
                         free(visited);
                         free(colors);
                         return;
                     }
+                    neighbor = neighbor->next;
                 }
             }
         }
     }
+ 
     /* algorithm ends */
 
     printf("It's a bipartite graph!\n");
@@ -149,6 +107,13 @@ void BFS(void) {
     free(colors);
     free(Q.data);
     free(visited);
+}
+
+void add_edge(uint32_t v, uint32_t u, node** Graph) {
+    node* new = (node*)malloc(sizeof(node));
+    new->vertex = u;
+    new->next = Graph[v];
+    Graph[v] = new;
 }
 
 /* https://gist.github.com/ryankurte/61f95dc71133561ed055ff62b33585f8 */
@@ -170,12 +135,65 @@ void enqueue(Queue *Q, uint32_t temp) {
     Q->head = (Q->head + 1) % Q->size;
 }
 
-void print_tree(void) {
+void print_graph(node** Graph) {
     for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-        for ( uint32_t j = 1; j < num_of_vertices + 1; ++j ) {
-                printf("%" PRIu32 " ", T[i][j] );
-            }
-            printf("\n");
-        }
+        node* temp = Graph[i];
+        printf("\n %" PRIu32 "\n\t", i);
 
+        while ( temp ) {
+            printf("%" PRIu32 " ", temp->vertex);
+            temp = temp->next;
+        }
+    }
+
+    printf("\n");
+}
+
+void get_inputs(void) {
+    if ( debug ) printf("(D)irected or (U)ndirected?\n");
+
+    char temp;
+    scanf("%c", & temp);
+    is_directed = ( temp == 'D' ) ? 1 : 0;
+
+    if ( debug ) printf("No. of vertices:\n");
+
+    scanf("%" SCNu32, & num_of_vertices);
+
+    if ( debug ) printf("No. of edges:\n");
+
+    scanf("%" SCNu32, & num_of_edges);
+
+    if ( debug ) printf("Vertices:\n");
+
+    G = (node**)malloc((num_of_vertices + 1) * sizeof(node*));
+
+    for (uint32_t i = 1; i <= num_of_vertices; ++i) G[i] = NULL;
+
+    uint32_t u, v;
+
+    for (uint32_t i = 0; i < num_of_edges; ++i) {
+        scanf("%" SCNu32 "%" SCNu32, & u, & v);
+        add_edge(u, v, G);
+
+        if (!is_directed) add_edge(v, u, G);
+    }
+
+    if (debug) {
+        printf("\nInput graph:\n");
+        print_graph(G);
+        printf("\n");
+    }
+}
+
+void cleanup(void) {
+    for (uint32_t i = 1; i <= num_of_vertices; ++i) {
+        node* current = G[i];
+
+        while (current) {
+            node* next = current->next;
+            free(current);
+            current = next;
+        }
+    }
 }

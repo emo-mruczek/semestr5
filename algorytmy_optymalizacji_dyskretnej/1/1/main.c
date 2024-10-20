@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/resource.h>
 
 typedef struct Queue {
     uint32_t head;
@@ -37,6 +38,11 @@ node** G;
 node** T;
 
 int main(int argc, char** argv) {
+
+    setrlimit(RLIMIT_STACK, &(struct rlimit) {
+        .rlim_cur = RLIM_INFINITY,
+        .rlim_max = RLIM_INFINITY
+    });
 
     if (argc > 1 && * argv[1] == 'T') tree = true;
 

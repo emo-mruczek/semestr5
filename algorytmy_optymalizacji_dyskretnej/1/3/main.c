@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/resource.h>
 
 typedef struct node {
     uint32_t vertex;
@@ -16,13 +17,13 @@ void transpose(void);
 void get_inputs(void);
 void print_graph(node** Graph);
 void clean_up(void);
-//temp
 void DFS_T(void);
 uint32_t* DFS_visit_T(uint32_t* visited_in_order, uint32_t* iter, bool* visited, uint32_t vertex);
 
-volatile uint32_t num_of_vertices;
-volatile uint32_t num_of_edges;
-volatile bool debug = true;
+volatile uint32_t num_of_vertices = 0;
+volatile uint32_t num_of_edges = 0;
+volatile bool debug = false;
+volatile bool should_print = false;
 
 node** G;
 node** T;
@@ -31,21 +32,20 @@ uint32_t* visited_in_order;
 
 int main() {
 
-    get_inputs();
+    setrlimit(RLIMIT_STACK, &(struct rlimit) {
+        .rlim_cur = RLIM_INFINITY,
+        .rlim_max = RLIM_INFINITY
+    });
 
-    printf("dupa1\n");
+    get_inputs();
     
-    print_graph(G);
+    if (debug) print_graph(G);
 
     DFS();
 
-    printf("dupa2\n");
-
     transpose();
 
-    printf("dupa4\n");
-
-    print_graph(T);
+    if (debug) print_graph(T);
 
     DFS_T();
 
@@ -110,9 +110,12 @@ void DFS_T(void) {
         if ( !visited[vertex] ) {
             printf("\nSCC %u: ", ++num_of_scc);
             DFS_visit_T(component_order, &iter, visited, vertex);
+            uint32_t num_of_items = 0;
             for (uint32_t j = 0; j < iter; ++j) {
-                printf("%u ", component_order[j]);
+                ++num_of_items;
+                if (should_print) printf("%u ", component_order[j]);
             }
+            printf(" Number of items in SCC: %" PRIu32 "\n", num_of_items);
             iter = 0;
         }
     }
@@ -163,6 +166,9 @@ void get_inputs() {
 
     if ( debug ) printf("No. of edges:\n");
     scanf("%" SCNu32, &num_of_edges);
+
+    if (num_of_edges <= 200) should_print = true;
+
     if ( debug ) printf("Vertices:\n");
 
     G = (node**)malloc((num_of_vertices + 1) * sizeof(node*));

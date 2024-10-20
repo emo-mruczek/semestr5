@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/resource.h>
+#include <time.h>
 
 typedef struct node {
     uint32_t vertex;
@@ -25,9 +27,26 @@ node** G;
 
 int main() {
 
+    setrlimit(RLIMIT_STACK, &(struct rlimit) {
+        .rlim_cur = RLIM_INFINITY,
+        .rlim_max = RLIM_INFINITY
+    });
+
     get_inputs();
 
+    struct timespec start, end;
+ 
+    clock_gettime(CLOCK_REALTIME, &start);
+
     DFS();
+
+    clock_gettime(CLOCK_REALTIME, &end);
+    
+    long time_spent = (end.tv_sec - start.tv_sec) * 1000000000L + 
+                     (end.tv_nsec - start.tv_nsec) / 1000;
+
+    printf("\nTime: %ld microseconds\n", time_spent) ;
+
 
     for (uint32_t i = 0; i <= num_of_vertices; ++i) {
         node* current = G[i];
