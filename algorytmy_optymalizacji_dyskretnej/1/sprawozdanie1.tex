@@ -694,23 +694,367 @@ Programy były wywoływane poprzez:
 \begin{table}[ht]
     \begin{tabular}{|c|c|c|p{10cm}|}
         \hline
-        Plik & Czy ma cykl? & Przykładowy czas wykonania & Kolejność topologiczna \\ \hline
-        g2a-1 & nie & 0 & 16 15 12 11 14 10 8 7 6 13 9 5 4 3 2 1 \\ \hline
-        g2a-2 & nie & 0 & 100 99 90 89 98 88 80 79 78 97 87 77 70 69 68 67 96 86 76 66 60 59 58 57 56 95 85 75 65 55 50 49 48 47 46 45 94 84 74 64 54 44 40 39 38 37 36 35 34 93 83 73 63 53 43 33 30 29 28 27 26 25 24 23 92 82 72 62 52 42 32 22 20 19 18 17 16 15 14 13 12 91 81 71 61 51 41 31 21 11 10 9 8 7 6 5 4 3 2 1 \\ \hline
-        g2a-3 & nie & 0 & N/A \\ \hline
-        g2a-4 & nie & 0 & N/A \\ \hline
-        g2a-5 & nie & 0 & N/A \\ \hline
-        g2a-6 & nie & 0 & N/A \\ \hline
-        g2b-1 & tak & 0 & N/A \\ \hline
-        g2b-2 & tak & 0 & N/A \\ \hline
-        g2b-3 & tak & 0 & N/A \\ \hline
-        g2b-4 & tak & 0 & N/A \\ \hline
-        g2b-5 & tak & 0 & N/A \\ \hline
-        g2b-6 & tak & 0 & N/A \\ \hline
+        Plik & Czy ma cykl? & Czas & Kolejność topologiczna \\ \hline
+        g2a-1 & nie & 11 & 16 15 12 11 14 10 8 7 6 13 9 5 4 3 2 1 \\ \hline
+        g2a-2 & nie & 18 & 100 99 90 89 98 88 80 79 78 97 87 77 70 69 68 67 96 86 76 66 60 59 58 57 56 95 85 75 65 55 50 49 48 47 46 45 94 84 74 64 54 44 40 39 38 37 36 35 34 93 83 73 63 53 43 33 30 29 28 27 26 25 24 23 92 82 72 62 52 42 32 22 20 19 18 17 16 15 14 13 12 91 81 71 61 51 41 31 21 11 10 9 8 7 6 5 4 3 2 1 \\ \hline
+        g2a-3 & nie & 28 & N/A \\ \hline
+        g2a-4 & nie & 199 & N/A \\ \hline
+        g2a-5 & nie & 8393 & N/A \\ \hline
+        g2a-6 & nie & 71799 & N/A \\ \hline
+        g2b-1 & tak & 8 & N/A \\ \hline
+        g2b-2 & tak & 12 & N/A \\ \hline
+        g2b-3 & tak & 25 & N/A \\ \hline
+        g2b-4 & tak & 35 & N/A \\ \hline
+        g2b-5 & tak & 151 & N/A \\ \hline
+        g2b-6 & tak & 527 & N/A \\ \hline
     \end{tabular}
     \label{tab:grafy testowe 1}
 \end{table}
 
+% zad 3
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 3.} 
+
+\noindent Rozkład na silnie spójne składowe wyznaczam poprzez wykonaniu DFS-a w celu ustalenia wartości post-visit, następnie transponowania grafu oraz kolejnego jego przejścia DFS-em. DFS ma złożoność O(V + E). Dzięki zastosowaniu listy sąsiedztwa, również funkcja transponująca graf ma taką zlożoność. Cały algorytm mieści się więc w wymaganej w zadaniu złożoności obliczeniowej.
+
+\vspace{0.5cm}
+
+\begin{center}
+    \textbf{Moje grafy}
+\end{center}
+
+\begin{center}
+    \textbf{silnie spojny} \hspace{4cm} \textbf{z >1 silnie spójną składową}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (1, 4) {2};
+        \node[circle, draw] (C) at (1, 2) {3};
+        \node[circle, draw] (D) at (2, 2) {4};
+        \node[circle, draw] (E) at (2, 4) {5};
+        \node[circle, draw] (F) at (3, 4) {6};
+        \node[circle, draw] (G) at (3, 2) {7};
+        \node[circle, draw] (H) at (4, 4) {8};
+        \node[circle, draw] (I) at (4, 2) {9};
+        \node[circle, draw] (J) at (1, 0) {10};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (B) -- (A);
+        \draw[->] (D) -- (E);
+        \draw[->] (B) -- (C);
+        \draw[->] (C) -- (D);
+        \draw[->] (C) -- (E);
+        \draw[->] (E) -- (F);
+        \draw[->] (F) -- (G);
+        \draw[->] (F) -- (H);
+        \draw[->] (H) -- (I);
+        \draw[->] (J) -- (I);
+        \draw[->] (J) -- (A);
+        \draw[->] (B) -- (E);
+        \draw[->] (E) -- (B);
+        \draw[->] (G) -- (D);
+        \draw[->] (I) -- (F);
+        \draw[->] (J) -- (D);
+        \draw[->] (D) -- (J);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+         \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (1, 4) {2};
+        \node[circle, draw] (C) at (1, 2) {3};
+        \node[circle, draw] (D) at (2, 2) {4};
+        \node[circle, draw] (E) at (2, 4) {5};
+        \node[circle, draw] (F) at (3, 4) {6};
+        \node[circle, draw] (G) at (3, 2) {7};
+        \node[circle, draw] (H) at (4, 4) {8};
+        \node[circle, draw] (I) at (4, 2) {9};
+        \node[circle, draw] (J) at (1, 0) {10};
+
+        \draw[->] (A) -- (B);
+        \draw[->] (B) -- (C);
+        \draw[->] (C) -- (D);
+        \draw[->] (C) -- (E);
+        \draw[->] (E) -- (F);
+        \draw[->] (F) -- (G);
+        \draw[->] (F) -- (H);
+        \draw[->] (H) -- (I);
+        \draw[->] (J) -- (I);
+        \draw[->] (J) -- (A);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\begin{center}
+    \textbf{Outputy dla grafów testowych:}
+\end{center}
+
+\textbf{Graf 1} \\
+SCC 1: 1 5 4 3 2 \\
+Number of items in SCC: 5 \\
+
+SCC 2: 12 15 14 13 \\
+Number of items in SCC: 4 \\
+
+SCC 3: 6 8 9 7 \\
+Number of items in SCC: 4 \\
+
+SCC 4: 10 11 \\
+Number of items in SCC: 2 \\
+
+SCC 5: 16 \\
+Number of items in SCC: 1 \\
+
+Time: 12 microseconds \\
+
+\textbf{Graf 2} \\
+SCC 1: 1 6 5 4 3 2 \\
+Number of items in SCC: 6 \\
+
+SCC 2: 67 106 105 104 103 102 101 100 99 98 97 96 95 94 93 92 91 90 89 88 87 86 85 84 83 82 81 80 79 78 77 76 75 74 73 72 71 70 69 68 \\
+Number of items in SCC: 40 \\
+
+SCC 3: 7 13 19 25 31 37 38 39 40 41 42 36 35 29 28 34 22 21 27 33 15 14 20 26 32 8 9 16 10 23 17 11 30 24 18 12 \\
+Number of items in SCC: 36 \\
+
+SCC 4: 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 \\
+Number of items in SCC: 24 \\
+
+SCC 5: 107 \\
+Number of items in SCC: 1 \\
+
+Time: 68 microseconds \\
+
+\textbf{Graf 3} \\
+SCC 1: \\
+Number of items in SCC: 7 \\
+
+SCC 2: \\
+Number of items in SCC: 400 \\
+
+SCC 3: \\
+Number of items in SCC: 400 \\
+
+SCC 4: \\
+Number of items in SCC: 200 \\
+
+SCC 5: \\
+Number of items in SCC: 1 \\
+
+Time: 89 microseconds \\
+
+\textbf{Graf 4} \\
+SCC 1: \\
+Number of items in SCC: 8 \\
+
+SCC 2: \\
+Number of items in SCC: 4000 \\
+
+SCC 3: \\
+Number of items in SCC: 3600 \\
+
+SCC 4: \\
+Number of items in SCC: 2400 \\
+
+SCC 5: \\
+Number of items in SCC: 1 \\
+
+Time: 659 microseconds \\
+
+\textbf{Graf 5} \\
+SCC 1: \\
+Number of items in SCC: 9 \\
+
+SCC 2: \\
+Number of items in SCC: 40000 \\
+
+SCC 3: \\
+Number of items in SCC: 40000 \\
+
+SCC 4: \\
+Number of items in SCC: 20000 \\
+
+SCC 5: \\
+Number of items in SCC: 1 \\
+
+Time: 8793 microseconds \\
+
+\textbf{Graf 6} \\
+SCC 1: \\
+Number of items in SCC: 10 \\
+
+SCC 2: \\
+Number of items in SCC: 400000 \\
+
+SCC 3: \\
+Number of items in SCC: 360000 \\
+
+SCC 4: \\
+Number of items in SCC: 240000 \\
+
+SCC 5: \\
+Number of items in SCC: 1 \\
+
+Time: 999174867 microseconds \\
+
+% zadanie 4
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 4.} 
+
+\noindent Aby określić, czy graf jest dwudzielny, "koloruję" wierzchołki na jeden z dwóch kolorów naprzemiennie, używając BFS-a. Jeżeli podczas kolorowania zdarzy się, że odwiedzany wierzchołek sąsiaduje z wierzchołkiem o tym samym kolorze, to program przerywa działanie i zwraca informację, że graf nie jest dwudzielny.   Udane pokolorowanie wskazuje na dwudzielność grafu.
+
+Wyniki dla grafów testowych są długie, dlatego zapisałem je w pliku res.txt
+
+\vspace{0.5cm}
+
+\begin{center}
+    \textbf{Moje grafy dwudzielne}
+\end{center}
+
+\begin{center}
+    \textbf{nieskierowany} \hspace{4cm} \textbf{skierowany}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (1, 4) {2};
+        \node[circle, draw] (C) at (1, 2) {3};
+        \node[circle, draw] (D) at (2, 2) {4};
+        \node[circle, draw] (E) at (2, 4) {5};
+        \node[circle, draw] (F) at (3, 4) {6};
+        \node[circle, draw] (G) at (3, 2) {7};
+        \node[circle, draw] (H) at (4, 4) {8};
+        \node[circle, draw] (I) at (4, 2) {9};
+        \node[circle, draw] (J) at (1, 0) {10};
+
+        \draw[-] (B) -- (C);
+        \draw[-] (C) -- (E);
+        \draw[-] (C) -- (D);
+        \draw[-] (F) -- (G);
+        \draw[-] (F) -- (H);
+        \draw[-] (J) -- (I);
+        \draw[-] (J) -- (A);
+        \draw[-] (G) -- (D);
+        \draw[-] (H) -- (I);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+   \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (1, 4) {2};
+        \node[circle, draw] (C) at (1, 2) {3};
+        \node[circle, draw] (D) at (2, 2) {4};
+        \node[circle, draw] (E) at (2, 4) {5};
+        \node[circle, draw] (F) at (3, 4) {6};
+        \node[circle, draw] (G) at (3, 2) {7};
+        \node[circle, draw] (H) at (4, 4) {8};
+        \node[circle, draw] (I) at (4, 2) {9};
+        \node[circle, draw] (J) at (1, 0) {10};
+
+        \draw[->] (B) -- (C);
+        \draw[->] (C) -- (E);
+        \draw[->] (F) -- (G);
+        \draw[->] (F) -- (H);
+        \draw[->] (J) -- (I);
+        \draw[->] (J) -- (A);
+        \draw[->] (G) -- (D);
+        \draw[->] (H) -- (I);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+    \textbf{Moje grafy niedwudzielne}
+\end{center}
+
+\begin{center}
+    \textbf{nieskierowany} \hspace{4cm} \textbf{skierowany}
+\end{center}
+
+\begin{center}
+\begin{minipage}{0.45\textwidth}
+    \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (1, 4) {2};
+        \node[circle, draw] (C) at (1, 2) {3};
+        \node[circle, draw] (D) at (2, 2) {4};
+        \node[circle, draw] (E) at (2, 4) {5};
+        \node[circle, draw] (F) at (3, 4) {6};
+        \node[circle, draw] (G) at (3, 2) {7};
+        \node[circle, draw] (H) at (4, 4) {8};
+        \node[circle, draw] (I) at (4, 2) {9};
+        \node[circle, draw] (J) at (1, 0) {10};
+
+        \draw[-] (B) -- (C);
+        \draw[-] (C) -- (E);
+        \draw[-] (C) -- (D);
+        \draw[-] (F) -- (G);
+        \draw[-] (F) -- (H);
+        \draw[-] (J) -- (I);
+        \draw[-] (J) -- (A);
+        \draw[-] (G) -- (D);
+        \draw[-] (H) -- (I);
+        \draw[-] (A) -- (B);
+        \draw[-] (D) -- (E);
+        \draw[-] (E) -- (F);
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+   \begin{tikzpicture}
+        \node[circle, draw] (A) at (0, 2) {1};
+        \node[circle, draw] (B) at (1, 4) {2};
+        \node[circle, draw] (C) at (1, 2) {3};
+        \node[circle, draw] (D) at (2, 2) {4};
+        \node[circle, draw] (E) at (2, 4) {5};
+        \node[circle, draw] (F) at (3, 4) {6};
+        \node[circle, draw] (G) at (3, 2) {7};
+        \node[circle, draw] (H) at (4, 4) {8};
+        \node[circle, draw] (I) at (4, 2) {9};
+        \node[circle, draw] (J) at (1, 0) {10};
+
+        \draw[->] (B) -- (C);
+        \draw[->] (C) -- (E);
+        \draw[->] (F) -- (G);
+        \draw[->] (F) -- (H);
+        \draw[->] (J) -- (I);
+        \draw[->] (J) -- (A);
+        \draw[->] (G) -- (D);
+        \draw[->] (H) -- (I);
+        \draw[->] (A) -- (B);
+        \draw[->] (C) -- (D);
+        \draw[->] (D) -- (E);
+        \draw[->] (E) -- (F);
+    \end{tikzpicture}
+\end{minipage}
+\end{center}
 
 
-\end{document}end{document}end{document}
+
+
+
+
+\end{document}
+
+

@@ -1,11 +1,9 @@
-//TODO:undirected graph??????
-//TODO: printing only for small num of ver
-//TODO: change colors to colours lolololol
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 
 typedef struct Queue {
     uint32_t head;
@@ -45,15 +43,27 @@ int main() {
 
     get_inputs();
 
+    struct timespec start, end;
+
+    clock_gettime(CLOCK_REALTIME, & start);
+
     BFS();
 
-    cleanup(); 
+    clock_gettime(CLOCK_REALTIME, & end);
+
+    long time_spent = (end.tv_sec - start.tv_sec) * 1000000000L +
+                      (end.tv_nsec - start.tv_nsec) / 1000;
+
+    printf("\nTime: %ld microseconds\n", time_spent) ;
+
+    cleanup();
 }
 
 void BFS(void) {
     Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t*)malloc((num_of_vertices + 1) * sizeof(uint32_t))};
     bool* visited = (bool*)calloc(num_of_vertices + 1, sizeof(bool));
     COLOR* colors = (COLOR*)malloc((num_of_vertices + 1) * sizeof(COLOR));
+
     for (uint32_t i = 0; i <= num_of_vertices; i++) {
         colors[i] = NONE;
     }
@@ -62,7 +72,7 @@ void BFS(void) {
     for (uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex) {
         if (!visited[vertex]) {
             colors[vertex] = GREEN;
-            enqueue(&Q, vertex);
+            enqueue( & Q, vertex);
             visited[vertex] = true;
 
             uint32_t u;
@@ -77,8 +87,13 @@ void BFS(void) {
                         visited[v] = true;
 
                         colors[v] = (colors[u] == GREEN) ? BLUE : GREEN;
-                        if (debug) for ( int k = 0; k <= num_of_vertices; ++k) printf("%d ", colors[k]);
-                        printf("\n");
+
+                        if (debug) {
+                            for ( int k = 0; k <= num_of_vertices; ++k) printf("%d ", colors[k]);
+
+                            printf("\n");
+                        }
+
                         enqueue( & Q, v);
                     } else if (v != u && colors[v] == colors[u]) {
                         printf("It's NOT a bipartite graph! %" PRIu32 " %" PRIu32 "\n", v, u);
@@ -87,18 +102,24 @@ void BFS(void) {
                         free(colors);
                         return;
                     }
+
                     neighbor = neighbor->next;
                 }
             }
         }
     }
- 
+
     /* algorithm ends */
 
     printf("It's a bipartite graph!\n");
-    printf("V0\tV1\n");
-    for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-        printf((colors[i] == GREEN ? "%" PRIu32 "\n" : "\t%" PRIu32 "\n"), i);
+
+
+    if (should_print) {
+        printf("V0\tV1\n");
+
+        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
+            printf((colors[i] == GREEN ? "%" PRIu32 "\n" : "\t%" PRIu32 "\n"), i);
+        }
     }
 
     free(colors);
@@ -115,19 +136,21 @@ void add_edge(uint32_t v, uint32_t u, node** Graph) {
 
 /* https://gist.github.com/ryankurte/61f95dc71133561ed055ff62b33585f8 */
 
-uint32_t dequeue(Queue *Q) {
+uint32_t dequeue(Queue* Q) {
     if (Q->tail == Q->head) return 0;
+
     uint32_t temp = Q->data[Q->tail];
     Q->data[Q->tail] = 0;
     Q->tail = (Q->tail + 1) % Q->size;
     return temp;
 }
 
-void enqueue(Queue *Q, uint32_t temp) {
+void enqueue(Queue* Q, uint32_t temp) {
     if (((Q->head + 1) % Q->size) == Q->tail) {
         printf("Queue overflow!\n");
         exit(EXIT_FAILURE);
     }
+
     Q->data[Q->head] = temp;
     Q->head = (Q->head + 1) % Q->size;
 }
@@ -160,8 +183,9 @@ void get_inputs(void) {
     if ( debug ) printf("No. of edges:\n");
 
     scanf("%" SCNu32, & num_of_edges);
+
     if (num_of_edges <= 200) should_print = true;
- 
+
     if ( debug ) printf("Vertices:\n");
 
     G = (node**)malloc((num_of_vertices + 1) * sizeof(node*));

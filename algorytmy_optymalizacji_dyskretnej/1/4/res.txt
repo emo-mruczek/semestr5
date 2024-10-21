@@ -1,0 +1,381 @@
+File: 4/d4a-1.txt
+It's a bipartite graph!
+V0	V1
+1
+	2
+3
+	4
+	5
+6
+	7
+8
+9
+	10
+11
+	12
+	13
+14
+	15
+16
+
+Time: 8 microseconds
+
+File: 4/d4a-2.txt
+It's a bipartite graph!
+V0	V1
+1
+	2
+3
+	4
+5
+	6
+7
+	8
+9
+	10
+	11
+12
+	13
+14
+	15
+16
+	17
+18
+	19
+20
+21
+	22
+23
+	24
+25
+	26
+27
+	28
+29
+	30
+	31
+32
+	33
+34
+	35
+36
+	37
+38
+	39
+40
+41
+	42
+43
+	44
+45
+	46
+47
+	48
+49
+	50
+	51
+52
+	53
+54
+	55
+56
+	57
+58
+	59
+60
+61
+	62
+63
+	64
+65
+	66
+67
+	68
+69
+	70
+	71
+72
+	73
+74
+	75
+76
+	77
+78
+	79
+80
+81
+	82
+83
+	84
+85
+	86
+87
+	88
+89
+	90
+	91
+92
+	93
+94
+	95
+96
+	97
+98
+	99
+100
+
+Time: 18 microseconds
+
+File: 4/d4a-3.txt
+It's a bipartite graph!
+
+Time: 37 microseconds
+
+File: 4/d4a-4.txt
+It's a bipartite graph!
+
+Time: 173 microseconds
+
+File: 4/d4a-5.txt
+It's a bipartite graph!
+
+Time: 15994 microseconds
+
+File: 4/d4a-6.txt
+It's a bipartite graph!
+
+Time: 119993 microseconds
+
+File: 4/d4b-1.txt
+It's NOT a bipartite graph! 11 10
+
+Time: 9 microseconds
+
+File: 4/d4b-2.txt
+It's NOT a bipartite graph! 56 55
+
+Time: 8 microseconds
+
+File: 4/d4b-3.txt
+It's NOT a bipartite graph! 821 820
+
+Time: 20 microseconds
+
+File: 4/d4b-4.txt
+It's NOT a bipartite graph! 5051 5050
+
+Time: 107 microseconds
+
+File: 4/d4b-5.txt
+It's NOT a bipartite graph! 80201 80200
+
+Time: 8534 microseconds
+
+File: 4/d4b-6.txt
+It's NOT a bipartite graph! 500501 500500
+
+Time: 56645 microseconds
+
+File: 4/u4a-1.txt
+It's a bipartite graph!
+V0	V1
+1
+	2
+	3
+4
+5
+6
+7
+	8
+	9
+	10
+	11
+	12
+	13
+	14
+	15
+
+Time: 9 microseconds
+
+File: 4/u4a-2.txt
+It's a bipartite graph!
+V0	V1
+1
+	2
+	3
+4
+5
+6
+7
+	8
+	9
+	10
+	11
+	12
+	13
+	14
+	15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+	32
+	33
+	34
+	35
+	36
+	37
+	38
+	39
+	40
+	41
+	42
+	43
+	44
+	45
+	46
+	47
+	48
+	49
+	50
+	51
+	52
+	53
+	54
+	55
+	56
+	57
+	58
+	59
+	60
+	61
+	62
+	63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+
+Time: 86 microseconds
+
+File: 4/u4a-3.txt
+It's a bipartite graph!
+
+Time: 20 microseconds
+
+File: 4/u4a-4.txt
+It's a bipartite graph!
+
+Time: 394 microseconds
+
+File: 4/u4a-5.txt
+It's a bipartite graph!
+
+Time: 2545 microseconds
+
+File: 4/u4a-6.txt
+It's a bipartite graph!
+
+Time: 23953 microseconds
+
+File: 4/u4b-1.txt
+It's NOT a bipartite graph! 7 15
+
+Time: 5 microseconds
+
+File: 4/u4b-2.txt
+It's NOT a bipartite graph! 63 127
+
+Time: 43 microseconds
+
+File: 4/u4b-3.txt
+It's NOT a bipartite graph! 511 1023
+
+Time: 23 microseconds
+
+File: 4/u4b-4.txt
+It's NOT a bipartite graph! 8191 16383
+
+Time: 171 microseconds
+
+File: 4/u4b-5.txt
+It's NOT a bipartite graph! 65535 131071
+
+Time: 1538 microseconds
+
+File: 4/u4b-6.txt
+It's NOT a bipartite graph! 524287 1048575
+
+Time: 13189 microseconds

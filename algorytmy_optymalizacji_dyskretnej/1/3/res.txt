@@ -1,0 +1,91 @@
+SCC 1: 1 5 4 3 2  Number of items in SCC: 5
+
+SCC 2: 12 15 14 13  Number of items in SCC: 4
+
+SCC 3: 6 8 9 7  Number of items in SCC: 4
+
+SCC 4: 10 11  Number of items in SCC: 2
+
+SCC 5: 16  Number of items in SCC: 1
+
+Time: 12 microseconds
+
+
+
+
+SCC 1: 1 6 5 4 3 2  Number of items in SCC: 6
+
+SCC 2: 67 106 105 104 103 102 101 100 99 98 97 96 95 94 93 92 91 90 89 88 87 86 85 84 83 82 81 80 79 78 77 76 75 74 73 72 71 70 69 68  Number of items in SCC: 40
+
+SCC 3: 7 13 19 25 31 37 38 39 40 41 42 36 35 29 28 34 22 21 27 33 15 14 20 26 32 8 9 16 10 23 17 11 30 24 18 12  Number of items in SCC: 36
+
+SCC 4: 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66  Number of items in SCC: 24
+
+SCC 5: 107  Number of items in SCC: 1
+
+Time: 68 microseconds
+
+
+
+
+
+SCC 1:  Number of items in SCC: 7
+
+SCC 2:  Number of items in SCC: 400
+
+SCC 3:  Number of items in SCC: 400
+
+SCC 4:  Number of items in SCC: 200
+
+SCC 5:  Number of items in SCC: 1
+
+Time: 89 microseconds
+
+
+
+
+
+
+SCC 1:  Number of items in SCC: 8
+
+SCC 2:  Number of items in SCC: 4000
+
+SCC 3:  Number of items in SCC: 3600
+
+SCC 4:  Number of items in SCC: 2400
+
+SCC 5:  Number of items in SCC: 1
+
+Time: 659 microseconds
+
+
+
+
+
+SCC 1:  Number of items in SCC: 9
+
+SCC 2:  Number of items in SCC: 40000
+
+SCC 3:  Number of items in SCC: 40000
+
+SCC 4:  Number of items in SCC: 20000
+
+SCC 5:  Number of items in SCC: 1
+
+Time: 8793 microseconds
+
+
+
+
+
+SCC 1:  Number of items in SCC: 10
+
+SCC 2:  Number of items in SCC: 400000
+
+SCC 3:  Number of items in SCC: 360000
+
+SCC 4:  Number of items in SCC: 240000
+
+SCC 5:  Number of items in SCC: 1
+
+Time: 999174867 microseconds
