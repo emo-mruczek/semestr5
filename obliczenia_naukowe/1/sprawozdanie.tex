@@ -1,0 +1,163 @@
+\documentclass[15pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\title{Obliczenia naukowe}
+\author{Felix Zieliński 272336}
+\date{Lista 1}
+\begin{document}
+\maketitle
+Rozwiązania zadań z 1. listy na przedmiot Obliczenia Naukowe. Programy zostały napisane w języku Julia oraz, gdy było to konieczne, w C.
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 1
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 1.} 
+
+\textbf{a.} Wyznaczanie iteracyjne epsilonów maszynowych wraz z porównaniem z wartościami zwracanymi przez funkcję esp() oraz z danymi z headera float.h jezyka C.
+
+\vspace{0.5cm}
+
+% TODO: bardziej wyrównac te tabele
+% TODO: eeeee te wartosci w c 
+% TODO: wnioski
+% TODO: opis algorytmu
+% TODO: moze np co to macheps, eta itp??
+% TODO: odpowiedzi na pytania z zadania
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        Typ zmiennoprzecinkowy & Wyznaczona wartośc macheps & esp() & <float.h> \\ \hline
+        16 & 0.000977 & 0.000977 & 1.1920929e-07 \\ \hline
+        32 & 1.1920929e-7 & 1.1920929e-7 & 2.2204460492503131e-16 \\ \hline
+        64 & 2.220446049250313e-16 & 2.220446049250313e-16 & 1.08420217248550443401e-19 \\ \hline
+    \end{tabular}
+    \label{tab:macheps}
+\end{table}
+
+\textbf{b. } Wyznaczenie iteracyjnie liczby maszynowej eta wraz z porównaniem z wartościami zwracanymi przez funkcję nextfloat() 
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|}
+        \hline 
+        Typ zmiennoprzecinkowy & Wyznaczona wartośc eta & nextfloat() \\ \hline
+        16 & 6.0e-8 & 6.0e-8 \\ \hline
+        32 & 0.000977 & 1.0e-45 \\ \hline
+        64 & 5.0e-324 & 1.1920929e-7 \\ \hline
+    \end{tabular}
+    \label{tab:macheps}
+\end{table}
+
+Wartości zwrócone przez
+\begin{enumerate}
+    \item \verb|floatmin(Float32)| - 1.1754944e-38
+    \item \verb|floatmin(Float64)| - 2.2250738585072014e-308
+\end{enumerate}
+
+\textbf{c. } Wyznaczenie iteracyjne liczby MAX wraz z porównaniem z wartościami zwracanymi przez funckje floatmax() oraz z danymi z headera float.h języka C.
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        Typ zmiennoprzecinkowy & Wyznaczona wartośc eta & nextfloat() & <float.h> \\ \hline
+        16 & 6.55e4 & 6.55e4 & 3.40282347e+38 \\ \hline
+        32 & 3.4028235e38 & 3.4028235e38 & 1.7976931348623157e+308 \\ \hline
+        64 & 1.7976931348623157e308 & 1.7976931348623157e308 & 1.18973149535723176502e+4932 \\ \hline
+    \end{tabular}
+    \label{tab:macheps}
+\end{table}
+
+\noindent\hrulefill
+
+% zadanie 2
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 2.} Sprawdzenie, czy twierdzenie Khana jest poprawne.
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|}
+        \hline 
+        Typ zmiennoprzecinkowy & Wyznaczona wartośc eta & nextfloat() \\ \hline
+        16 & 6.0e-8 & 6.0e-8 \\ \hline
+        32 & 0.000977 & 1.0e-45 \\ \hline
+        64 & 5.0e-324 & 1.1920929e-7 \\ \hline
+    \end{tabular}
+    \label{tab:macheps}
+\end{table}
+
+% TODO: wnioski
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 3
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 3.} Sprawdzenie, czy liczby w arytmetyce \verb|Float(64)| liczby zmiennopozycyjne sa równomiernie rozmieszczone.
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 4 
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 4.} Znalezienie w arytmetyce \verb|Float(64)| liczbę zmiennopozycyjną \verb|x| w przedziale \verb|1 < x < 2| taką, że $x * (1/x) \neq 1$.
+\\
+Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 5  
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 5.}Obliczanie iloczynu skalarnego dwóch wektorów
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        Sposób & Float32 & Float64 & Wartość prawidłowa \\ \hline
+        1 & -0.3472038161853561 & 1.0251881368296672e-10 & -1.00657107000000e-11 \\ \hline
+        2 & -0.3472038161853561 & -1.5643308870494366e-1 & -1.00657107000000e-11 \\ \hline
+        3 & -0.3472038161853561 & 0.0 & -1.00657107000000e-11  \\ \hline
+        4 & -0.3472038161853561 & 0.0 & -1.00657107000000e-11 \\ \hline
+    \end{tabular}
+    \label{tab:macheps}
+\end{table}
+
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 6 
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 6.} 
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 7 
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 7.}
+
+\end{document}
