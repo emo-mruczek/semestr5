@@ -1,8 +1,14 @@
+% TODO: co to znaczy wartosc znormalizowana/zdenormalizowana?
+
+% TODO: odpowiedzi na pytania
+% TODO: wnioski
+% TODO: komentarze do programow
 \documentclass[15pt, a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[polish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
+\usepackage{adjustbox}
 \title{Obliczenia naukowe}
 \author{Felix Zieliński 272336}
 \date{Lista 1}
@@ -24,6 +30,8 @@ Rozwiązania zadań z 1. listy na przedmiot Obliczenia Naukowe. Programy został
 
 \vspace{0.5cm}
 
+Iteracyjnie dzielę wartość zmiennej \verb|macheps| przez dwa, zaczynając od wartości 1 w danym typie zmiennoprzecinkowym, aż warunek pętli while \verb|1 + macheps > 1| nie zostanie spełniony. 
+
 % TODO: bardziej wyrównac te tabele
 % TODO: eeeee te wartosci w c 
 % TODO: wnioski
@@ -32,27 +40,38 @@ Rozwiązania zadań z 1. listy na przedmiot Obliczenia Naukowe. Programy został
 % TODO: odpowiedzi na pytania z zadania
 
 \begin{table}[ht]
+    \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{|c|c|c|c|}
         \hline 
-        Typ zmiennoprzecinkowy & Wyznaczona wartośc macheps & esp() & <float.h> \\ \hline
-        16 & 0.000977 & 0.000977 & 1.1920929e-07 \\ \hline
-        32 & 1.1920929e-7 & 1.1920929e-7 & 2.2204460492503131e-16 \\ \hline
-        64 & 2.220446049250313e-16 & 2.220446049250313e-16 & 1.08420217248550443401e-19 \\ \hline
+        Typ zmiennoprzecinkowy & Wyznaczona wartośc macheps & eps() & <float.h> \\ \hline
+        16 & 0.000977 & 0.000977 & brak \\ \hline
+        32 & 1.1920929e-7 & 1.1920929e-7 & 1.1920929e-07  \\ \hline
+        64 & 2.220446049250313e-16 & 2.220446049250313e-16 &  2.2204460492503131e-16 \\ \hline
     \end{tabular}
+    \end{adjustbox}
     \label{tab:macheps}
 \end{table}
 
-\textbf{b. } Wyznaczenie iteracyjnie liczby maszynowej eta wraz z porównaniem z wartościami zwracanymi przez funkcję nextfloat() 
+Moje wyniki zgadzają się z prawdziwymi wartościami \\
+Wyznaczony epsilon maszynowy pomaga w ustaleniu precyzji zapisu liczb zmiennoprzecinkowych, gdyż jest odległością od 1 do kolejnej liczby możliwej do zaprezentowania w danym typie. Im mniejsza będzie ta wartość, tym większa będzie precyzja względna obliczeń.
+
+\vspace{0.5cm}
+
+\textbf{b. } Wyznaczenie iteracyjnie liczby maszynowej eta wraz z porównaniem z wartościami zwracanymi przez funkcję nextfloat()
+
+\vspace{0.5cm}
+
+Iteracyjnie dzielę wartości zmiennej \verb|eta| przez dwa począwszy od wartości zmiennej równej 1,aż warunek pętli while \verb|eta > 0| nie zostanie spełniony. 
 
 \begin{table}[ht]
     \begin{tabular}{|c|c|c|}
         \hline 
         Typ zmiennoprzecinkowy & Wyznaczona wartośc eta & nextfloat() \\ \hline
         16 & 6.0e-8 & 6.0e-8 \\ \hline
-        32 & 0.000977 & 1.0e-45 \\ \hline
-        64 & 5.0e-324 & 1.1920929e-7 \\ \hline
+        32 & 1.0e-45 & 1.0e-45 \\ \hline
+        64 & 5.0e-324 & 5.0e-324 \\ \hline
     \end{tabular}
-    \label{tab:macheps}
+    \label{tab:eta}
 \end{table}
 
 Wartości zwrócone przez
@@ -61,18 +80,33 @@ Wartości zwrócone przez
     \item \verb|floatmin(Float64)| - 2.2250738585072014e-308
 \end{enumerate}
 
+Tutaj również moje wyniki zgadzają się z prawdzimymi wartościami. \\
+Liczba eta odpowiada najmniejszej zdenormalizowanej liczbie dodatniej reprezentowanej w podanej arytmetyce zmiennopozycyjnej. Jest zdenormalizowana, czyli bity cechy mają wartość 0. \\
+Natomiast wartości zwrócone przez \verb|floatmin| są odpowiednikiem tej wartości, ale znormalizowanej.
+
+\vspace{0.5cm}
+
 \textbf{c. } Wyznaczenie iteracyjne liczby MAX wraz z porównaniem z wartościami zwracanymi przez funckje floatmax() oraz z danymi z headera float.h języka C.
 
+\vspace{0.5cm}
+
+Iteracyjnie mnożę wartości zmiennej \verb|max|, aż stanie się ona równa wartości \verb|isinf|. Następnie, w celu poprawienia dokładności obliczeń, dodaję do poprzedniej wartości \verb|max| $\frac{x}{k}$, gdzie \verb|k = 2, 4, ...|, aż \verb|max| będzie równa \verb|isinf| bądź mniejsza od 1
+
 \begin{table}[ht]
+    \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{|c|c|c|c|}
         \hline 
-        Typ zmiennoprzecinkowy & Wyznaczona wartośc eta & nextfloat() & <float.h> \\ \hline
-        16 & 6.55e4 & 6.55e4 & 3.40282347e+38 \\ \hline
-        32 & 3.4028235e38 & 3.4028235e38 & 1.7976931348623157e+308 \\ \hline
-        64 & 1.7976931348623157e308 & 1.7976931348623157e308 & 1.18973149535723176502e+4932 \\ \hline
+        Typ zmiennoprzecinkowy & Wyznaczona wartośc max & floatmax() & <float.h> \\ \hline
+        16 & 6.55e4 & 6.55e4 & brak \\ \hline
+        32 & 3.4028235e38 & 3.4028235e38 & 3.40282347e+38 \\ \hline
+        64 & 1.7976931348623157e308 & 1.7976931348623157e308 & 1.7976931348623157e+308 \\ \hline
     \end{tabular}
-    \label{tab:macheps}
+    \end{adjustbox}
+    \label{tab:max}
 \end{table}
+
+Moje wyniki zgadzają się z wartościami zwróconymi przez \verb|floatmax()|. \\
+Obie wartości mają postać zdenormalizowaną
 
 \noindent\hrulefill
 
@@ -80,20 +114,28 @@ Wartości zwrócone przez
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 2.} Sprawdzenie, czy twierdzenie Khana jest poprawne.
+\noindent\textbf{Zadanie 2.} Sprawdzenie, czy twierdzenie Kahana jest poprawne.
+
+\vspace{0.5cm}
+
+Twierdzenie to mówi, że epsilon maszynowy można uzyskać, obliczając wartość \[3 * (4 / 3 - 1) - 1\] w odpowiedniej arytmetyce zmiennoprzecinkowej. Sprawdzenia dokonuję obliczając tę wartośc dla wartości rzutowanych na podany typ. Jedynkę otrzymuję funkcją \verb|one|.
 
 \begin{table}[ht]
+    \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{|c|c|c|}
         \hline 
-        Typ zmiennoprzecinkowy & Wyznaczona wartośc eta & nextfloat() \\ \hline
-        16 & 6.0e-8 & 6.0e-8 \\ \hline
-        32 & 0.000977 & 1.0e-45 \\ \hline
-        64 & 5.0e-324 & 1.1920929e-7 \\ \hline
+        Typ zmiennoprzecinkowy & Wyznaczona wartość & eps() \\ \hline
+        16 & -0.000977 & 0.000977 \\ \hline
+        32 & 1.1920929e-7 & 1.1920929e-7 \\ \hline
+        64 & -2.220446049250313e-1 & 2.220446049250313e-16 \\ \hline
     \end{tabular}
-    \label{tab:macheps}
+    \end{adjustbox}
+    \label{tab:kahan}
 \end{table}
 
-% TODO: wnioski
+% TODO: sprawdzenie, czy nie pisze glupot ponizej
+
+Obliczone wyniki praktycznie pokrywają się z prawdziwymi wartościami - nie licząc znaku. Zmiana znaku dla typów \verb|Float16| oraz \verb|Float64| może wynikać z ilości bitów znaczących w tych typach (odpowiednio, 10 oraz 52). Ponadto, rozwijając 4/3 binarnie, otrzymamy 1.(10). To powoduje, że ostatnią cyfrą mantysy w tych typach będzie 0, co zmienia znak na przeciwny. Tak więc, gdy weźmiemy moduł z obliczonych wartości, otrzymamy poprawne wyniki, więc twierdzenie Kahana w rzeczywistości jest poprawne.
 
 \vspace{0.5cm}
 
@@ -139,7 +181,6 @@ Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
     \label{tab:macheps}
 \end{table}
 
-
 \vspace{0.5cm}
 
 \noindent\hrulefill
@@ -148,7 +189,28 @@ Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 6.} 
+% TODO: wiarygosnosc wyniku
+\noindent\textbf{Zadanie 6.}Obliczanie wartości funkcji w arytmetyce \verb|Float64| dla kolejnych wartości argumentu x
+
+% TODO: cokolwiek się stało z tą tabelą po wyrenderowaniu
+
+\begin{table}[ht]
+    \begin{tabular}{|c|c|c|}
+        \hline 
+        Wartość x & f(x) & g(x) \\ \hline
+        $8^{\mathrm{-1}}$ & 0.0077822185373186414 & 0.01154368945369154 \\ \hline
+        $8^{\mathrm{-2}}$ & 0.00012206286282867573 & 0.00021701388888888888 \\ \hline
+        $8^{\mathrm{-3}}$ & 1.9073468138230965e-6 & 3.653245115948511e-6 \\ \hline
+        $8^{\mathrm{-4}}$ & 2.9802321943606103e-8 & 5.868765024038462e-8 \\ \hline
+        $8^{\mathrm{-5}}$ & 4.656612873077393e-10 & 9.262059612096446e-10 \\ \hline
+        $8^{\mathrm{-6}}$ & 7.275957614183426e-12 & 1.4523548921878806e-11 \\ \hline
+        $8^{\mathrm{-7}}$ & 1.1368683772161603e-13 & 2.2721677454276478e-13 \\ \hline
+        $8^{\mathrm{-8}}$ & 1.7763568394002505e-15 & 3.551846528769063e-15 \\ \hline
+        $8^{\mathrm{-9}}$ & 0.0 & 5.55063601028853e-17 \\ \hline
+        $8^{\mathrm{-10}}$ & 0.0 & 8.673352690165708e-19 \\ \hline
+    \end{tabular}
+    \label{tab:macheps}
+\end{table}
 
 \vspace{0.5cm}
 
@@ -158,6 +220,6 @@ Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 7.}
+\noindent\textbf{Zadanie 7.} 
 
 \end{document}

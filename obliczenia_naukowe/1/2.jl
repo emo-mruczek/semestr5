@@ -1,4 +1,6 @@
-# kahan's macheps
+# Felix Zieliński 272336
+# parametry: typ zmiennoprzecinkowy
+
 function kahan(T)
     result = T(3) * (T(4) / T(3) - one(T)) - one(T)
 

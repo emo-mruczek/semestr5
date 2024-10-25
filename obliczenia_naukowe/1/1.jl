@@ -1,23 +1,22 @@
+# Felix Zieliński, 272336
 
-# macheps for Float16, Float32, Float64
-# macheps > 0 that fl(1.0+macheps) > 1.0 i fl(1.0+macheps) = 1+macheps
+# parametry funkcji: typ zmiennoprzecinkowy T
+
 function calc_macheps(T)
-    # one(T) can take a type T, in which case one returns a multiplicative identity for any x of type T.
     macheps = one(T)
     while one(T) + macheps > one(T)
         macheps /= 2
     end
 
-    # return previous value
+    # zwracam poprzednia wartosc
     return macheps * 2
 end
 
-# eta for Float16, Float32, Float64
 function calc_eta(T)
     eta = one(T)
     prev = eta
 
-    while eta > 0.0
+    while eta > zero(T)
         prev = eta
         eta /= 2
     end
@@ -25,15 +24,19 @@ function calc_eta(T)
     return prev
 end
 
-# MAX for Float16, Float32, Float64
 function calc_max(T)
-    max = prevfloat(one(T))
-    # prevfloat(f) Get the previous floating point number in lexicographic order
+    max = one(T)
     prev = max
-
     while !isinf(max)
         prev = max
         max *= 2
+    end
+
+    # szukam konkretnej wartosci
+    dif = prev / 2
+    while !isinf(prev + dif) && dif >= one(T)
+        prev += dif
+        dif /= 2
     end
 
     return prev
@@ -57,7 +60,3 @@ println("\nCalculated max - values returned by floatmax")
 println("For Float16 ", calc_max(Float16), " - ", floatmax(Float16(0.0)))
 println("For Float32 ", calc_max(Float32), " - ", floatmax(Float32(0.0)))
 println("For Float64 ", calc_max(Float64), " - ", floatmax(Float64(0.0)))
-
-
-
-

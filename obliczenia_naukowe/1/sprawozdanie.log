@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  24 OCT 2024 19:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  25 OCT 2024 18:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -417,10 +417,74 @@ eric/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 (/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/adjustbox/adjustbox.sty
+Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
+
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/gen
+eric/xkeyval/xkeyval.tex
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/gen
+eric/xkeyval/xkvutils.tex
+\XKV@toks=\toks32
+\XKV@tempa@toks=\toks33
+)
+\XKV@depth=\count285
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box62
+)
+\tc@llx=\dimen194
+\tc@lly=\dimen195
+\tc@urx=\dimen196
+\tc@ury=\dimen197
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen198
+\adjbox@Height=\dimen199
+\adjbox@Depth=\dimen256
+\adjbox@Totalheight=\dimen257
+\adjbox@pwidth=\dimen258
+\adjbox@pheight=\dimen259
+\adjbox@pdepth=\dimen260
+\adjbox@ptotalheight=\dimen261
+
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count286
+)
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
+ex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box63
+\sift@deathcycles=\count287
+\@vwid@loff=\dimen262
+\@vwid@roff=\dimen263
+))
+(/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
 ex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count285
-\l__pdf_internal_box=\box62
+\l__color_backend_stack_int=\count288
+\l__pdf_internal_box=\box64
 )
 
 LaTeX Warning: Unused global option(s):
@@ -433,44 +497,38 @@ LaTeX Warning: Label `tab:macheps' multiply defined.
 
 LaTeX Warning: Label `tab:macheps' multiply defined.
 
-
-LaTeX Warning: Label `tab:macheps' multiply defined.
-
-
-LaTeX Warning: Label `tab:macheps' multiply defined.
-
 )
 \openout1 = `sprawozdanie.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 (/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/con
 text/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count286
-\scratchdimen=\dimen194
-\scratchbox=\box63
-\nofMPsegments=\count287
-\nofMParguments=\count288
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count289
-\MPscratchDim=\dimen195
-\MPnumerator=\count290
-\makeMPintoPDFobject=\count291
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count289
+\scratchdimen=\dimen264
+\scratchbox=\box65
+\nofMPsegments=\count290
+\nofMParguments=\count291
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count292
+\MPscratchDim=\dimen265
+\MPnumerator=\count293
+\makeMPintoPDFobject=\count294
+\everyMPtoPDFconversion=\toks35
 )
 (/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
 ex/epstopdf-pkg/epstopdf-base.sty
@@ -484,41 +542,38 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 10.
+(Font)              <12> on input line 16.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 10.
+(Font)              <8> on input line 16.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 10.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 35.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 35.
-
-Overfull \hbox (170.55255pt too wide) in paragraph at lines 35--43
-[][]
- []
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
-0.
+(Font)              <6> on input line 16.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
+3.
 
 (/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/tex/lat
 ex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-Overfull \hbox (167.99762pt too wide) in paragraph at lines 67--75
-[][]
+Overfull \hbox (19.60541pt too wide) in paragraph at lines 33--34
+\T1/cmr/m/n/10 ±ci 1 w da-nym ty-pie zmien-no-prze-cin-ko-wym, a» wa-ru-nek p¦-
+tli while [][]\T1/cmtt/m/n/10 1 + macheps > 1
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 44.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 44.
 [1
 
 {/nix/store/b4v9s6zz6lm6g26d2mx2b8vhb027nc42-texlive-2023-env/share/texmf-var/f
 onts/map/pdftex/updmap/pdftex.map}{/nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-
 texlive-2023-env-texmfdist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-Overfull \hbox (29.3648pt too wide) in paragraph at lines 131--140
+[2]
+Overfull \hbox (29.3648pt too wide) in paragraph at lines 173--182
 [][]
  []
 
-[2] (./sprawozdanie.aux)
+[3] (./sprawozdanie.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -529,29 +584,33 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13126 strings out of 474116
- 277657 string characters out of 5720541
+ 14234 strings out of 474116
+ 298498 string characters out of 5720541
  1938187 words of memory out of 5000000
- 35281 multiletter control sequences out of 15000+600000
+ 36355 multiletter control sequences out of 15000+600000
  564189 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,8n,107p,419b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,11n,107p,575b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts
 /type1/public/amsfonts/cm/cmmi10.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilh
-cd-texlive-2023-env-texmfdist/fonts/type1/public/amsfonts/cm/cmr10.pfb></nix/st
+cd-texlive-2023-env-texmfdist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></nix/st
 ore/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive
--2023-env-texmfdist/fonts/type1/public/cm-super/sfbx1000.pfb></nix/store/063rng
-0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts/type1/public/cm-sup
-er/sfrm1000.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-t
-exmfdist/fonts/type1/public/cm-super/sfrm1200.pfb></nix/store/063rng0gi2l8gn62d
-0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfrm1728
-.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fo
-nts/type1/public/cm-super/sftt1000.pfb>
-Output written on sprawozdanie.pdf (2 pages, 123176 bytes).
+lic/amsfonts/cm/cmr10.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-
+2023-env-texmfdist/fonts/type1/public/amsfonts/cm/cmr7.pfb></nix/store/063rng0g
+i2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-te
+xmfdist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></nix/store/063rng0gi2l8gn62d0
+wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfbx1000.
+pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fon
+ts/type1/public/cm-super/sfrm1000.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6il
+hcd-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfrm1200.pfb></nix/s
+tore/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive-2023-env-texmfdist/fonts/type1/pu
+blic/cm-super/sfrm1728.pfb></nix/store/063rng0gi2l8gn62d0wd3php3m6ilhcd-texlive
+-2023-env-texmfdist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on sprawozdanie.pdf (3 pages, 156466 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 73 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
