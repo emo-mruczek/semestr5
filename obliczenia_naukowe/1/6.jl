@@ -6,7 +6,7 @@ function f(x, T)
 end
 
 function g(x, T)
-    return x^2 / ( sqrt(x ^ one(T)) + one(T) )
+    return x^2 / ( sqrt(x^2 + one(T)) + one(T) )
 end
 
 x::Float64 = 8.0

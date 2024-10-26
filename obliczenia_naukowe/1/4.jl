@@ -1,9 +1,15 @@
+# Felix Zieliński 272336
 
-function find_float(b, e, T) 
-    x = nextfloat(T(b))
+# parametry funkcji:
+#   a - początek przedziału
+#   b - koniec przedzialu
+#   T - typ zmiennoprzecinkowy
+
+function find_float(a, b, T) 
+    x = nextfloat(T(a))
     res = 0.0
 
-    while x < T(e) 
+    while x < T(b) 
         res =  x * ( one(T) / x) 
         if res != 1
             return x

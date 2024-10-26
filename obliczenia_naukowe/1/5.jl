@@ -1,9 +1,10 @@
-# its broken probably
+# Felix Zieliński 272336
 
-# a
+# parametry funkcji:
+#   x - wektor x
+#   y - wektor y
+
 function a(x, y)
-
-    #TODO: assert length
     len = length(x)
     S = 0.0
     for i in 1:len
@@ -13,7 +14,10 @@ function a(x, y)
     return S
 end
 
-# b
+# parametry funkcji:
+#   x - wektor x
+#   y - wektor y
+
 function b(x, y)
 
     len = length(x)
@@ -25,7 +29,11 @@ function b(x, y)
     return S
 end
 
-# c
+# parametry funkcji:
+#   x - wektor x
+#   y - wektor y
+#   T - typ zmiennoprzecinkowy
+
 function c(x, y, T)
 
     len = length(x)
@@ -43,10 +51,6 @@ function c(x, y, T)
     sort!(S_pos, rev=true)
     sort!(S_neg)
 
-    # there is something wrong with sum function
-    # when it comes to specification of this ex
-    # probably something with order of sumation idk idc
-    # but its still not worky for Float64 (or it does?)
     #sum_pos = sum(S_pos)
     #sum_neg = sum(S_neg)
     sum_pos = 0.0
@@ -62,7 +66,11 @@ function c(x, y, T)
     return sum_pos + sum_neg
 end
 
-# d
+# parametry funkcji:
+#   x - wektor x
+#   y - wektor y
+#   T - typ zmiennoprzecinkowy
+
 function d(x, y, T)
 
     len = length(x)

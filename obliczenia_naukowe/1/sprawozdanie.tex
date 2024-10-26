@@ -1,4 +1,5 @@
-% TODO: co to znaczy wartosc znormalizowana/zdenormalizowana?
+% TODO: co to znaczy wartosc znormalizowana/ozdenormalizowana?
+% TODO: lepsze wnioski moze
 
 % TODO: odpowiedzi na pytania
 % TODO: wnioski
@@ -149,15 +150,40 @@ Obliczone wyniki praktycznie pokrywają się z prawdziwymi wartościami - nie li
 
 \vspace{0.5cm}
 
+% TODO: tu tez sprawdzic, czy to nie glupota
+
+Najprostrzym, a zarazem najdłuższym obliczeniowo rozwiązaniem jest iteracja przez wszystkie liczby z danego przedziału w celu porównania z wartościami \verb|nextfloat|. Szybciej jednak jest porównać eksponenty pierwszej oraz ostatniej liczby z przedziału. Jeśli byłyby inne, wykluczyłoby to rownomierny rozkład liczb w tym przedziale.
+
+Funkcja potwierdza, że eksponenty są takie same. Ponadto wypisałem kilka początkowych liczb, co dalej potwierdza równomierne rozmieszczenie:
+\[0011111111110000000000000000000000000000000000000000000000000000\]
+\[0011111111110000000000000000000000000000000000000000000000000001\]
+\[0011111111110000000000000000000000000000000000000000000000000010\]
+\[0011111111110000000000000000000000000000000000000000000000000011\]
+\[0011111111110000000000000000000000000000000000000000000000000100\]
+
+\vspace{0.5cm}
+
+Wiem, że odchylenie wykładnicze dla Float64 wynosi 1023. Mantysa ma 52 bity znaczące. Z tych informacji mogę wyliczyć, jak rozmieszczone są liczby w danym przedziale. Używam do tego wzoru $2^{\mathrm{exp - 1023}}$ * $2^{\mathrm{-52}}$. Wyliczone z tego wzoru kroki prezentują się następująco:
+\[[0.5, 1] - 1.1102230246251565e-16\]
+\[[1, 2] - 2.220446049250313e-16\]
+\[[2, 4] - 4.440892098500626e-16\]
+
+\vspace{0.5cm}
+
+Odległości pomiędzy kolejnymi liczbami rosną wraz ze zwiększaniem się eksponenty, co jest zgodne ze standardem IEEE754, w którym liczby są reprezentowane z dokładnością różną w zależności od przedziału.
+
+\vspace{0.5cm}
+
 \noindent\hrulefill
 
 % zadanie 4 
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 4.} Znalezienie w arytmetyce \verb|Float(64)| liczbę zmiennopozycyjną \verb|x| w przedziale \verb|1 < x < 2| taką, że $x * (1/x) \neq 1$.
-\\
-Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
+\noindent\textbf{Zadanie 4.} Znalezienie w arytmetyce \verb|Float(64)| liczbę zmiennopozycyjną \verb|x| w przedziale \verb|1 < x < 2| taką, że $x * (1/x) \neq 1$, a także najmniejszej takiej liczby.\\
+Iteracyjnie sprawdzam kolejne wyniki działania $x * (1/x) \neq 1$, iterując po \verb|x| przy użyciu funkcji \verb|nextfloat|. Gdy tylko wynik będzie różny od 1, zwracam go, tym samym otrzymując najmnijeszą wartość w zadanym przedziale.\\
+Najmniejsza znalezione przeze mnie liczba w przedziale (1, 2): \[\verb|1.000000057228997|\]
+Niepoprawny wynik działania jest spowodowany niedokładnością, jaką są obarczone działania na liczbach zmiennoprzecinkowych. Trzeba zachować więc ostrożność podczas wykonywania obliczeń i brać pod uwagę, że mogą być one nieidealne.
 
 \vspace{0.5cm}
 
@@ -167,19 +193,26 @@ Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 5.}Obliczanie iloczynu skalarnego dwóch wektorów
+\noindent\textbf{Zadanie 5.} Obliczanie iloczynu skalarnego dwóch wektorów na cztery rózne sposoby.\\
+Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogiczne, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego.
 
 \begin{table}[ht]
+    \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{|c|c|c|c|}
         \hline 
         Sposób & Float32 & Float64 & Wartość prawidłowa \\ \hline
-        1 & -0.3472038161853561 & 1.0251881368296672e-10 & -1.00657107000000e-11 \\ \hline
-        2 & -0.3472038161853561 & -1.5643308870494366e-1 & -1.00657107000000e-11 \\ \hline
-        3 & -0.3472038161853561 & 0.0 & -1.00657107000000e-11  \\ \hline
-        4 & -0.3472038161853561 & 0.0 & -1.00657107000000e-11 \\ \hline
+        1 & -0.3472038161853561  & 1.0251881368296672e-10 & -1.00657107000000e-11 \\ \hline
+        2 & -0.3472038162872195 & -1.5643308870494366e-1 & -1.00657107000000e-11 \\ \hline
+        3 & -0.3472038162872195 & 0.0 & -1.00657107000000e-11  \\ \hline
+        4 & -0.3472038162872195 & 0.0 & -1.00657107000000e-11 \\ \hline
     \end{tabular}
-    \label{tab:macheps}
+    \end{adjustbox}
+    \label{tab:products}
 \end{table}
+
+\vspace{0.5cm}
+
+Jak widać w tabeli, żaden ze sposobów liczenia nie dał dokładnego wyniku, niezależnie od zastosowanej arytmetyki (\verb|Float32| bądź \verb|Float64|, chociaż ten drugi pozwolił na uzyskanie wyniku bliższego prawdziwej wartości). Widać również, że kolejność wykonywania działań wpływa na wynik.
 
 \vspace{0.5cm}
 
@@ -190,27 +223,37 @@ Najmniejsza znalezione przeze mnie liczba: \[\verb|1.000000057228997|\]
 \vspace{0.5cm}
 
 % TODO: wiarygosnosc wyniku
-\noindent\textbf{Zadanie 6.}Obliczanie wartości funkcji w arytmetyce \verb|Float64| dla kolejnych wartości argumentu x
+\noindent\textbf{Zadanie 6.} Obliczanie wartości funkcji w arytmetyce \verb|Float64| dla kolejnych wartości argumentu x. Zadane funkcje:
+\[
+f(x) = \sqrt{x^2 + 1} - 1
+\]
 
-% TODO: cokolwiek się stało z tą tabelą po wyrenderowaniu
+\[
+g(x) = \frac{x^2}{\sqrt{x^2 + 1} + 1}
+\]
+
+Powyższe funkcje zaimplementowałem w niezmienionej formie.
+
 
 \begin{table}[ht]
     \begin{tabular}{|c|c|c|}
         \hline 
         Wartość x & f(x) & g(x) \\ \hline
-        $8^{\mathrm{-1}}$ & 0.0077822185373186414 & 0.01154368945369154 \\ \hline
-        $8^{\mathrm{-2}}$ & 0.00012206286282867573 & 0.00021701388888888888 \\ \hline
-        $8^{\mathrm{-3}}$ & 1.9073468138230965e-6 & 3.653245115948511e-6 \\ \hline
-        $8^{\mathrm{-4}}$ & 2.9802321943606103e-8 & 5.868765024038462e-8 \\ \hline
-        $8^{\mathrm{-5}}$ & 4.656612873077393e-10 & 9.262059612096446e-10 \\ \hline
-        $8^{\mathrm{-6}}$ & 7.275957614183426e-12 & 1.4523548921878806e-11 \\ \hline
-        $8^{\mathrm{-7}}$ & 1.1368683772161603e-13 & 2.2721677454276478e-13 \\ \hline
-        $8^{\mathrm{-8}}$ & 1.7763568394002505e-15 & 3.551846528769063e-15 \\ \hline
-        $8^{\mathrm{-9}}$ & 0.0 & 5.55063601028853e-17 \\ \hline
-        $8^{\mathrm{-10}}$ & 0.0 & 8.673352690165708e-19 \\ \hline
+        $8^{\mathrm{-1}}$ & 0.0077822185373186414 & 0.0077822185373187065 \\ \hline
+        $8^{\mathrm{-2}}$ & 0.00012206286282867573 & 0.00012206286282875901 \\ \hline
+        $8^{\mathrm{-3}}$ & 1.9073468138230965e-6 & 1.907346813826566e-6 \\ \hline
+        $8^{\mathrm{-4}}$ & 2.9802321943606103e-8 & 2.9802321943606116e-8 \\ \hline
+        $8^{\mathrm{-5}}$ & 4.656612873077393e-10 & 4.6566128719931904e-10 \\ \hline
+        $8^{\mathrm{-6}}$ & 7.275957614183426e-12 & 7.275957614156956e-12 \\ \hline
+        $8^{\mathrm{-7}}$ & 1.1368683772161603e-13 & 1.1368683772160957e-13 \\ \hline
+        $8^{\mathrm{-8}}$ & 1.7763568394002505e-15 & 1.7763568394002489e-15 \\ \hline
+        $8^{\mathrm{-9}}$ & 0.0 & 2.7755575615628914e-17 \\ \hline
+        $8^{\mathrm{-10}}$ & 0.0 & 4.336808689942018e-19 \\ \hline
     \end{tabular}
-    \label{tab:macheps}
+    \label{tab:fvsg}
 \end{table}
+
+
 
 \vspace{0.5cm}
 
