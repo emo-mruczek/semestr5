@@ -232,7 +232,7 @@ f(x) = \sqrt{x^2 + 1} - 1
 g(x) = \frac{x^2}{\sqrt{x^2 + 1} + 1}
 \]
 
-Powyższe funkcje zaimplementowałem w niezmienionej formie.
+Powyższe funkcje zaimplementowałem w niezmienionej formie, używając \verb|Float64|.
 
 
 \begin{table}[ht]
@@ -253,7 +253,7 @@ Powyższe funkcje zaimplementowałem w niezmienionej formie.
     \label{tab:fvsg}
 \end{table}
 
-
+Jak można zaobserwować, funkcja \verb|f| już przy $8^{-9}$ jest równa 0. Do tego momentu, obie funkcje mają zbliżone wartości. Funkcja \verb|f| traci dokładność przez operowanie na małych liczbach - odejmowanie od pierwiaska, który w pewnym momencie zostaje przybliżony do 1, wartosci 1. Możnaby temu zapobiec poprzez odpowiednie przekształcenie równania.
 
 \vspace{0.5cm}
 

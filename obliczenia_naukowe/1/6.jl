@@ -1,5 +1,8 @@
-#TODO: be consistent in one(T) throughout ex
-#TODO: check the results
+# Felix Zieliński 272336
+
+# parametry funkcji:
+#   x - wartość argumentu x
+#   T - typ zmiennoprzecinkowy
 
 function f(x, T)
     return sqrt(x^2 + one(T)) - one(T)
