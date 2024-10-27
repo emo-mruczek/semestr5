@@ -1,9 +1,4 @@
-% TODO: co to znaczy wartosc znormalizowana/ozdenormalizowana?
-% TODO: lepsze wnioski moze
-
-% TODO: odpowiedzi na pytania
-% TODO: wnioski
-% TODO: komentarze do programow
+% TODO: exponent bias
 \documentclass[15pt, a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[polish]{babel}
@@ -32,14 +27,7 @@ Rozwiązania zadań z 1. listy na przedmiot Obliczenia Naukowe. Programy został
 
 \vspace{0.5cm}
 
-Iteracyjnie dzielę wartość zmiennej \verb|macheps| przez dwa, zaczynając od wartości 1 w danym typie zmiennoprzecinkowym, aż warunek pętli while \verb|1 + macheps > 1| nie zostanie spełniony. 
-
-% TODO: bardziej wyrównac te tabele
-% TODO: eeeee te wartosci w c 
-% TODO: wnioski
-% TODO: opis algorytmu
-% TODO: moze np co to macheps, eta itp??
-% TODO: odpowiedzi na pytania z zadania
+Iteracyjnie dzielę wartość zmiennej \verb|macheps| przez dwa, zaczynając od wartości 1 w danym typie zmiennoprzecinkowym, dopóki warunek pętli while \verb|1 + macheps > 1| jest spełniony. 
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -54,8 +42,8 @@ Iteracyjnie dzielę wartość zmiennej \verb|macheps| przez dwa, zaczynając od 
     \label{tab:macheps}
 \end{table}
 
-Moje wyniki zgadzają się z prawdziwymi wartościami \\
-Wyznaczony epsilon maszynowy pomaga w ustaleniu precyzji zapisu liczb zmiennoprzecinkowych, gdyż jest odległością od 1 do kolejnej liczby możliwej do zaprezentowania w danym typie. Im mniejsza będzie ta wartość, tym większa będzie precyzja względna obliczeń.
+Moje wyniki zgadzają się z prawdziwymi wartościami, co wskazuje na to, że metoda iteracyjna jest dość dokładna. \\
+Wyznaczony epsilon maszynowy pomaga w ustaleniu precyzji zapisu liczb zmiennoprzecinkowych, gdyż jest odległością od 1 do kolejnej liczby możliwej do zaprezentowania w danym typie. Im mniejsza będzie ta wartość, tym większa będzie precyzja względna obliczeń. 
 
 \vspace{0.5cm}
 
@@ -63,7 +51,7 @@ Wyznaczony epsilon maszynowy pomaga w ustaleniu precyzji zapisu liczb zmiennoprz
 
 \vspace{0.5cm}
 
-Iteracyjnie dzielę wartości zmiennej \verb|eta| przez dwa począwszy od wartości zmiennej równej 1,aż warunek pętli while \verb|eta > 0| nie zostanie spełniony. 
+Iteracyjnie dzielę wartości zmiennej \verb|eta| przez dwa począwszy od wartości zmiennej równej 1, dopóki warunek pętli while \verb|eta > 0| jest spełniony. 
 
 \begin{table}[ht]
     \begin{tabular}{|c|c|c|}
@@ -76,15 +64,16 @@ Iteracyjnie dzielę wartości zmiennej \verb|eta| przez dwa począwszy od warto�
     \label{tab:eta}
 \end{table}
 
+
 Wartości zwrócone przez
 \begin{enumerate}
     \item \verb|floatmin(Float32)| - 1.1754944e-38
     \item \verb|floatmin(Float64)| - 2.2250738585072014e-308
 \end{enumerate}
 
-Tutaj również moje wyniki zgadzają się z prawdzimymi wartościami. \\
+Tutaj również moje wyniki zgadzają się z prawdziwymi wartościami. \\
 Liczba eta odpowiada najmniejszej zdenormalizowanej liczbie dodatniej reprezentowanej w podanej arytmetyce zmiennopozycyjnej. Jest zdenormalizowana, czyli bity cechy mają wartość 0. \\
-Natomiast wartości zwrócone przez \verb|floatmin| są odpowiednikiem tej wartości, ale znormalizowanej.
+Natomiast wartości zwrócone przez \verb|floatmin| są odpowiednikiem tej wartości, ale znormalizowanej, dlatego jej wartości są większe.
 
 \vspace{0.5cm}
 
@@ -92,7 +81,7 @@ Natomiast wartości zwrócone przez \verb|floatmin| są odpowiednikiem tej warto
 
 \vspace{0.5cm}
 
-Iteracyjnie mnożę wartości zmiennej \verb|max|, aż stanie się ona równa wartości \verb|isinf|. Następnie, w celu poprawienia dokładności obliczeń, dodaję do poprzedniej wartości \verb|max| $\frac{x}{k}$, gdzie \verb|k = 2, 4, ...|, aż \verb|max| będzie równa \verb|isinf| bądź mniejsza od 1
+Iteracyjnie mnożę wartości zmiennej \verb|max|, aż stanie się ona równa wartości \verb|isinf|. Następnie, w celu poprawienia dokładności obliczeń, dodaję do poprzedniej wartości \verb|max| $\frac{x}{k}$, gdzie \verb|k = 2, 4, ...|, aż \verb|max| będzie równa \verb|isinf|.
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -107,8 +96,9 @@ Iteracyjnie mnożę wartości zmiennej \verb|max|, aż stanie się ona równa wa
     \label{tab:max}
 \end{table}
 
-Moje wyniki zgadzają się z wartościami zwróconymi przez \verb|floatmax()|. \\
-Obie wartości mają postać zdenormalizowaną
+Moje wyniki zgadzają się z wartościami zwróconymi przez \verb|floatmax()| oraz z headera \verb|float.h|.
+
+\vspace{0.5cm}
 
 \noindent\hrulefill
 
@@ -153,9 +143,9 @@ Obliczone wyniki praktycznie pokrywają się z prawdziwymi wartościami - nie li
 
 % TODO: tu tez sprawdzic, czy to nie glupota
 
-Najprostrzym, a zarazem najdłuższym obliczeniowo rozwiązaniem jest iteracja przez wszystkie liczby z danego przedziału w celu porównania z wartościami \verb|nextfloat|. Szybciej jednak jest porównać eksponenty pierwszej oraz ostatniej liczby z przedziału. Jeśli byłyby inne, wykluczyłoby to rownomierny rozkład liczb w tym przedziale.
+Najprostrzym, a zarazem najdłuższym obliczeniowo rozwiązaniem jest iteracja przez wszystkie liczby z danego przedziału w celu porównania z wartościami \verb|nextfloat|. Szybciej jednak jest porównać cechy pierwszej oraz ostatniej liczby z przedziału. Jeśli byłyby inne, wykluczyłoby to rownomierny rozkład liczb w tym przedziale.
 
-Funkcja potwierdza, że eksponenty są takie same. Ponadto wypisałem kilka początkowych liczb, co dalej potwierdza równomierne rozmieszczenie:
+Funkcja potwierdza, że cechy są takie same. Ponadto wypisałem kilka początkowych liczb, co dalej potwierdza równomierne rozmieszczenie:
 \[0011111111110000000000000000000000000000000000000000000000000000\]
 \[0011111111110000000000000000000000000000000000000000000000000001\]
 \[0011111111110000000000000000000000000000000000000000000000000010\]
@@ -164,14 +154,14 @@ Funkcja potwierdza, że eksponenty są takie same. Ponadto wypisałem kilka pocz
 
 \vspace{0.5cm}
 
-Wiem, że odchylenie wykładnicze dla Float64 wynosi 1023. Mantysa ma 52 bity znaczące. Z tych informacji mogę wyliczyć, jak rozmieszczone są liczby w danym przedziale. Używam do tego wzoru $2^{\mathrm{exp - 1023}}$ * $2^{\mathrm{-52}}$. Wyliczone z tego wzoru kroki prezentują się następująco:
+Wiem, że przesunięcie cechy dla Float64 wynosi 1023. Mantysa ma 52 bity znaczące. Z tych informacji mogę wyliczyć, jak rozmieszczone są liczby w danym przedziale. Używam do tego wzoru $2^{\mathrm{cecha - 1023}}$ * $2^{\mathrm{-52}}$. Wyliczone z tego wzoru kroki prezentują się następująco:
 \[[0.5, 1] - 1.1102230246251565e-16\]
 \[[1, 2] - 2.220446049250313e-16\]
 \[[2, 4] - 4.440892098500626e-16\]
 
 \vspace{0.5cm}
 
-Odległości pomiędzy kolejnymi liczbami rosną wraz ze zwiększaniem się eksponenty, co jest zgodne ze standardem IEEE754, w którym liczby są reprezentowane z dokładnością różną w zależności od przedziału.
+Odległości pomiędzy kolejnymi liczbami rosną wraz ze zwiększaniem się cechy, co jest zgodne ze standardem IEEE754, w którym liczby są reprezentowane z dokładnością różną w zależności od przedziału. Dokładność ta jest tym większa, im bliższe zeru są liczby.
 
 \vspace{0.5cm}
 
@@ -182,9 +172,9 @@ Odległości pomiędzy kolejnymi liczbami rosną wraz ze zwiększaniem się eksp
 \vspace{0.5cm}
 
 \noindent\textbf{Zadanie 4.} Znalezienie w arytmetyce \verb|Float(64)| liczbę zmiennopozycyjną \verb|x| w przedziale \verb|1 < x < 2| taką, że $x * (1/x) \neq 1$, a także najmniejszej takiej liczby.\\
-Iteracyjnie sprawdzam kolejne wyniki działania $x * (1/x) \neq 1$, iterując po \verb|x| przy użyciu funkcji \verb|nextfloat|. Gdy tylko wynik będzie różny od 1, zwracam go, tym samym otrzymując najmnijeszą wartość w zadanym przedziale.\\
+Iteracyjnie sprawdzam kolejne wyniki działania $x * (1/x) \neq 1$, iterując po \verb|x| przy użyciu funkcji \verb|nextfloat|. Gdy tylko wynik będzie różny od 1, zwracam go, tym samym otrzymując najmniejszą wartość w zadanym przedziale.\\
 Najmniejsza znalezione przeze mnie liczba w przedziale (1, 2): \[\verb|1.000000057228997|\]
-Niepoprawny wynik działania jest spowodowany niedokładnością, jaką są obarczone działania na liczbach zmiennoprzecinkowych. Trzeba zachować więc ostrożność podczas wykonywania obliczeń i brać pod uwagę, że mogą być one nieidealne.
+Niepoprawny wynik działania jest spowodowany niedokładnością, jaką są obarczone działania na liczbach zmiennoprzecinkowych. Trzeba zachować więc ostrożność podczas wykonywania obliczeń i brać pod uwagę, że mogą być one nieidealne, bądź tak je przekształcać, aby obliczenie ich nie stanowiło problemu.
 
 \vspace{0.5cm}
 
@@ -195,7 +185,7 @@ Niepoprawny wynik działania jest spowodowany niedokładnością, jaką są obar
 \vspace{0.5cm}
 
 \noindent\textbf{Zadanie 5.} Obliczanie iloczynu skalarnego dwóch wektorów na cztery rózne sposoby.\\
-Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogiczne, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego.
+Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogiczne, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -203,7 +193,7 @@ Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \v
         \hline 
         Sposób & Float32 & Float64 & Wartość prawidłowa \\ \hline
         1 & -0.3472038161853561  & 1.0251881368296672e-10 & -1.00657107000000e-11 \\ \hline
-        2 & -0.3472038162872195 & -1.5643308870494366e-1 & -1.00657107000000e-11 \\ \hline
+        2 & -0.3472038162872195 & -1.5643308870494366e-10 & -1.00657107000000e-11 \\ \hline
         3 & -0.3472038162872195 & 0.0 & -1.00657107000000e-11  \\ \hline
         4 & -0.3472038162872195 & 0.0 & -1.00657107000000e-11 \\ \hline
     \end{tabular}
@@ -254,7 +244,7 @@ Powyższe funkcje zaimplementowałem w niezmienionej formie, używając \verb|Fl
     \label{tab:fvsg}
 \end{table}
 
-Jak można zaobserwować, funkcja \verb|f| już przy $8^{-9}$ jest równa 0. Do tego momentu, obie funkcje mają zbliżone wartości. Funkcja \verb|f| traci dokładność przez operowanie na małych liczbach - odejmowanie od pierwiaska, który w pewnym momencie zostaje przybliżony do 1, wartosci 1. Możnaby temu zapobiec poprzez odpowiednie przekształcenie równania.
+Jak można zaobserwować, funkcja \verb|f| już przy $8^{-9}$ jest równa 0. Do tego momentu, obie funkcje mają zbliżone wartości. Funkcja \verb|f| traci dokładność przez operowanie na małych liczbach - odejmowanie od pierwiastka, który w pewnym momencie zostaje przybliżony do 1, wartości 1. Możnaby temu zapobiec poprzez odpowiednie przekształcenie równania - np z \verb|f(x)| do \verb|g(x)|, co pozwoliło na zachowanie większej prezycji obliczeń.
 
 \vspace{0.5cm}
 
@@ -270,7 +260,7 @@ Funkcja, której pochodną należało obliczyć, to
 \[f(x) = sinx + cos3x\]
 w punkcie \verb|x = 1| oraz błędów przybliżeń. Pochodna jest obliczana ze wzoru:
 \[f'(x) = cosx - 3sin3x \] \\
-Obliczona dokłada wartość pochodnej to
+Obliczona dokłada wartość pochodnej w $x_0 = 1$ to
 \[0.11694228168853815\]
 
 \vspace{0.5cm}
@@ -342,5 +332,9 @@ Zaimplementowałem funkcję, która oblicza wartość funkcji \verb|f(x)| dla za
 \vspace{0.5cm}
 
 Jak można zauważyć, najlepsza dokładność jest dla \verb|h = 2^{-28}|, gdyż rząd wielkości błędu jest najmniejszy (wynosi \verb|10^{-9}|). Potem błąd zaczyna rosnąć, aż będzie on wielkości dokładnej wartości pochodnej. Dzieje się tak, ponieważ bardzo małe liczby w formacie zmiennoprzecinkowym mają niewystarczającą liczbę cyfr znaczących, co powoduje utratę dokładności podczas obliczeń, zwłaszcza podczas odejmowania bliskich siebie liczb. 
+
+\noindent\textbf{Wnioski ogólne}
+
+Przy obliczeniach na liczbach zmiennopozycyjnych należy zachować szczególną ostrożność. Może dojść do dużych zaokrągleń, a co za tym idzie - błędów w obliczeniach, zwłaszcza przy działaniach na liczbach sobie bliskich. Warto więc się zastanowić nad przekształceniem równania, bądź zmianą typu zmiennej.
 
 \end{document}

@@ -1,4 +1,4 @@
-# Felix Zieliński 272336
+ # Felix Zieliński 272336
 
 # parametry funkcji: 
 #   step - ktok, o który zwiększamy wartość początkową podczas iteracji pętli while
