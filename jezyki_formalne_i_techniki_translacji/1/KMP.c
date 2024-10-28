@@ -125,7 +125,7 @@ void read_from_file(const char* filename, char** word) {
         fread(filecontent, filesize, 1, fp);
         *(filecontent + filesize)  = '\0';
         fclose(fp);
-        printf("Content of a file: %s", filecontent);
+        printf("Content of a file: %s\n", filecontent);
         *word = filecontent;
     } else {
         printf("There was an error while reading the file :(\n");

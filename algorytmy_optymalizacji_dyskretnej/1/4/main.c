@@ -13,9 +13,9 @@ typedef struct Queue {
 } Queue;
 
 typedef enum COLOR {
+    NONE,
     GREEN,
-    BLUE,
-    NONE
+    BLUE
 } COLOR;
 
 typedef struct node {
@@ -47,7 +47,12 @@ int main() {
 
     clock_gettime(CLOCK_REALTIME, & start);
 
+//    ProfilerStart("cpu_profile.prof");
+
     BFS();
+
+ //   ProfilerStop();
+
 
     clock_gettime(CLOCK_REALTIME, & end);
 
@@ -61,12 +66,9 @@ int main() {
 
 void BFS(void) {
     Queue Q  = {0, 0, num_of_vertices + 1, (uint32_t*)malloc((num_of_vertices + 1) * sizeof(uint32_t))};
-    bool* visited = (bool*)calloc(num_of_vertices + 1, sizeof(bool));
-    COLOR* colors = (COLOR*)malloc((num_of_vertices + 1) * sizeof(COLOR));
+    bool* visited = (bool*)calloc(num_of_vertices + 1, sizeof(bool)); 
 
-    for (uint32_t i = 0; i <= num_of_vertices; i++) {
-        colors[i] = NONE;
-    }
+    COLOR* colors = (COLOR*)calloc(num_of_vertices + 1, sizeof(COLOR));
 
     /* algorithm starts */
     for (uint32_t vertex = 1; vertex <= num_of_vertices; ++vertex) {
@@ -113,12 +115,15 @@ void BFS(void) {
 
     printf("It's a bipartite graph!\n");
 
-
     if (should_print) {
         printf("V0\tV1\n");
 
-        for ( uint32_t i = 1; i < num_of_vertices + 1; ++i ) {
-            printf((colors[i] == GREEN ? "%" PRIu32 "\n" : "\t%" PRIu32 "\n"), i);
+        for (uint32_t i = 1; i < num_of_vertices + 1; ++i) {
+            if (!colors[i]) {
+                printf("There is an uncolored vertex %" PRIu32 "\n", i);
+            } else {
+                printf((colors[i] == GREEN ? "%" PRIu32 "\n" : "\t%" PRIu32 "\n"), i);
+            }
         }
     }
 
@@ -173,7 +178,7 @@ void get_inputs(void) {
     if ( debug ) printf("(D)irected or (U)ndirected?\n");
 
     char temp;
-    scanf("%c", & temp);
+    scanf("%c", &temp);
     is_directed = ( temp == 'D' ) ? 1 : 0;
 
     if ( debug ) printf("No. of vertices:\n");

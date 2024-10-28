@@ -33,7 +33,7 @@ Iteracyjnie dzielę wartość zmiennej \verb|macheps| przez dwa, zaczynając od 
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{|c|c|c|c|}
         \hline 
-        Typ zmiennoprzecinkowy & Wyznaczona wartośc macheps & eps() & <float.h> \\ \hline
+        Typ zmiennoprzecinkowy & Wyznaczona wartość macheps & eps() & <float.h> \\ \hline
         16 & 0.000977 & 0.000977 & brak \\ \hline
         32 & 1.1920929e-7 & 1.1920929e-7 & 1.1920929e-07  \\ \hline
         64 & 2.220446049250313e-16 & 2.220446049250313e-16 &  2.2204460492503131e-16 \\ \hline
@@ -43,7 +43,7 @@ Iteracyjnie dzielę wartość zmiennej \verb|macheps| przez dwa, zaczynając od 
 \end{table}
 
 Moje wyniki zgadzają się z prawdziwymi wartościami, co wskazuje na to, że metoda iteracyjna jest dość dokładna. \\
-Wyznaczony epsilon maszynowy pomaga w ustaleniu precyzji zapisu liczb zmiennoprzecinkowych, gdyż jest odległością od 1 do kolejnej liczby możliwej do zaprezentowania w danym typie. Im mniejsza będzie ta wartość, tym większa będzie precyzja względna obliczeń. 
+Wyznaczony epsilon maszynowy pomaga w ustaleniu precyzji zapisu liczb zmiennoprzecinkowych, gdyż jest odległością od 1 do następnej liczby możliwej do zaprezentowania w danym typie. Im mniejsza będzie ta wartość, tym większa będzie precyzja względna obliczeń. 
 
 \vspace{0.5cm}
 
@@ -110,7 +110,7 @@ Moje wyniki zgadzają się z wartościami zwróconymi przez \verb|floatmax()| or
 
 \vspace{0.5cm}
 
-Twierdzenie to mówi, że epsilon maszynowy można uzyskać, obliczając wartość \[3 * (4 / 3 - 1) - 1\] w odpowiedniej arytmetyce zmiennoprzecinkowej. Sprawdzenia dokonuję obliczając tę wartośc dla wartości rzutowanych na podany typ. Jedynkę otrzymuję funkcją \verb|one|.
+Twierdzenie to mówi, że epsilon maszynowy można uzyskać, obliczając wartość \[3 * (4 / 3 - 1) - 1\] w odpowiedniej arytmetyce zmiennoprzecinkowej. Sprawdzenia dokonuję obliczając tę wartość dla wartości rzutowanych na podany typ. Jedynkę otrzymuję funkcją \verb|one|.
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -127,7 +127,7 @@ Twierdzenie to mówi, że epsilon maszynowy można uzyskać, obliczając wartoś
 
 % TODO: sprawdzenie, czy nie pisze glupot ponizej
 
-Obliczone wyniki praktycznie pokrywają się z prawdziwymi wartościami - nie licząc znaku. Zmiana znaku dla typów \verb|Float16| oraz \verb|Float64| może wynikać z ilości bitów znaczących w tych typach (odpowiednio, 10 oraz 52). Ponadto, rozwijając 4/3 binarnie, otrzymamy 1.(10). To powoduje, że ostatnią cyfrą mantysy w tych typach będzie 0, co zmienia znak na przeciwny. Tak więc, gdy weźmiemy moduł z obliczonych wartości, otrzymamy poprawne wyniki, więc twierdzenie Kahana w rzeczywistości jest poprawne.
+Obliczone wyniki praktycznie pokrywają się z prawdziwymi wartościami - nie licząc znaku. Zmiana znaku dla typów \verb|Float16| oraz \verb|Float64| wynika z ilości bitów znaczących w tych typach (odpowiednio, 10 oraz 52). Ponadto, rozwijając 4/3 binarnie, otrzymamy 1.(10). To powoduje, że ostatnią cyfrą mantysy w tych typach będzie 0, co zmienia znak na przeciwny. Tak więc, gdy weźmiemy moduł z obliczonych wartości, otrzymamy poprawne wyniki, więc twierdzenie Kahana w rzeczywistości jest poprawne.
 
 \vspace{0.5cm}
 
@@ -137,13 +137,13 @@ Obliczone wyniki praktycznie pokrywają się z prawdziwymi wartościami - nie li
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 3.} Sprawdzenie, czy liczby w arytmetyce \verb|Float(64)| liczby zmiennopozycyjne sa równomiernie rozmieszczone.
+\noindent\textbf{Zadanie 3.} Sprawdzenie, czy w arytmetyce \verb|Float(64)| liczby zmiennopozycyjne sa równomiernie rozmieszczone.
 
 \vspace{0.5cm}
 
 % TODO: tu tez sprawdzic, czy to nie glupota
 
-Najprostrzym, a zarazem najdłuższym obliczeniowo rozwiązaniem jest iteracja przez wszystkie liczby z danego przedziału w celu porównania z wartościami \verb|nextfloat|. Szybciej jednak jest porównać cechy pierwszej oraz ostatniej liczby z przedziału. Jeśli byłyby inne, wykluczyłoby to rownomierny rozkład liczb w tym przedziale.
+Najprostszym, a zarazem najdłuższym obliczeniowo rozwiązaniem jest iteracja przez wszystkie liczby z danego przedziału w celu porównania z wartościami \verb|nextfloat|. Szybciej jednak jest porównać cechy pierwszej oraz ostatniej liczby z przedziału. Jeśli byłyby inne, wykluczyłoby to równomierny rozkład liczb w tym przedziale.
 
 Funkcja potwierdza, że cechy są takie same. Ponadto wypisałem kilka początkowych liczb, co dalej potwierdza równomierne rozmieszczenie:
 \[0011111111110000000000000000000000000000000000000000000000000000\]
@@ -173,7 +173,7 @@ Odległości pomiędzy kolejnymi liczbami rosną wraz ze zwiększaniem się cech
 
 \noindent\textbf{Zadanie 4.} Znalezienie w arytmetyce \verb|Float(64)| liczbę zmiennopozycyjną \verb|x| w przedziale \verb|1 < x < 2| taką, że $x * (1/x) \neq 1$, a także najmniejszej takiej liczby.\\
 Iteracyjnie sprawdzam kolejne wyniki działania $x * (1/x) \neq 1$, iterując po \verb|x| przy użyciu funkcji \verb|nextfloat|. Gdy tylko wynik będzie różny od 1, zwracam go, tym samym otrzymując najmniejszą wartość w zadanym przedziale.\\
-Najmniejsza znalezione przeze mnie liczba w przedziale (1, 2): \[\verb|1.000000057228997|\]
+Najmniejsza znaleziona przeze mnie liczba w przedziale (1, 2): \[\verb|1.000000057228997|\]
 Niepoprawny wynik działania jest spowodowany niedokładnością, jaką są obarczone działania na liczbach zmiennoprzecinkowych. Trzeba zachować więc ostrożność podczas wykonywania obliczeń i brać pod uwagę, że mogą być one nieidealne, bądź tak je przekształcać, aby obliczenie ich nie stanowiło problemu.
 
 \vspace{0.5cm}
@@ -185,7 +185,7 @@ Niepoprawny wynik działania jest spowodowany niedokładnością, jaką są obar
 \vspace{0.5cm}
 
 \noindent\textbf{Zadanie 5.} Obliczanie iloczynu skalarnego dwóch wektorów na cztery rózne sposoby.\\
-Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogiczne, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.
+Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogicznie, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -244,7 +244,7 @@ Powyższe funkcje zaimplementowałem w niezmienionej formie, używając \verb|Fl
     \label{tab:fvsg}
 \end{table}
 
-Jak można zaobserwować, funkcja \verb|f| już przy $8^{-9}$ jest równa 0. Do tego momentu, obie funkcje mają zbliżone wartości. Funkcja \verb|f| traci dokładność przez operowanie na małych liczbach - odejmowanie od pierwiastka, który w pewnym momencie zostaje przybliżony do 1, wartości 1. Możnaby temu zapobiec poprzez odpowiednie przekształcenie równania - np z \verb|f(x)| do \verb|g(x)|, co pozwoliło na zachowanie większej prezycji obliczeń.
+Jak można zaobserwować, funkcja \verb|f| już przy $8^{-9}$ jest równa 0. Do tego momentu, obie funkcje mają zbliżone wartości. Funkcja \verb|f| traci dokładność przez operowanie na małych liczbach - odejmowanie od pierwiastka, który w pewnym momencie zostaje przybliżony do 1, wartości 1. Możnaby temu zapobiec poprzez odpowiednie przekształcenie równania - np z \verb|f(x)| do \verb|g(x)|, co pozwoliłoby na zachowanie większej prezycji obliczeń.
 
 \vspace{0.5cm}
 
@@ -265,7 +265,7 @@ Obliczona dokłada wartość pochodnej w $x_0 = 1$ to
 
 \vspace{0.5cm}
 
-Zaimplementowałem funkcję, która oblicza wartość funkcji \verb|f(x)| dla zadanej wartości \verb|x|, a także taką liczącą przybliżoną wartość pochodnej oraz błąd. Dokłada wartość pochodnej jest przechowywana w zmiennej globalnej.
+Zaimplementowałem funkcję, która oblicza wartość funkcji \verb|f(x)| dla zadanej wartości \verb|x|, a także taką liczącą przybliżoną wartość pochodnej oraz błąd. Dokładna wartość pochodnej jest przechowywana w zmiennej globalnej.
 
 \begin{longtable}{|c|c|c|c|}
     \hline
@@ -331,7 +331,7 @@ Zaimplementowałem funkcję, która oblicza wartość funkcji \verb|f(x)| dla za
 
 \vspace{0.5cm}
 
-Jak można zauważyć, najlepsza dokładność jest dla \verb|h = 2^{-28}|, gdyż rząd wielkości błędu jest najmniejszy (wynosi \verb|10^{-9}|). Potem błąd zaczyna rosnąć, aż będzie on wielkości dokładnej wartości pochodnej. Dzieje się tak, ponieważ bardzo małe liczby w formacie zmiennoprzecinkowym mają niewystarczającą liczbę cyfr znaczących, co powoduje utratę dokładności podczas obliczeń, zwłaszcza podczas odejmowania bliskich siebie liczb. 
+Jak można zauważyć, najlepsza dokładność jest dla \verb|h = 2^{-28}|, gdyż rząd wielkości błędu jest najmniejszy (wynosi \verb|10^{-9}|). Potem błąd zaczyna rosnąć, aż będzie on wielkości dokładnej wartości pochodnej. Dzieje się tak, ponieważ bardzo małe liczby w formacie zmiennoprzecinkowym mają niewystarczającą liczbę cyfr znaczących, co powoduje utratę dokładności podczas obliczeń, zwłaszcza podczas odejmowania liczb o niewielkiej różnicy w wartości. 
 
 \noindent\textbf{Wnioski ogólne}
 
