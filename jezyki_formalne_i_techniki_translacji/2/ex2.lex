@@ -3,14 +3,14 @@
 
 %%
 <INITIAL>{ 
-                "<!--"            { BEGIN(COMMENT); }
-                ^[ \t]*\n         {}               /* empty line */
-                .                 { ECHO; }
+                "--"            { BEGIN(COMMENT); }
+               /* ^[ \t]*\n       {}                empty line */
+                .               { ECHO; }
 }
 
 <COMMENT>{
-                "-->"|"-->\n"     { BEGIN(INITIAL); }
-                .|\n              {}
+                "\n"            { ECHO; BEGIN(INITIAL); }
+                .               {}
 }
 %%
 

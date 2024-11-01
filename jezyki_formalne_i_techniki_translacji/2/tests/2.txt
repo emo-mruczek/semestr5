@@ -1,0 +1,72 @@
+--  the last sentence above echoes the Algol 68 report 
+
+end;  --  processing of Line is complete 
+
+--  a long comment may be split onto
+--  two or more consecutive lines   
+
+----------------  the first two hyphens start the comment  
+
+
+-- This is a simple Ada program to calculate the factorial of a given positive integer.
+-- It uses basic Ada structures, such as procedures, variables, loops, and conditionals.
+-- The code is commented thoroughly to explain each part of the logic.
+
+with Ada.Text_IO;           -- Import the Ada standard text input/output package
+use Ada.Text_IO;            -- Make the package's functions directly accessible
+
+procedure Factorial_Calculator is
+
+   -- Declaration of a constant for a maximum limit to avoid very large calculations.
+   Max_Input : constant Integer := 20;
+   -- Declare a variable to store the input number for which factorial will be calculated.
+   Input_Number : Integer;
+   -- Declare a variable to store the calculated factorial result.
+   Result : Integer;
+   
+   -- Function to calculate factorial of a positive integer
+   -- This function takes an integer as input and returns the factorial of that integer.
+   function Factorial(N : Integer) return Integer is
+      -- Declare a local variable to store the running product for factorial calculation.
+      Product : Integer := 1;
+   begin
+      -- Loop from 1 up to N to calculate N!
+      -- Example: if N = 5, this loop computes 1 * 2 * 3 * 4 * 5.
+      for I in 1 .. N loop
+         Product := Product * I;
+      end loop;
+      -- Return the calculated factorial value.
+      return Product;
+   end Factorial;
+
+begin
+   -- Main program begins here.
+   Put_Line("Ada Factorial Calculator");
+   
+   -- Input validation loop. The loop will continue until a valid input is received.
+   loop
+      -- Prompt the user to enter a positive integer.
+      Put("Enter a positive integer (up to ");
+      Put(Max_Input'Image);  -- Display the maximum allowed input value
+      Put("): ");
+      
+      -- Get the user's input and store it in Input_Number.
+      Get(Input_Number);
+      
+      -- Check if the input is within a valid range.
+      exit when Input_Number > 0 and Input_Number <= Max_Input;
+      -- If the input is invalid, print an error message.
+      Put_Line("Invalid input. Please enter a positive integer within the allowed range.");
+   end loop;
+   
+   -- Calculate the factorial of the validated input using the Factorial function.
+   Result := Factorial(Input_Number);
+   
+   -- Display the result.
+   Put("The factorial of ");
+   Put(Input_Number'Image);  -- Display the input number
+   Put(" is ");
+   Put(Result'Image);        -- Display the calculated factorial
+   New_Line;
+   
+end Factorial_Calculator;
