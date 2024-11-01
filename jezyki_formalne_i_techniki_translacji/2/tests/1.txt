@@ -1,0 +1,9 @@
+
+    This    is    a  test file.    
+  
+  It   contains     multiple      spaces    and tabs.  
+
+
+  Some lines are empty.        
+
+  This is the    last line.
