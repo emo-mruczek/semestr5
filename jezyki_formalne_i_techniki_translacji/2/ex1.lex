@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     FILE *fp = fopen(argv[1], "r");
     if ( !fp ) {
         printf("Couldn't open a file! :(\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     yyin = fp;
