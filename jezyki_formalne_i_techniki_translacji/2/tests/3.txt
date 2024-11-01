@@ -1,0 +1,51 @@
+/**
+*
+*
+* trzeba
+* to
+*
+*  
+* zostawic
+*/
+
+
+ /*!
+  *
+  * zostawic tez
+  */ 
+
+/// eeeeeeeee zostawic 
+//! rowniez zostawic
+
+#include "cos.h"
+
+/*
+* usunac
+*/
+
+/**
+*  */
+
+
+#include <iostream>
+
+/**
+* zostawic
+*/
+
+/**
+* zostawic
+*/
+
+//        
+/* / */
+
+
+int main() {
+    // usunac 
+
+    int a = 10 / 2;
+    int b = 10 * 2; // usunac
+
+    return 0;
+}

@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 5
-#define YY_END_OF_BUFFER 6
+#define YY_NUM_RULES 10
+#define YY_END_OF_BUFFER 11
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,10 +360,11 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[13] =
+static const flex_int16_t yy_accept[24] =
     {   0,
-        0,    0,    0,    0,    6,    2,    5,    2,    4,    3,
-        1,    0
+        0,    0,    0,    0,    0,    0,    0,    0,   11,    5,
+       10,    5,    7,    6,    9,    9,    3,    1,    8,    4,
+        2,    8,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -371,8 +372,8 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    3,    1,    1,    1,    1,    1,
+        1,    1,    3,    1,    1,    1,    1,    1,    1,    1,
+        1,    4,    1,    1,    1,    1,    5,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,33 +399,39 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[4] =
+static const YY_CHAR yy_meta[6] =
     {   0,
-        1,    1,    2
+        1,    2,    1,    1,    3
     } ;
 
-static const flex_int16_t yy_base[15] =
+static const flex_int16_t yy_base[30] =
     {   0,
-        0,    0,    7,    6,    7,   10,   10,    0,   10,   10,
-       10,   10,    3,    4
+        0,    4,    0,    0,   28,   27,   11,    4,    7,   31,
+       31,    6,   31,   31,   31,    0,    9,   11,    0,   31,
+       31,   31,   31,   16,   19,   22,   25,    1,    1
     } ;
 
-static const flex_int16_t yy_def[15] =
+static const flex_int16_t yy_def[30] =
     {   0,
-       12,    1,   13,   13,   12,   12,   12,   14,   12,   12,
-       12,    0,   12,   12
+       24,   24,   25,   25,   26,   26,   27,   27,   23,   23,
+       23,   23,   23,   23,   23,   28,   23,   23,   29,   23,
+       23,   23,    0,   23,   23,   23,   23,   23,   23
     } ;
 
-static const flex_int16_t yy_nxt[14] =
+static const flex_int16_t yy_nxt[37] =
     {   0,
-        6,    7,    8,    9,    9,   11,   12,   10,   10,    5,
-       12,   12,   12
+       23,   11,   22,   19,   12,   11,   23,   16,   12,   17,
+       18,   20,   20,   21,   16,   21,   10,   10,   10,   11,
+       11,   11,   13,   13,   13,   15,   15,   15,   14,   14,
+        9,   23,   23,   23,   23,   23
     } ;
 
-static const flex_int16_t yy_chk[14] =
+static const flex_int16_t yy_chk[37] =
     {   0,
-        1,    1,    1,   13,   13,   14,    5,    4,    3,   12,
-       12,   12,   12
+        0,    1,   29,   28,    1,    2,    9,    8,    2,   12,
+       12,   17,   17,   18,    7,   18,   24,   24,   24,   25,
+       25,   25,   26,   26,   26,   27,   27,   27,    6,    5,
+       23,   23,   23,   23,   23,   23
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -441,12 +448,17 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "ex2.lex"
-
-#line 446 "lex.yy.c"
+#line 1 "ex3.lex"
+#line 3 "ex3.lex"
+    int doxygen = 0;
+#line 454 "lex.yy.c"
+ 
+#line 456 "lex.yy.c"
 
 #define INITIAL 0
-#define COMMENT 1
+#define COMMENT_INIT 1
+#define SINGLE_LINE_REMOVE 2
+#define MULTI_LINE_REMOVE 3
 
 #ifndef YY_NO_UNISTD_H
 /* Special case for "unistd.h", since it is non-ANSI. We include it way
@@ -661,9 +673,9 @@ YY_DECL
 		}
 
 	{
-#line 4 "ex2.lex"
+#line 8 "ex3.lex"
 
-#line 666 "lex.yy.c"
+#line 678 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -690,13 +702,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 13 )
+				if ( yy_current_state >= 24 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 10 );
+		while ( yy_base[yy_current_state] != 31 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -722,37 +734,79 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 6 "ex2.lex"
-{ BEGIN(COMMENT); }
+#line 11 "ex3.lex"
+{ BEGIN(SINGLE_LINE_REMOVE); }
 	YY_BREAK
-/* ^[ \t]*\n       {}                empty line */
 case 2:
 YY_RULE_SETUP
-#line 8 "ex2.lex"
+#line 13 "ex3.lex"
+{ if ( doxygen ) {
+                                        ECHO;
+                                        BEGIN(INITIAL);
+                                    } else {
+                                        BEGIN(SINGLE_LINE_REMOVE);
+                                    }
+                                 }
+	YY_BREAK
+case 3:
+YY_RULE_SETUP
+#line 21 "ex3.lex"
+{ BEGIN(MULTI_LINE_REMOVE); }
+	YY_BREAK
+case 4:
+YY_RULE_SETUP
+#line 23 "ex3.lex"
+{ if ( doxygen ) {
+                                        ECHO;
+                                        BEGIN(INITIAL);
+                                    } else {
+                                        BEGIN(MULTI_LINE_REMOVE);
+                                    } 
+                                 }
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 31 "ex3.lex"
 { ECHO; }
 	YY_BREAK
 
 
-case 3:
-/* rule 3 can match eol */
+case 6:
+/* rule 6 can match eol */
 YY_RULE_SETUP
-#line 12 "ex2.lex"
-{ ECHO; BEGIN(INITIAL); }
+#line 36 "ex3.lex"
+{ BEGIN(INITIAL); }
 	YY_BREAK
-case 4:
+case 7:
 YY_RULE_SETUP
-#line 13 "ex2.lex"
+#line 37 "ex3.lex"
 {}
 	YY_BREAK
 
-case 5:
+
+case 8:
+/* rule 8 can match eol */
 YY_RULE_SETUP
-#line 15 "ex2.lex"
+#line 43 "ex3.lex"
+{ BEGIN(INITIAL); }
+	YY_BREAK
+case 9:
+/* rule 9 can match eol */
+YY_RULE_SETUP
+#line 44 "ex3.lex"
+{}
+	YY_BREAK
+
+case 10:
+YY_RULE_SETUP
+#line 46 "ex3.lex"
 ECHO;
 	YY_BREAK
-#line 753 "lex.yy.c"
+#line 805 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(COMMENT):
+case YY_STATE_EOF(COMMENT_INIT):
+case YY_STATE_EOF(SINGLE_LINE_REMOVE):
+case YY_STATE_EOF(MULTI_LINE_REMOVE):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1048,7 +1102,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 13 )
+			if ( yy_current_state >= 24 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1076,11 +1130,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 13 )
+		if ( yy_current_state >= 24 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 12);
+	yy_is_jam = (yy_current_state == 23);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1756,14 +1810,16 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 15 "ex2.lex"
+#line 46 "ex3.lex"
 
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        printf("Insufficient number of arguments! 1. input 2. output\n");
+        printf("Insufficient number of arguments! 1. input 2. leave doxygen comments\n");
         exit(1);
     }
+
+    if (argc > 2 ) doxygen = 1;
 
     FILE *fp = fopen(argv[1], "r");
     if (!fp) {
