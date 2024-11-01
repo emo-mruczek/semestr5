@@ -1,0 +1,43 @@
+# Zadanie 3
+# Felix Zieliński 272336
+
+# klonowanie repozytorium
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+# stworzenie przykladowego skryptu w jednym z podkatalogow
+
+echo -e '#!/usr/bin/env bash \necho "TEST!!!"' > skrypt.sh
+
+svn add skrypt.sh 
+A         skrypt.sh
+
+svn commit -m 'add: skrypt.sh'
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Adding         skrypt.sh
+Transmitting file data .done
+Committing transaction...
+Committed revision 29.
+
+# jakie ma uprawnienia skrypt?
+
+ls -l skrypt.sh 
+-rw-r--r-- 1 felix users 35 10-31 13:50 skrypt.sh
+
+# nadanie mu uprawnień do wykonywania
+
+svn propset svn:executable ON skrypt.sh 
+property 'svn:executable' set on 'skrypt.sh'
+
+ls -l skrypt.sh 
+-rwxr-xr-x 1 felix users 35 10-31 13:50 skrypt.sh
+
+./skrypt.sh 
+TEST!!!
+
+

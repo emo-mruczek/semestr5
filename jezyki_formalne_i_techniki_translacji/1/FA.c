@@ -1,4 +1,4 @@
-// TODO: wszystkie wystapienia wzorca w pliku
+// Felix Zieliński 272336
 
 #include <inttypes.h>
 #include <stdio.h>
@@ -96,6 +96,7 @@ uint16_t** compute_transition_function(const char* pattern, const char* sigma) {
     }
 
     // there are m + 1 states
+    // finds the maximum prefix
     for ( uint16_t q = 0; q <= m; ++q) {
         for ( uint16_t a = 0; a < n; ++a) { 
             k = ( (m + 1) < (q + 2) ? m + 1 : q + 2 );

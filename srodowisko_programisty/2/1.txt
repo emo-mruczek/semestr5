@@ -1,0 +1,190 @@
+# Zadanie 1
+# Felix Zieliński 272336
+
+# klonowanie repozytoriów
+
+svn checkout 
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+# dodawanie nowego pliku i commitowanie
+
+svn add ŚP/2
+
+A         2
+A         2/test_file.txt
+
+svn commit -m 'test file'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Adding         2
+Adding         2/test_file.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 25.
+
+# pobieranie zmian do innej kopii roboczej
+
+svn update 
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+A    ŚP/2
+A    ŚP/2/test_file.txt
+Updated to revision 25.
+
+# proba commitu z innego repozytorium
+
+svn commit -m 'conflict'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Sending        test_file.txt
+Transmitting file data .svn: E155011: Commit failed (details follow):
+svn: E155011: File '/home/felix/kik2/2/mk1-272336/ŚP/2/test_file.txt' is out of date
+svn: E170004: While preparing '/home/felix/kik2/2/mk1-272336/ŚP/2/test_file.txt' for commit
+svn: E170004: File '/ŚP/2/test_file.txt' is out of date
+
+# pobranie update
+
+svn update
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+C    ŚP/2/test_file.txt
+Updated to revision 26.
+Summary of conflicts:
+  Text conflicts: 1
+Merge conflict discovered in file 'ŚP/2/test_file.txt'.
+Select: (p) Postpone, (df) Show diff, (e) Edit file, (m) Merge,
+        (s) Show all options: svn update
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+C    ŚP/2/test_file.txt
+Updated to revision 26.
+Summary of conflicts:
+  Text conflicts: 1
+Merge conflict discovered in file 'ŚP/2/test_file.txt'.
+Select: (p) Postpone, (df) Show diff, (e) Edit file, (m) Merge,
+        (s) Show all options: p
+Summary of conflicts:
+  Text conflicts: 1
+
+# wyswietlanie pliku
+
+[felix@izolda:~/kik2/2/mk1-272336/ŚP/2]$ ls
+test_file.txt  test_file.txt.mine  test_file.txt.r25  test_file.txt.r26
+
+
+[felix@izolda:~/kik2/2/mk1-272336/ŚP/2]$ cat test_file.txt
+test
+test
+<<<<<<< .mine
+test test test test
+||||||| .r25
+test test test
+=======
+
+>>>>>>> .r26
+
+[felix@izolda:~/kik2/2/mk1-272336/ŚP/2]$ cat test_file.txt.mine 
+test
+test
+test test test test
+
+[felix@izolda:~/kik2/2/mk1-272336/ŚP/2]$ cat test_file.txt.r25 
+test
+test
+test test test
+
+[felix@izolda:~/kik2/2/mk1-272336/ŚP/2]$ cat test_file.txt.r26 
+test
+test
+
+# usuwanie konfliktu z pliku - edycja test_file.txt
+
+cat test_file.txt
+test
+test
+test test test test
+
+# oznaczenie konfliktu jako resolved
+
+svn resolve --accept working test_file.txt
+Merge conflicts in 'test_file.txt' marked as resolved.
+
+# commitowanie zmian
+
+svn commit -m 'conflict: resolved!'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Sending        test_file.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 27.
+
+# pliki po konflikcie:
+
+cat test_file.txt 
+test
+test
+test test test test
+
+ls
+test_file.txt
+
+svn log -v
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+# w 2. katalogu
+
+svn log -v
+
+------------------------------------------------------------------------
+r26 | 272336 | 2024-10-28 10:09:53 +0100 (pon, 28 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2/test_file.txt
+
+var
+------------------------------------------------------------------------
+r25 | 272336 | 2024-10-28 10:05:10 +0100 (pon, 28 paź 2024) | 1 line
+Changed paths:
+   A /ŚP/2
+   A /ŚP/2/test_file.txt
+
+test file
+------------------------------------------------------------------------
+
+# w 1. katalogu
+
+svn log -v
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r26 | 272336 | 2024-10-28 10:09:53 +0100 (pon, 28 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2/test_file.txt
+
+var
+------------------------------------------------------------------------
+r25 | 272336 | 2024-10-28 10:05:10 +0100 (pon, 28 paź 2024) | 1 line
+Changed paths:
+   A /ŚP/2
+   A /ŚP/2/test_file.txt
+
+test file
+------------------------------------------------------------------------
+
+

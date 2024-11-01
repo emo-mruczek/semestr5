@@ -1,0 +1,166 @@
+# Zadanie 2
+# Felix Zieliński 272336
+
+# Klonowanie repozytorium z listy 1.
+
+svn export https://repo.cs.pwr.edu.pl/info/SP/l1/a/
+
+# scommitowanie 
+
+svn add a
+svn commit -m 'add: a dir'
+
+# sklonowanie repozytorium, ale tylko jego głownego katalogu
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336 --depth=empty --username 272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Checked out revision 28.
+
+tree
+.
+└── mk1-272336
+
+2 directories, 0 files
+
+# pobranie tylko podkatalogu ŚP z ograniczoną głębokością
+
+cd mk1-272336/
+
+tree
+.
+
+0 directories, 0 files
+
+svn update ŚP --set-depth=immediates
+
+Updating 'ŚP':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+A    ŚP
+A    ŚP/1
+A    ŚP/2
+Updated to revision 28.
+
+tree
+.
+└── ŚP
+    ├── 1
+    └── 2
+
+4 directories, 0 files
+
+# pobranie całej zawartości ŚP/2
+
+ svn update ŚP/2 --set-depth=infinity
+
+Updating 'ŚP/2':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+A    ŚP/2/a
+A    ŚP/2/a/a
+A    ŚP/2/a/a/b
+A    ŚP/2/a/aa
+A    ŚP/2/a/aa/b
+A    ŚP/2/a/aaa
+A    ŚP/2/a/aaa/b
+A    ŚP/2/a/aab
+A    ŚP/2/a/aab/b
+A    ŚP/2/a/ab
+A    ŚP/2/a/ab/b
+A    ŚP/2/a/aba
+A    ŚP/2/a/aba/b
+A    ŚP/2/a/abb
+A    ŚP/2/a/abb/b
+A    ŚP/2/a/b
+A    ŚP/2/a/b/b
+A    ŚP/2/a/ba
+A    ŚP/2/a/ba/b
+A    ŚP/2/a/baa
+A    ŚP/2/a/baa/b
+A    ŚP/2/a/bab
+A    ŚP/2/a/bab/b
+A    ŚP/2/a/bb
+A    ŚP/2/a/bb/b
+A    ŚP/2/a/bba
+A    ŚP/2/a/bba/b
+A    ŚP/2/a/bbb
+A    ŚP/2/a/bbb/b
+A    ŚP/2/a/a/b/aab
+A    ŚP/2/a/aa/b/aaab
+A    ŚP/2/a/aaa/b/aaaab
+A    ŚP/2/a/aab/b/aaabb
+A    ŚP/2/a/ab/b/aabb
+A    ŚP/2/a/aba/b/aabab
+A    ŚP/2/a/abb/b/aabbb
+A    ŚP/2/a/b/ab
+A    ŚP/2/a/b/b/abb
+A    ŚP/2/a/ba/b/abab
+A    ŚP/2/a/baa/b/abaab
+A    ŚP/2/a/bab/b/ababb
+A    ŚP/2/a/bb/b/abbb
+A    ŚP/2/a/bba/b/abbab
+A    ŚP/2/a/bbb/b/abbbb
+A    ŚP/2/test_file.txt
+Updated to revision 28.
+
+tree
+.
+└── ŚP
+    ├── 1
+    └── 2
+        ├── a
+        │   ├── a
+        │   │   └── b
+        │   │       └── aab
+        │   ├── aa
+        │   │   └── b
+        │   │       └── aaab
+        │   ├── aaa
+        │   │   └── b
+        │   │       └── aaaab
+        │   ├── aab
+        │   │   └── b
+        │   │       └── aaabb
+        │   ├── ab
+        │   │   └── b
+        │   │       └── aabb
+        │   ├── aba
+        │   │   └── b
+        │   │       └── aabab
+        │   ├── abb
+        │   │   └── b
+        │   │       └── aabbb
+        │   ├── b
+        │   │   ├── ab
+        │   │   └── b
+        │   │       └── abb
+        │   ├── ba
+        │   │   └── b
+        │   │       └── abab
+        │   ├── baa
+        │   │   └── b
+        │   │       └── abaab
+        │   ├── bab
+        │   │   └── b
+        │   │       └── ababb
+        │   ├── bb
+        │   │   └── b
+        │   │       └── abbb
+        │   ├── bba
+        │   │   └── b
+        │   │       └── abbab
+        │   └── bbb
+        │       └── b
+        │           └── abbbb
+        └── test_file.txt
+
+33 directories, 16 files
+
+# sparse directories pozwoliło mi na ograniczenie ilości pobieranych podczas svn checkout danych
+# mogłem dzięki temu pobrać tylko potrzebne mi pliki
+# depth moze przybrac kilka wartości: empty, files, immediates, infinity
