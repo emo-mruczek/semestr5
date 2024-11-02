@@ -11,12 +11,11 @@
 *  operator: dodawanie, odejmowanie, mnozenie, dzielenie, potegowanie, modulo
 * 
 *  mozliwe bledy:
-*   dizelenie przez zero
+*    dizelenie przez zero
 *    za mala liczba argumentow
 *    za mala liczba operatorow
 *    zly symbol
 *
-*TODO: cleanup func
 */
 
 %{
@@ -37,7 +36,7 @@ int16_t* top = NULL;
 void push(int16_t num) {
     if ( top >= stack + STACK_SIZE ) {
         printf("Stack overflow! :(\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     } else {
         *top = num;
         top++;
@@ -55,6 +54,12 @@ int16_t pop(void) {
     }
 }
 
+void reset_error(void) {
+     printf("Resetting state\n");
+    top = stack;
+    error = 0;
+}
+
 %}
 
 %x ERROR_HANDLER
@@ -70,7 +75,7 @@ int16_t pop(void) {
         "+"               { int16_t a = pop(); 
                             int16_t b = pop();
                             if ( error ) {
-                                BEGIN(ERROR_HANDLER); 
+                                reset_error(); BEGIN(ERROR_HANDLER); 
                             } else { 
                                 push(b + a);
                             } 
@@ -79,7 +84,7 @@ int16_t pop(void) {
         "-"               { int16_t a = pop(); 
                             int16_t b = pop(); 
                             if ( error ) {
-                                BEGIN(ERROR_HANDLER); 
+                                reset_error(); BEGIN(ERROR_HANDLER); 
                             } else { 
                                 push(b - a);
                             }
@@ -88,7 +93,7 @@ int16_t pop(void) {
         "*"               { int16_t a = pop(); 
                             int16_t b = pop(); 
                             if ( error ) {
-                                BEGIN(ERROR_HANDLER); 
+                                reset_error(); BEGIN(ERROR_HANDLER); 
                             } else { 
                                 push(b * a);
                             }
@@ -97,11 +102,11 @@ int16_t pop(void) {
         "/"               { int16_t a = pop(); 
                             if ( a == 0 ) {
                                 printf("Error: can't divide by zero!\n");
-                                BEGIN(ERROR_HANDLER);
+                                reset_error(); BEGIN(ERROR_HANDLER);
                             } else {
                                 int16_t b = pop();
                                 if ( error ) {
-                                    BEGIN(ERROR_HANDLER); 
+                                    reset_error(); BEGIN(ERROR_HANDLER); 
                                 } else { 
                                     push(b / a);
                                 }
@@ -111,7 +116,7 @@ int16_t pop(void) {
         "^"               { int16_t a = pop(); 
                             int16_t b = pop();
                             if ( error ) {
-                                BEGIN(ERROR_HANDLER); 
+                                reset_error(); BEGIN(ERROR_HANDLER); 
                             } else { 
                                 push((uint16_t)pow((double)b, (double)a)); 
                             }
@@ -120,7 +125,7 @@ int16_t pop(void) {
         "%"               { int16_t a = pop(); 
                             int16_t b = pop(); 
                             if ( error ) {
-                                BEGIN(ERROR_HANDLER); 
+                                reset_error(); BEGIN(ERROR_HANDLER);
                             } else { 
                                 push(b % a); 
                             }
@@ -128,25 +133,28 @@ int16_t pop(void) {
 
         \n                { if ( top > stack + 1 ) {
                                 printf("Error: not enough operators!\n");
-                                BEGIN(ERROR_HANDLER);
+                                reset_error(); BEGIN(INITIAL);
                             } else {
                                 int16_t num = pop();
                                 if ( error ) {
-                                    BEGIN(ERROR_HANDLER);
+                                    reset_error(); BEGIN(INITIAL);
                                 } else { 
-                                    printf("%" PRId16 "\n", num);
+                                    printf("= %" PRId16 "\n\n", num);
                                 }
                             }
                           }
 
         [ ]+               {}
 
-        .                 { printf("Error: unexpected symbol %s\n", yytext); BEGIN(ERROR_HANDLER); }
+        .                 { printf("Error: unexpected symbol %s\n\n", yytext);
+                            reset_error();
+                            BEGIN(ERROR_HANDLER); 
+                          }
 }
 
 <ERROR_HANDLER>{
-        \n                { printf("dupa\n"); top = stack; error = 0; BEGIN(INITIAL); }
-        .                 {}
+        "\n"              { BEGIN(INITIAL);}
+        .                 {  }                
 }
 
 %%
