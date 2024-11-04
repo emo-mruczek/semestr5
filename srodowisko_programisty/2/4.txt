@@ -69,3 +69,19 @@ svn co --ignore-externals https://repo.cs.pwr.edu.pl/mk1-272336
 a  skrypt.sh  test_file.txt
 
 # brak folderu externals
+
+# svn log
+
+r32 | 272336 | 2024-10-31 15:30:32 +0100 (czw, 31 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2
+   D /ŚP/2/externals
+
+add: externals
+------------------------------------------------------------------------
+r31 | 272336 | 2024-10-31 15:28:54 +0100 (czw, 31 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2
+   A /ŚP/2/externals
+
+add: externals

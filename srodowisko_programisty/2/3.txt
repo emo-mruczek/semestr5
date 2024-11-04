@@ -40,4 +40,34 @@ ls -l skrypt.sh
 ./skrypt.sh 
 TEST!!!
 
+# usuwanie 
 
+svn propdel svn:executable skrypt.sh 
+property 'svn:executable' deleted from 'skrypt.sh'.
+
+./skrypt.sh
+bash: ./skrypt.sh: Permission denied
+
+ls -l skrypt.sh 
+-rw-r--r-- 1 felix users 38 11-04 16:38 skrypt.sh
+
+# svn log
+
+r30 | 272336 | 2024-10-31 13:57:02 +0100 (czw, 31 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2/skrypt.sh
+
+change: skrypt.sh
+------------------------------------------------------------------------
+r29 | 272336 | 2024-10-31 13:50:50 +0100 (czw, 31 paź 2024) | 2 lines
+Changed paths:
+   A /ŚP/2/skrypt.sh
+
+add: skrypt.sh
+
+------------------------------------------------------------------------
+r45 | 272336 | 2024-11-04 18:09:23 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   M /ŚP/2/skrypt.sh
+
+delete executable propset

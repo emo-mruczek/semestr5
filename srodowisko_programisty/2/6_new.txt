@@ -1,0 +1,426 @@
+# Zadanie 6
+# Felix Zieliński 272336
+
+# tworzenie katalogow
+
+svn mkdir 6
+A         6
+
+cd 6
+
+svn mkdir a
+A         a
+
+svn mkdir b
+A         b
+
+touch a/a.txt
+
+touch b/b.txt
+
+svn add a/a.txt 
+A         a/a.txt
+
+svn add b/b.txt 
+A         b/b.txt
+
+svn commit -m '6.1'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Adding         .
+Adding         a
+Adding         a/a.txt
+Adding         b
+Adding         b/b.txt
+Transmitting file data ..done
+Committing transaction...
+Committed revision 46.
+
+svn log -v
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': ********
+
+------------------------------------------------------------------------
+r46 | 272336 | 2024-11-04 18:44:03 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6
+   A /ŚP/2/6/a
+   A /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/b
+   A /ŚP/2/6/b/b.txt
+
+6.1
+------------------------------------------------------------------------
+
+# przenoszenie plikow
+
+svn move a/a.txt b
+A         b/a.txt
+D         a/a.txt
+
+svn move b/b.txt a
+A         a/b.txt
+D         b/b.txt
+
+svn diff
+Index: a/b.txt
+===================================================================
+Index: b/a.txt
+===================================================================
+
+svn commit -m '6.2'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Deleting       a/a.txt
+Adding         a/b.txt
+Adding         b/a.txt
+Deleting       b/b.txt
+Committing transaction...
+Committed revision 47.
+
+svn log -v
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r46 | 272336 | 2024-11-04 18:44:03 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6
+   A /ŚP/2/6/a
+   A /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/b
+   A /ŚP/2/6/b/b.txt
+
+6.1
+------------------------------------------------------------------------
+
+# dopisanie tekstu do plikow
+
+echo "plik a" >> b/a.txt 
+echo "plik b" >> a/b.txt
+
+svn diff
+Index: a/b.txt
+===================================================================
+--- a/b.txt	(revision 47)
++++ a/b.txt	(working copy)
+@@ -0,0 +1 @@
++plik b
+Index: b/a.txt
+===================================================================
+--- b/a.txt	(revision 47)
++++ b/a.txt	(working copy)
+@@ -0,0 +1 @@
++plik a
+
+svn commit -m "6.2.2"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+Sending        a/b.txt
+Sending        b/a.txt
+Transmitting file data ..done
+Committing transaction...
+Committed revision 48.
+
+# zmiana nazwy i dopisanie
+
+echo " dopisany wiersz a" >> b/a.txt 
+
+svn move b/a.txt b/c.txt
+A         b/c.txt
+D         b/a.txt
+
+svn diff
+Index: b/a.txt
+===================================================================
+--- b/a.txt	(revision 48)
++++ b/a.txt	(nonexistent)
+@@ -1 +0,0 @@
+-plik a
+Index: b/c.txt
+===================================================================
+--- b/c.txt	(revision 48)
++++ b/c.txt	(working copy)
+@@ -1 +1,2 @@
+ plik a
++ dopisany wiersz a
+
+svn commit -m "6.3"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Deleting       b/a.txt
+Adding         b/c.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 49.
+
+echo " dopisany wiersz b" >> a/b.txt 
+
+svn move a/b.txt a/a.txt
+A         a/a.txt
+D         a/b.txt
+
+svn diff
+Index: a/a.txt
+===================================================================
+--- a/a.txt	(revision 48)
++++ a/a.txt	(working copy)
+@@ -1 +1,2 @@
+ plik b
++ dopisany wiersz b
+Index: a/b.txt
+===================================================================
+--- a/b.txt	(revision 48)
++++ a/b.txt	(nonexistent)
+@@ -1 +0,0 @@
+-plik b
+
+svn commit -m "6.4"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Adding         a/a.txt
+Deleting       a/b.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 50.
+
+# dodanie ostatniego pliku
+
+touch b/b.txt
+
+svn add b/b.txt 
+A         b/b.txt
+
+svn diff
+Index: b/b.txt
+===================================================================
+
+svn commit -m "6.4"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Adding         b/b.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 51.
+
+# sprawdzanie roznic w rewizjach
+
+svn log -v
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r51 | 272336 | 2024-11-04 19:09:34 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6/b/b.txt
+
+6.4
+------------------------------------------------------------------------
+r50 | 272336 | 2024-11-04 19:08:19 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6/a/a.txt (from /ŚP/2/6/a/b.txt:49)
+   D /ŚP/2/6/a/b.txt
+
+6.4
+------------------------------------------------------------------------
+r49 | 272336 | 2024-11-04 19:07:06 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   D /ŚP/2/6/b/a.txt
+   A /ŚP/2/6/b/c.txt (from /ŚP/2/6/b/a.txt:48)
+
+6.3
+------------------------------------------------------------------------
+r48 | 272336 | 2024-11-04 19:04:50 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   M /ŚP/2/6/a/b.txt
+   M /ŚP/2/6/b/a.txt
+
+6.2.2
+------------------------------------------------------------------------
+r47 | 272336 | 2024-11-04 18:54:42 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   D /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/a/b.txt (from /ŚP/2/6/b/b.txt:46)
+   A /ŚP/2/6/b/a.txt (from /ŚP/2/6/a/a.txt:46)
+   D /ŚP/2/6/b/b.txt
+
+6.2
+------------------------------------------------------------------------
+r46 | 272336 | 2024-11-04 18:44:03 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6
+   A /ŚP/2/6/a
+   A /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/b
+   A /ŚP/2/6/b/b.txt
+
+6.1
+------------------------------------------------------------------------
+
+# wiecej logow
+
+svn log -v a/a.txt 
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r50 | 272336 | 2024-11-04 19:08:19 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6/a/a.txt (from /ŚP/2/6/a/b.txt:49)
+   D /ŚP/2/6/a/b.txt
+
+6.4
+------------------------------------------------------------------------
+r48 | 272336 | 2024-11-04 19:04:50 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   M /ŚP/2/6/a/b.txt
+   M /ŚP/2/6/b/a.txt
+
+6.2.2
+------------------------------------------------------------------------
+r47 | 272336 | 2024-11-04 18:54:42 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   D /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/a/b.txt (from /ŚP/2/6/b/b.txt:46)
+   A /ŚP/2/6/b/a.txt (from /ŚP/2/6/a/a.txt:46)
+   D /ŚP/2/6/b/b.txt
+
+6.2
+------------------------------------------------------------------------
+r46 | 272336 | 2024-11-04 18:44:03 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6
+   A /ŚP/2/6/a
+   A /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/b
+   A /ŚP/2/6/b/b.txt
+
+6.1
+------------------------------------------------------------------------
+
+
+
+
+svn log -v b/b.txt 
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r51 | 272336 | 2024-11-04 19:09:34 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6/b/b.txt
+
+6.4
+------------------------------------------------------------------------
+
+
+
+ svn log -v b/c.txt 
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r49 | 272336 | 2024-11-04 19:07:06 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   D /ŚP/2/6/b/a.txt
+   A /ŚP/2/6/b/c.txt (from /ŚP/2/6/b/a.txt:48)
+
+6.3
+------------------------------------------------------------------------
+r48 | 272336 | 2024-11-04 19:04:50 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   M /ŚP/2/6/a/b.txt
+   M /ŚP/2/6/b/a.txt
+
+6.2.2
+------------------------------------------------------------------------
+r47 | 272336 | 2024-11-04 18:54:42 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   D /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/a/b.txt (from /ŚP/2/6/b/b.txt:46)
+   A /ŚP/2/6/b/a.txt (from /ŚP/2/6/a/a.txt:46)
+   D /ŚP/2/6/b/b.txt
+
+6.2
+------------------------------------------------------------------------
+r46 | 272336 | 2024-11-04 18:44:03 +0100 (pon, 04 lis 2024) | 1 line
+Changed paths:
+   A /ŚP/2/6
+   A /ŚP/2/6/a
+   A /ŚP/2/6/a/a.txt
+   A /ŚP/2/6/b
+   A /ŚP/2/6/b/b.txt
+
+6.1
+------------------------------------------------------------------------
+
+
+# svn diff
+
+svn diff -r 49:46 b/c.txt@HEAD
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Index: b/c.txt
+===================================================================
+--- b/c.txt	(.../b/c.txt)	(revision 49)
++++ b/c.txt	(.../a/a.txt)	(revision 46)
+@@ -1,2 +0,0 @@
+-plik a
+- dopisany wiersz a
+
+svn diff -r 49:46 b/b.txt@HEAD
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Index: b/b.txt
+===================================================================
+
+svn diff -r 49:46 a/b.txt@HEAD
+svn: E155010: The node '/home/felix/kikor/2/mk1-272336/ŚP/2/6/a/b.txt' was not found.
+
+svn diff -r 49:46 a/a.txt@HEAD
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Index: a/b.txt
+===================================================================
+--- a/b.txt	(.../a/b.txt)	(revision 49)
++++ a/b.txt	(.../b/b.txt)	(revision 46)
+@@ -1 +0,0 @@
+-plik b
+
+
+
+# svn cat
+
+svn cat -r 46 b/c.txt
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+
+Password for '272336': 
+
+[felix@izolda:~/kikor/2/mk1-272336/ŚP/2/6]$ svn cat -r 47 b/c.txt
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+
+Password for '272336': 
+
+[felix@izolda:~/kikor/2/mk1-272336/ŚP/2/6]$ svn cat -r 48 b/c.txt
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+plik a
+
+[felix@izolda:~/kikor/2/mk1-272336/ŚP/2/6]$ svn cat -r 49 b/c.txt
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+plik a
+ dopisany wiersz a
+
+
