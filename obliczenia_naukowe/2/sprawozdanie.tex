@@ -88,7 +88,7 @@ w dwóch różnych programach do wizualizacji danych. Zdecydowałem się na uży
 \lim_{x \to \infty} f(x) = \lim_{x \to \infty} e^x \ln(1 + e^{-x}) = 1
 \]
 
-\noindent Jak można zauważyć, dla wartości \verb|x >\ 32| wykresy zaczynają wskazywać błędne wartości, każdy na trochę inny sposób. Oscylują one wokół 1, coraz bardziej odbiegając od jej wartości, a następnie spadają do 0. \\\\
+\noindent Jak można zauważyć, dla wartości \verb|x >= 32| wykresy zaczynają wskazywać błędne wartości, każdy na trochę inny sposób. Oscylują one wokół 1, coraz bardziej odbiegając od jej wartości, a następnie spadają do 0. \\\\
 
 \noindent Dzieje się tak, gdyż dla \verb|x > 30| wartości $e^{x}$ są już tak duże, że mnożenie jej z niewielką wartością $ln(1 + e^{-x})$ skutkuje znacznymi błędami przybliżenia, które dla ok \verb|x = 38| powodują zwracanie wartości 0. Jest to spowodowane przybliżeniem $1 + e^{-x} \approx 1$, i tym samym całej wartości logarytmu do 0. Tak więc algorytm obliczający wartości \verb|f(x)| nie jest stabilny numerycznie.
 
