@@ -42,13 +42,12 @@ end
 # my functions
 # im repeating myself there i know
 
-# funkcja gauss
-# parametry: 
-#   A - macierz Float64
-#   size - wielkość macierzy
+# function inv
+# params: 
+#   A - matrix Float64
+#   size - size of the matrix
 #
-# funkcja zwraca Float64 -> błąd względny przy metodzie gaussa
-
+# function returns Float64 -> relative error for gauss method
 
 function gauss(A::Matrix{Float64}, size::Int64)::Float64
     x::Vector{Float64} = ones(Float64, size)
@@ -59,12 +58,12 @@ function gauss(A::Matrix{Float64}, size::Int64)::Float64
     return ret
 end
 
-# funkcja inv
-# parametry: 
-#   A - macierz Float64
-#   size - wielkość macierzy
+# function inv
+# params: 
+#   A - matrix Float64
+#   size - size of the matrix
 #
-# funkcja zwraca Float64 -> błąd względny przy metodzie inwersji
+# function returns Float64 -> relative error for inversion method
 
 
 function inversion(A::Matrix{Float64}, size::Int64)::Float64
@@ -76,12 +75,24 @@ function inversion(A::Matrix{Float64}, size::Int64)::Float64
     return ret
 end
 
-
 println("Tests for Hilbers, when n = {1, 2, ..., 20}: n --- condition --- rank --- gauss error --- inv error\n")
 
 hil_range::Int64 = 20
 
-for n::Int64 in 1:hil_range
+for n::Int64 in hil_range
     A::Matrix{Float64} = hilb(n) # println(typeof(A))
     println(n, " --- ", cond(A), " --- ", rank(A), " --- ", gauss(A, n), " --- ", inversion(A, n))
+end
+
+println("Tests for random matrix, when n = {5, 10, 20} and c = {1, 10, 10^3, 10^7, 10^12, 10^16}:")
+println("n --- c --- condition --- rank --- gauss error -- inv error\n")
+
+gauss_range::Array{Int64, 3} (5, 10, 20)
+gauss_c::Array{Int64, 6} (0, 1, 3, 7, 12, 16)
+
+for n::Int64 in gauss_range
+    for c::Int64 in gauss_c
+        A::Matrix{Float64} = matcond(n, 10^c)
+        println(n, " --- ", c, " --- ", cond(A), " --- ", rank(A), " --- ", gauss(A, n), " --- ", inverstion(A, n))
+    end
 end
