@@ -1,5 +1,3 @@
-#TODO: usun dif >= one(T) tutaj i ze sprawka
-
 # Felix Zieliński, 272336
 
 # parametry funkcji: typ zmiennoprzecinkowy T

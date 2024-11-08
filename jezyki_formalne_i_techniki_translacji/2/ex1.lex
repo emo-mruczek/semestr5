@@ -1,3 +1,4 @@
+
 %{
     int num_lines = 0;
     int num_words = 0;

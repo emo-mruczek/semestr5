@@ -1,3 +1,4 @@
+
 /* bierz symbole po kolei
 *  1. liczba
 *     odloz na stos

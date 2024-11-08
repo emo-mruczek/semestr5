@@ -1,9 +1,11 @@
+
 %x COMMENT
 
 
 %%
 <INITIAL>{ 
                 "--"            { BEGIN(COMMENT); }
+                "\""([^"]|"\"\"")*"\""            {ECHO;}
                /* ^[ \t]*\n       {}                empty line */
                 .               { ECHO; }
 }
