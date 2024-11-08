@@ -5,12 +5,13 @@
 \usepackage{tikz}
 \usepackage{adjustbox}
 \usepackage{longtable}
+\usepackage{graphicx}
 \title{Obliczenia naukowe}
 \author{Felix Zieliński 272336}
 \date{Lista 2}
 \begin{document}
 \maketitle
-TODO OPIS
+TODO OPIS, czy zadanie 2?
 
 \vspace{0.5cm}
 
@@ -49,5 +50,62 @@ Różnica w tym zadaniu, a zadaniu 5. z poprzedniej listy polegała na dokonaniu
 Jak widać, wyniki dla typu \verb|Float32| nie zmieniły się. Jest to spowodowane niewystarczającą do zauważenia różnicy precyzją zapisu liczby zmiennopozycyjnej w tym typie.\\\\
 Natomiast w typie \verb|Float64| różnica jest znaczna mimo tak niewielkiej zmiany danych. Mimo że wyniki nadal odbiegają od prawidłowego, są one mu znacznie bliższe. \\\\
 Można więc stwierdzić, że zadanie to było \textbf{źle uwarunkowane} - o wysokim wskaźniku uwarunkowania. Wskaźnik ten określa, w jakim stopniu błąd reprezentacji numerycznej danych wejściowych dla danego problemu będzie wpływać na błąd wyniku. Małe zmany danych w tym zadaniu spowodowały znaczną zmianę wyników. 
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 2
+
+\vspace{0.5cm}
+
+\noindent\textbf{Zadanie 2.} W tym zadaniu należało narysować wykres funkcji \[f(x) = e^{x}\ln(1 + e^{-x})\] 
+w dwóch różnych programach do wizualizacji danych. Zdecydowałem się na użycie WolframaAlpha, Desmosa oraz Gnuplota
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/wolfram1.png}  
+    \caption{WolframAlpha: \texttt{plot $e^{x} * \ln(1 + e^{-x})$ from $x = -10$ to $x = 40$}}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/desmos1.png}
+    \caption{Desmos}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/gnuplot1.png}
+    \caption{Gnuplot}
+\end{figure}
+
+\vspace{0.5cm}
+
+\noindent Granica tej funkcji dla x zmierzającego do nieskończoności wynosi 
+
+\[
+\lim_{x \to \infty} f(x) = \lim_{x \to \infty} e^x \ln(1 + e^{-x}) = 1
+\]
+
+\noindent Jak można zauważyć, dla wartości \verb|x >\ 32| wykresy zaczynają wskazywać błędne wartości, każdy na trochę inny sposób. Oscylują one wokół 1, coraz bardziej odbiegając od jej wartości, a następnie spadają do 0. \\\\
+
+\noindent Dzieje się tak, gdyż dla \verb|x > 30| wartości $e^{x}$ są już tak duże, że mnożenie jej z niewielką wartością $ln(1 + e^{-x})$ skutkuje znacznymi błędami przybliżenia, które dla ok \verb|x = 38| powodują zwracanie wartości 0. Jest to spowodowane przybliżeniem $1 + e^{-x} \approx 1$, i tym samym całej wartości logarytmu do 0. Tak więc algorytm obliczający wartości \verb|f(x)| nie jest stabilny numerycznie.
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 3
+
+\vspace{0.5cm}
+
+
+
+
+
+
+
+
 
 \end{document}

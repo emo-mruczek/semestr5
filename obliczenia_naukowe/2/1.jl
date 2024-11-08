@@ -4,7 +4,7 @@
 #   x - wektor x
 #   y - wektor y
 
-function a(x::Vector{T}, y::Vector{T})::T where T
+function a(x::Vector{T}, y::Vector{T})::T where T <: AbstractFloat
     len::Int64 = length(x)
     S::T = zero(T)
     for i::Int64 in 1:len
@@ -17,7 +17,8 @@ end
 #   x - wektor x
 #   y - wektor y
 
-function b(x::Vector{T}, y::Vector{T})::T where T
+function b(x::Vector{T}, y::Vector{T})::T where T <: AbstractFloat
+
     len::Int64 = length(x)
     S::T = zero(T)
     for i::Int64 in len:-1:1 
@@ -30,7 +31,8 @@ end
 #   x - wektor x
 #   y - wektor y
 
-function c(x::Vector{T}, y::Vector{T})::T where T
+function c(x::Vector{T}, y::Vector{T})::T where T <: AbstractFloat
+
 
     len::Int64 = length(x)
     S::Vector{T} = Vector{T}(undef, len)
@@ -66,7 +68,8 @@ end
 #   x - wektor x
 #   y - wektor y
 
-function d(x::Vector{T}, y::Vector{T})::T where T
+function d(x::Vector{T}, y::Vector{T})::T where T <: AbstractFloat
+
 
     len::Int64 = length(x)
     S::Vector{T} = Vector{T}(undef, len)
