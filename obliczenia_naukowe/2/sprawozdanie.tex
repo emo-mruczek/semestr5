@@ -23,22 +23,31 @@ TODO OPIS
 \noindent\textbf{Zadanie 1.} Niewielkie zmiany danych oraz ich wpływ na wyniki obliczeń.\\
 
 \noindent W ramach przypomnienia zadania: na poprzedniej liście  należało obliczyć iloczyny skalarne dwóch wektorów na cztery rózne sposoby.\\\\
-Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogicznie, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.
+Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogicznie, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.\\\\
+Różnica w tym zadaniu, a zadaniu 5. z poprzedniej listy polegała na dokonaniu drobnej zmiany w niektórych wartościach wektora. Poniżej prezentuję wyniki otrzymane po, jak i przed tej zmianie:
+
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|}
         \hline 
-        Sposób & Float32 & Float64 & Wartość prawidłowa \\ \hline
-        1 & -0.3472038161853561  & 1.0251881368296672e-10 & -1.00657107000000e-11 \\ \hline
-        2 & -0.3472038162872195 & -1.5643308870494366e-10 & -1.00657107000000e-11 \\ \hline
-        3 & -0.3472038162872195 & 0.0 & -1.00657107000000e-11  \\ \hline
-        4 & -0.3472038162872195 & 0.0 & -1.00657107000000e-11 \\ \hline
+        Sposób & Float32 stare & Float32 nowe & Float64 stare & Float64 nowe \\ \hline
+        a & -0.4999443 & -0.4999443 & 1.0251881368296672e-10 & -0.004296342739891585 \\ \hline
+        b & -0.4543457 & -0.4543457 & -1.5643308870494366e-10 & -0.004296342998713953 \\ \hline
+        c & -0.5 & -0.5 & 0.0 & -0.004296342842280865 \\ \hline
+        d & -0.5 & -0.5 & 0.0 & -0.004296342842280865 \\ \hline
     \end{tabular}
     \end{adjustbox}
+    \caption{Porównanie nowych i starych danych}
     \label{tab:products}
 \end{table}
 
 \vspace{0.5cm}
+
+\noindent gdzie wartość prawidłowa wynosi: \[\verb|-1.00657107000000e-11|\]
+
+Jak widać, wyniki dla typu \verb|Float32| nie zmieniły się. Jest to spowodowane niewystarczającą do zauważenia różnicy precyzją zapisu liczby zmiennopozycyjnej w tym typie.\\\\
+Natomiast w typie \verb|Float64| różnica jest znaczna mimo tak niewielkiej zmiany danych. Mimo że wyniki nadal odbiegają od prawidłowego, są one mu znacznie bliższe. \\\\
+Można więc stwierdzić, że zadanie to było \textbf{źle uwarunkowane} - o wysokim wskaźniku uwarunkowania. Wskaźnik ten określa, w jakim stopniu błąd reprezentacji numerycznej danych wejściowych dla danego problemu będzie wpływać na błąd wyniku. Małe zmany danych w tym zadaniu spowodowały znaczną zmianę wyników. 
 
 \end{document}
