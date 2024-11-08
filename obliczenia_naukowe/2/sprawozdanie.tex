@@ -6,12 +6,13 @@
 \usepackage{adjustbox}
 \usepackage{longtable}
 \usepackage{graphicx}
+\usepackage{amsfonts}
 \title{Obliczenia naukowe}
 \author{Felix Zieliński 272336}
 \date{Lista 2}
 \begin{document}
 \maketitle
-TODO OPIS, czy zadanie 2?
+TODO OPIS, czy zadanie 2? zadanie 3
 
 \vspace{0.5cm}
 
@@ -100,9 +101,84 @@ w dwóch różnych programach do wizualizacji danych. Zdecydowałem się na uży
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 3.} YES
+\noindent\textbf{Zadanie 3.} W zadaniu tym należało rozwiązać liniowy układ równań \verb|A * x = b| dla danej macierzy współczynników \( A \in \mathbb{R}^{n \times n} \) i wektora prawych stron \( b \in \mathbb{R}^n \). Macierze były generowane poprzez dostarczone przez prowadzącego funkcje: generującą macierz Hilberta \verb|n|-tego stopnia oraz generującą losową macierz \verb|n|-tego stopnia z zadanym wskaźnikiem uwarunkowania.\\\\
+W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji Gaussa oraz inwersji. Uwarunkowanie oraz rząd macierzy są obliczanie poprzez wbudowane w paczkę LinearAlgebra funkcje \verb|cond()| oraz \verb|rank()|.
 
 \vspace{0.5cm}
+
+\begin{table}[ht]
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline 
+        n & uwarunkowanie & rząd & błąd metody Gaussa & błąd metody inwersji \\ \hline
+        1  & 1.0                & 1  & 0.0                           & 0.0                           \\ \hline
+        2  & 19.281470067903967 & 2  & 5.661048867003676e-16         & 1.1240151438116956e-15       \\ \hline
+        3  & 524.0567775860627  & 3  & 8.351061872731819e-15         & 9.825526038180824e-15        \\ \hline
+        4  & 15513.738738929662 & 4  & 4.2267316576255873e-13        & 3.9600008750140806e-13       \\ \hline
+        5  & 476607.2502419338  & 5  & 1.256825919192874e-12         & 8.128168770215688e-12        \\ \hline
+        6  & 1.495105864177819e7 & 6  & 1.5435074657413347e-10       & 1.0423794065751672e-10       \\ \hline
+        7  & 4.753673568766496e8 & 7  & 6.520804933066021e-9         & 4.3299229851434615e-9        \\ \hline
+        8  & 1.5257575563722723e10 & 8 & 3.6010489197068436e-7       & 4.0236799996435915e-7        \\ \hline
+        9  & 4.9315332284138226e11 & 9 & 1.3216991540025553e-5       & 1.4626798972086921e-5        \\ \hline
+        10 & 1.6024980732174455e13 & 10 & 0.0004194170177181955      & 0.00040714905218460087       \\ \hline
+        11 & 5.224780779168285e14  & 10 & 0.01004906783345069        & 0.010645959401385671         \\ \hline
+        12 & 1.6425917529444498e16 & 11 & 0.5502106922296848         & 0.6697890564301745           \\ \hline
+        13 & 4.4936679531246986e18 & 11 & 70.1556197115221           & 82.66675811171989            \\ \hline
+        14 & 3.2198422552156205e17 & 11 & 9.649642437452474          & 10.094732062453225           \\ \hline
+        15 & 3.3660126672602944e17 & 12 & 692.4295360390742          & 715.740988667373             \\ \hline
+        16 & 2.249940193352714e18  & 12 & 10.414656083840297         & 8.442143351389534            \\ \hline
+        17 & 6.26204622473199e17   & 12 & 18.67581817300634          & 17.157982115668773           \\ \hline
+        18 & 3.266632306940269e18  & 12 & 5.40548300394664           & 3.742412802776696            \\ \hline
+        19 & 3.462302955915255e18  & 13 & 15.073941146224387         & 16.84769281513296            \\ \hline
+        20 & 6.806966421072721e18  & 13 & 28.79267493699834 & 30.751202239608727           \\ \hline
+           \end{tabular}
+    \end{adjustbox}
+    \label{tab:hilbert}
+    \caption{Macierze Hilberta}
+\end{table}
+
+\noindent Im wyższe uwarunkowanie, tym wyższy błąd względny dla obu metod.
+
+\vspace{0.5cm}
+
+
+\begin{table}[ht]
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        n & c & uwarunkowanie & rząd & błąd metody Gaussa & błąd metody inwersji \\ \hline
+        5 & $10^0$ & 1.0000000000000007 & 5 & 2.0471501066083611e-16 & 1.7901808365247238e-16 \\ \hline
+        5 & $10^1$ & 10.00000000000001 & 5 & 2.579925170969555e-16 & 1.4895204919483638e-16 \\ \hline
+        5 & $10^3$ & 999.9999999999956 & 5 & 4.154180998732242e-14 & 3.6649738390350505e-14 \\ \hline
+        5 & $10^7$ & 9.999999992624711e6 & 5 & 1.2808136131610903e-10 & 1.2922561774440224e-10 \\ \hline
+        5 & $10^{12}$ & 1.0000402198324714e12 & 5 & 2.4114718692896424e-5 & 2.1083207553058387e-5 \\ \hline
+        5 & $10^{16}$ & 6.457380316295465e15 & 4 & 0.279866038431425 & 0.23511506127614903 \\ \hline
+        10 & $10^0$ & 1.0000000000000009 & 10 & 3.1006841635969763e-16 & 2.6506211417561425e-16 \\ \hline
+        10 & $10^1$ & 9.999999999999991 & 10 & 2.432376777795247e-16 & 3.255813018879823e-16 \\ \hline
+        10 & $10^3$ & 999.9999999999854 & 10 & 5.123291327463699e-15 & 4.80612456985904e-15 \\ \hline
+        10 & $10^7$ & 9.99999999300524e6 & 10 & 2.613887510795298e-10 & 2.9367939862640613e-10 \\ \hline
+        10 & $10^{12}$ & 9.999916908430352e11 & 10 & 2.5298084239916387e-5 & 2.7222350440303e-5 \\ \hline
+        10 & $10^{16}$ & 5.260556228219448e16 & 9 & 0.2349713562983511 & 0.17164964730117435 \\ \hline
+        20 & $10^0$ & 1.0000000000000009 & 20 & 5.450279209566124e-16 & 4.557326905135503e-16 \\ \hline
+        20 & $10^1$ & 9.99999999999999 & 20 & 5.318651993048588e-16 & 3.430930459816227e-16 \\ \hline
+        20 & $10^3$ & 1000.0000000000724 & 20 & 4.374127960791212e-14 & 3.7395403352225206e-14 \\ \hline
+        20 & $10^7$ & 1.0000000008586796e7 & 20 & 4.8148086460727405e-12 & 7.333934288678081e-11 \\ \hline
+        20 & $10^{12}$ & 1.000058179546536e12 & 20 & 5.063442743791289e-5 & 5.134232142086649e-5 \\ \hline
+        20 & $10^{16}$ & 9.35903000507404e15 & 19 & 0.13171344480426542 & 0.16281145033250885 \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Macierze losowe}
+    \label{tab:inversion}
+\end{table}
+
+\vspace{0.5cm}
+
+\noindent Tak jak przy macierzach Hilberta, w wynikach dla macierzy losowych można zaobserwować rosnący błąd względny. Ponadto widać, że funkcja cond() nie oblicza dokładnie uwarunkowania, tylko je przybliża. Ponadto wartości tych przybliżeń są różne dla różnych procesorów. \\\\
+\noindent Powyższe tabele pozwalają na wyciągnięcie wniosku, że zadanie to było źle uwarunkowane, zwłaszcza dla macierzy Hilberta - wraz ze wzrostem stopnia macierzy ostro rośnie też wskaźnik uwarunkowania i, jednocześnie, błąd względny. Dla macierzy losowych dzieje się podobnie, jednakże ten wzrost jest wolniejszy (błędy są mniejsze).
+
+\vspace{0.5cm}
+
+
 
 \noindent\hrulefill
 
