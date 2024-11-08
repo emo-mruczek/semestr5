@@ -5,6 +5,7 @@ function model(r::T, p::T)::T where T <: AbstractFloat
 end
 
 # no idea how to make it T
+# its so ugly do not look at it
 
 function experiment_1a_32()::Vector{Float32}
     res::Vector{Float32} = Vector{Float32}()
@@ -64,6 +65,6 @@ p_3::Vector{Float64} = experiment_1a_64()
 
 println("\nResults: n --- p_1 --- p_2 --- p_3\n")
 for n in 1:41
-    println(n, " --- ", p_1[n], " --- ", p_2[n], " --- ", p_3[n])
+    println(n-1, " --- ", p_1[n], " --- ", p_2[n], " --- ", p_3[n])
 end
 
