@@ -1,34 +1,43 @@
-
+/* "Each comment is replaced by one space character" or sth */
 %{
     int doxygen = 0;
+    int debug = 0;
 %}
 
-%x COMMENT_INIT SINGLE_LINE_REMOVE MULTI_LINE_REMOVE INCLUDE STRING
+%x COMMENT_INIT SINGLE_LINE_REMOVE MULTI_LINE_REMOVE INCLUDE STRING DOXYGEN_SINGLE
 
 %%
 <INITIAL>{
-                "<"              { ECHO; BEGIN(INCLUDE); }
-                "\""             { ECHO; BEGIN(STRING); }
+                "<"              { if (debug) printf(" INCLUDE "); ECHO; BEGIN(INCLUDE); }
+                "<<"             { if (debug) printf(" OPERATOR "); ECHO; } /* just an operator leave it alone */
+                "\""             { if (debug) printf(" STRING " ); ECHO; BEGIN(STRING); }
 
-                "//"             { BEGIN(SINGLE_LINE_REMOVE); }
+                "//"             { if (debug) printf(" SINGLE "); BEGIN(SINGLE_LINE_REMOVE); }
 
                 "///"|"//!"      { if ( doxygen ) {
                                         ECHO;
-                                        BEGIN(INITIAL);
+                                        BEGIN(DOXYGEN_SINGLE);
                                     } else {
+                                        if (debug) printf(" DOX SINGLE ");
                                         BEGIN(SINGLE_LINE_REMOVE);
                                     }
                                  }
 
-                "/*"             { BEGIN(MULTI_LINE_REMOVE); }
+                "/*"             { printf(" MULTI "); BEGIN(MULTI_LINE_REMOVE); }
 
                 "/**"|"/*!"      { if ( doxygen ) {
                                         ECHO;
                                         BEGIN(INITIAL);
                                     } else {
+                                        if (debug) printf(" DOX MULTI ");
                                         BEGIN(MULTI_LINE_REMOVE);
                                     } 
                                  }
+
+                "/**/"           { if (debug) printf(" SPECIAL "); putchar(' '); } /* that one special case... */
+
+                "\\\n"           { if (debug) printf(" NEWLINE ESC "); putchar('\n'); }
+
 
                 .                { ECHO; }
 }
@@ -36,14 +45,15 @@
 <SINGLE_LINE_REMOVE>{
 
                     "\n"         { BEGIN(INITIAL); }
+                    "\\\n"       {}
                     .            {}
                     
 }
 
 <MULTI_LINE_REMOVE>{      
 
-                    "*/"|"*/\n"  { BEGIN(INITIAL); }
-                    .|\n         {}
+                    "*/"         { BEGIN(INITIAL); }
+                    .            {}
 }
 
 <INCLUDE>{
@@ -55,6 +65,15 @@
                     "\""         { ECHO; BEGIN(INITIAL); }
                     .            { ECHO; }          
 }
+
+<DOXYGEN_SINGLE>{
+                    "\n"         { ECHO; BEGIN(INITIAL); }
+                    "\\\n"       { ECHO; }
+                    .            { ECHO; }
+}
+
+
+
 %%
 
 int main(int argc, char** argv) {

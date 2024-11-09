@@ -1,3 +1,5 @@
+.PHONY: 3
+
 1:
 	flex ex1.lex
 	gcc -o 1 lex.yy.c -lfl
