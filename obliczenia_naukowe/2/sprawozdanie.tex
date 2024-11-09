@@ -12,7 +12,9 @@
 \date{Lista 2}
 \begin{document}
 \maketitle
-TODO OPIS, czy zadanie 2? CO SIE STALO Z GNUPLOTEM zadanie 3, ta bogusowa tabela w 4, zadanie 5 opis i wnioski, zadanie 6, opisy funkcji, wnioski koncowe, wszystkie bogusowe tabele i obrazki
+TODO OPIS, czy zadanie 2? CO SIE STALO Z GNUPLOTEM zadanie 3, ta bogusowa tabela w 4, zadanie 5 opis i wnioski, zadanie 6, opisy funkcji, wnioski koncowe, wszystkie bogusowe tabele i obrazki, dlaczego w 4 zespolone??????????????
+
+:3333333333333333333333333333333333333333333333333333 im insane
 
 \vspace{0.5cm}
 
@@ -188,20 +190,85 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 
 \vspace{0.5cm}
 
+
 \begin{table}[h]
+    \centering
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{|c|c|c|c|c|}
         \hline
         \(k\) & \(z_k\) & \(|Pz_k|\) & \(|pz_k|\) & \(|z_k - k|\) \\ \hline
-           \end{tabular}
+        1 & 0.9999999999996989 & 35696.50964788257 & 368.50964789367345 & 3.0109248427834245e-13 \\ \hline
+        2 & 2.0000000000283182 & 176252.60026668405 & 15996.60026439321 & 2.8318236644508943e-11 \\ \hline
+        3 & 2.9999999995920965 & 279157.6968824087 & 100981.69690684375 & 4.0790348876384996e-10 \\ \hline
+        4 & 3.9999999837375317 & 3.0271092988991085e6 & 252581.31017303217 & 1.626246826091915e-8 \\ \hline
+        5 & 5.000000665769791 & 2.2917473756567076e7 & 152225.31504973918 & 6.657697912970661e-7 \\ \hline
+        6 & 5.999989245824773 & 1.2902417284205095e8 & 4.441356137271629e6 & 1.0754175226779239e-5 \\ \hline
+        7 & 7.000102002793008 & 4.805112754602064e8 & 4.510025884078405e7 & 0.00010200279300764947 \\ \hline
+        8 & 7.999355829607762 & 1.6379520218961136e9 & 2.309311180467704e8 & 0.0006441703922384079 \\ \hline
+        9 & 9.002915294362053 & 4.877071372550003e9 & 5.2519713947457147e8 & 0.002915294362052734 \\ \hline
+        10 & 9.990413042481725 & 1.3638638195458128e10 & 1.4705597374927537e9 & 0.009586957518274986 \\ \hline
+        11 & 11.025022932909318 & 3.585631295130865e10 & 2.257814747009822e9 & 0.025022932909317674 \\ \hline
+        12 & 11.953283253846857 & 7.533332360358197e10 & 5.776283226748977e9 & 0.04671674615314281 \\ \hline
+        13 & 13.07431403244734 & 1.9605988124330817e11 & 8.720084582957656e8 & 0.07431403244734014 \\ \hline
+        14 & 13.914755591802127 & 3.5751347823104315e11 & 2.100530498133618e10 & 0.08524440819787316 \\ \hline
+        15 & 15.075493799699476 & 8.21627123645597e11 & 9.0205643837176e10 & 0.07549379969947623 \\ \hline
+        16 & 15.946286716607972 & 1.5514978880494067e12 & 1.1093925108150577e11 & 0.05371328339202819 \\ \hline
+        17 & 17.025427146237412 & 3.694735918486229e12 & 5.420826950832621e11 & 0.025427146237412046 \\ \hline
+        18 & 17.99092135271648 & 7.650109016515867e12 & 2.0817615965429592e12 & 0.009078647283519814 \\ \hline
+        19 & 19.00190981829944 & 1.1435273749721195e13 & 4.420887520697798e12 & 0.0019098182994383706 \\ \hline
+        20 & 19.999809291236637 & 2.7924106393680727e13 & 3.2780945625202856e12 & 0.00019070876336257925 \\ \hline
+    \end{tabular}
     \end{adjustbox}
+    \caption{Wielomian \(P(x)\)}
     \label{wielomian}
-    \caption{Wielomian P(x)}
 \end{table}
 
 \vspace{0.5cm}
 
-\noindent Jak można zauważyć, obliczone miejsca zerowe przy pomocy \verb|roots()| są zbliżone, ale nie równe wartościom prawidłowym.
+\noindent Jak można zauważyć, obliczone miejsca zerowe przy pomocy \verb|roots()| są zbliżone, ale nie równe wartościom prawidłowym. Przyczyniają się one do otrzymania błędnych wartości funkcji \(P(z_k)\) oraz \(p(z_k)\). Błędy w obliczeniach miejsc zerowych nie są bardzo duże, a jednak dla niektórych wartości błąd jest znaczący, co wskazuje na złe uwarunkowanie zadania.
+
+\vspace{0.5cm}
+
+\noindent W celu powtórzenia eksperymentu Wilkinsona zmodyfikowałem współczynnik przy \(x^{19}\) - zmniejszyłem go o \(2^{-23}\). Taka modyfikacja spowodowała pojawienie pierwiastków zespolonych!
+
+\vspace{0.5cm}
+
+
+\begin{table}[h]
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \(k\) & \(z_k\) & \(|Pz_k|\) & \(|pz_k|\) & \(|z_k - k|\) \\ \hline
+        1 & \(0.9999999999998357 + 0.0i\) & 20259.872313418207 & 5411.872313429985 & \(1.6431300764452317 \times 10^{-13}\) \\ \hline
+        2 & \(2.0000000000550373 + 0.0i\) & 346541.4137593836 & 65453.413724836006 & \(5.503730804434781 \times 10^{-11}\) \\ \hline
+        3 & \(2.99999999660342 + 0.0i\) & 2.2580597001197007e6 & 447115.71016096906 & \(3.3965799062229962 \times 10^{-9}\) \\ \hline
+        4 & \(4.000000089724362 + 0.0i\) & 1.0542631790395478e7 & 2.0101490631149793e6 & \(8.972436216225788 \times 10^{-8}\) \\ \hline
+        5 & \(4.99999857388791 + 0.0i\) & 3.757830916585153e7 & 1.0452670578285774e7 & \(1.4261120897529622 \times 10^{-6}\) \\ \hline
+        6 & \(6.000020476673031 + 0.0i\) & 1.3140943325569446e8 & 5.2837387075878106e7 & \(2.0476673030955794 \times 10^{-5}\) \\ \hline
+        7 & \(6.99960207042242 + 0.0i\) & 3.939355874647618e8 & 1.3630697385185716e8 & 0.000397929577579780 \\ \hline
+        8 & \(8.007772029099446 + 0.0i\) & 1.184986961371896e9 & 5.478192020926859e8 & 0.007772029099445632 \\ \hline
+        9 & \(8.915816367932559 + 0.0i\) & 2.2255221233077707e9 & 1.2795423874534175e9 & 0.0841836320674414 \\ \hline
+        10 & \(10.095455630535774 - 0.6449328236240688i\) & 1.0677921232930157e10 & 1.8009361907024696e9 & 0.6519586830380407 \\ \hline
+        11 & \(10.095455630535774 + 0.6449328236240688i\) & 1.0677921232930157e10 & 1.8009361907024696e9 & 1.1109180272716561 \\ \hline
+        12 & \(11.793890586174369 - 1.6524771364075785i\) & 3.1401962344429485e10 & 8.297365882456215e9 & 1.665281290598479 \\ \hline
+        13 & \(11.793890586174369 + 1.6524771364075785i\) & 3.1401962344429485e10 & 8.297365882456215e9 & 2.0458202766784277 \\ \hline
+        14 & \(13.992406684487216 - 2.5188244257108443i\) & 2.157665405951858e11 & 6.221054312666306e10 & 2.518835871190904 \\ \hline
+        15 & \(13.992406684487216 + 2.5188244257108443i\) & 2.157665405951858e11 & 6.221054312666306e10 & 2.7128805312847097 \\ \hline
+        16 & \(16.73074487979267 - 2.812624896721978i\) & 4.850110893921027e11 & 5.844684792788262e11 & 2.9060018735375106 \\ \hline
+        17 & \(16.73074487979267 + 2.812624896721978i\) & 4.850110893921027e11 & 5.844684792788262e11 & 2.825483521349608 \\ \hline
+        18 & \(19.5024423688181 - 1.940331978642903i\) & 4.557199223869993e12 & 2.209747866910055e12 & 2.4540214463129764 \\ \hline
+        19 & \(19.5024423688181 + 1.940331978642903i\) & 4.557199223869993e12 & 2.209747866910055e12 & 2.0043294443099486 \\ \hline
+        20 & \(20.84691021519479 + 0.0i\) & 8.756386551865696e12 & 2.2517830621461324e13 & 0.8469102151947894 \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Wielomian \(p(x)\)}
+    \label{wielomian p}
+\end{table}
+
+\vspace{0.5cm}
+
+\noindent Pomimo dokonania niewielkiej zmiany, pierwiastki są teraz rozmieszczone inaczej. Poprzednio były one rozmieszczone w sposób równomierny. Pojawiły się także liczby zespolone. Udowadnia to, że wyznaczanie pierwiastków wielomianu Wilkinsona jest bardzo źle uwarunkowanym zadaniem.
 
 \vspace{0.5cm}
 
@@ -275,7 +342,7 @@ stanu środowiska.\\\\
 
 \vspace{0.5cm}
 
-\noindent Jak można zauwazyć, ostateczny wynik po obcięciu różni się od tego bez ponad czterokrotnie. Co więcej, w arytmetyce \verb|Float64|, obliczenia bez obciącia dają nam jeszcze inny, stukrotnie mniejszy wynik od tego z obcięciem we \verb|Float32|. Wynika to z szybkiej kumulacji błędów obliczeń.\\\\
+\noindent Jak można zauwazyć, ostateczny wynik po obcięciu różni się od tego bez ponad czterokrotnie. Co więcej, w arytmetyce \verb|Float64|, obliczenia bez obciącia dają nam jeszcze inny, stukrotnie mniejszy wynik od tego z obcięciem we \verb|Float32|.\\\\
 \noindent Można więc wnioskować, że powyższe zadanie zostało źle uwarunkowane. Obcięcie niewiele znaczących cyfr znacznie zmieniło wyniki. Dodatkowo widać ogromny wpływ użytej prezycji. Zwiększenie jej może pomóc w otrzymaniu dokładniejszego wyniku, jednakże gdyby kontynuować symulację, błąd byłby znaczący.
 
 \vspace{0.5cm}
