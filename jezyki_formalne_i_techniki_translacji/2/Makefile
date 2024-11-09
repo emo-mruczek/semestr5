@@ -12,7 +12,9 @@
 
 4:
 	flex ex4.lex
-	gcc -o 1 lex.yy.c -lfl -lm
+	gcc -o 4 lex.yy.c -lfl -lm
+
+.PHONY: clean
 
 clean:
 	rm 1 2 3 4 lex.yy.c

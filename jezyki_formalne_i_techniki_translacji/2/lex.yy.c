@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 13
-#define YY_END_OF_BUFFER 14
+#define YY_NUM_RULES 16
+#define YY_END_OF_BUFFER 17
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,10 +360,12 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[21] =
+static const flex_int16_t yy_accept[34] =
     {   0,
-        0,    0,    0,    0,   14,   10,    8,    9,    7,    4,
-        2,    3,    5,    1,    6,   12,   11,    9,    1,    0
+        0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+        0,    0,   17,    7,   16,    2,    7,    1,    9,    8,
+       11,   11,   13,   12,   15,   14,    5,    3,   10,    6,
+        4,   10,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -371,13 +373,13 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    3,    1,    1,    1,    1,    4,    1,    1,    1,
-        1,    5,    6,    1,    7,    1,    8,    9,    9,    9,
-        9,    9,    9,    9,    9,    9,    9,    1,    1,    1,
+        1,    1,    3,    4,    1,    1,    1,    1,    1,    1,
+        1,    5,    1,    1,    1,    1,    6,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    7,
+        1,    8,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,   10,    1,    1,    1,    1,    1,    1,
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,37 +400,43 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[11] =
+static const YY_CHAR yy_meta[9] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1
+        1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[22] =
+static const flex_int16_t yy_base[39] =
     {   0,
-        0,    0,   17,   16,   17,   20,   20,   13,   20,   20,
-       20,    6,   20,    5,   20,   20,   20,   10,    3,   20,
-       10
+        0,    0,    0,    0,   25,   22,   16,   15,    7,   14,
+       21,   24,   19,   38,   38,   38,   24,   38,   38,   38,
+       38,   12,   38,   38,   38,   38,   28,   31,   15,   38,
+       38,   38,   38,   13,   12,   11,   10,    9
     } ;
 
-static const flex_int16_t yy_def[22] =
+static const flex_int16_t yy_def[39] =
     {   0,
-       20,    1,   21,   21,   20,   20,   20,   20,   20,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,    0,
-       20
+       33,    1,   34,   34,   35,   35,   36,   36,   37,   37,
+       38,   38,   33,   33,   33,   33,   33,   33,   33,   33,
+       33,   33,   33,   33,   33,   33,   33,   33,   33,   33,
+       33,   33,    0,   33,   33,   33,   33,   33
     } ;
 
-static const flex_int16_t yy_nxt[31] =
+static const flex_int16_t yy_nxt[47] =
     {   0,
-        6,    7,    8,    9,   10,   11,   12,   13,   14,   15,
-       16,   19,   18,   19,   19,   18,   20,   17,   17,    5,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,   20
+       14,   15,   14,   16,   14,   17,   18,   14,   15,   25,
+       23,   21,   19,   15,   24,   15,   32,   29,   33,   22,
+       22,   24,   15,   20,   26,   15,   20,   26,   27,   28,
+       30,   33,   30,   31,   33,   33,   31,   13,   33,   33,
+       33,   33,   33,   33,   33,   33
     } ;
 
-static const flex_int16_t yy_chk[31] =
+static const flex_int16_t yy_chk[47] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-       21,   19,   18,   14,   12,    8,    5,    4,    3,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,   20
+        1,    1,    1,    1,    1,    1,    1,    1,    9,   38,
+       37,   36,   35,   34,    9,   10,   29,   22,   13,    8,
+        7,   10,   11,    6,   11,   12,    5,   12,   17,   17,
+       27,    0,   27,   28,    0,    0,   28,   33,   33,   33,
+       33,   33,   33,   33,   33,   33
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -445,74 +453,19 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "ex4.lex"
-/* bierz symbole po kolei
-*  1. liczba
-*     odloz na stos
-*  2. operator
-*     zdejmi ze stosu elem a
-*     zdejmij ze stosu elem b
-*     odloz na stos wartosc b op a
-*
-*  mozliwe tokeny: 
-*  liczba: calkowita, moze byc ujemna, moze miec kilka cyfr
-*  operator: dodawanie, odejmowanie, mnozenie, dzielenie, potegowanie, modulo
-* 
-*  mozliwe bledy:
-*    dizelenie przez zero
-*    za mala liczba argumentow
-*    za mala liczba operatorow
-*    zly symbol
-*
-*/
-#line 23 "ex4.lex"
+#line 1 "ex3.lex"
+#line 3 "ex3.lex"
+    int doxygen = 0;
+#line 459 "lex.yy.c"
 
-#include <inttypes.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-
-#define STACK_SIZE 128
-
-int error = 0;
-
-int16_t* stack = NULL;
-int16_t* top = NULL;
-
-void push(int16_t num) {
-    if ( top >= stack + STACK_SIZE ) {
-        printf("Stack overflow! :(\n");
-        exit(EXIT_FAILURE);
-    } else {
-        *top = num;
-        top++;
-    }
-}
-
-int16_t pop(void) {
-    if ( top == stack ) {
-        printf("Error: not enough arguments!\n");
-        error = 1;
-        return 0;
-    } else {
-        top--;
-        return *top;
-    }
-}
-
-void reset_error(void) {
-     printf("Resetting state\n");
-    top = stack;
-    error = 0;
-}
-
-#line 510 "lex.yy.c"
-
-#line 512 "lex.yy.c"
+#line 461 "lex.yy.c"
 
 #define INITIAL 0
-#define ERROR_HANDLER 1
+#define COMMENT_INIT 1
+#define SINGLE_LINE_REMOVE 2
+#define MULTI_LINE_REMOVE 3
+#define INCLUDE 4
+#define STRING 5
 
 #ifndef YY_NO_UNISTD_H
 /* Special case for "unistd.h", since it is non-ANSI. We include it way
@@ -727,10 +680,9 @@ YY_DECL
 		}
 
 	{
-#line 68 "ex4.lex"
+#line 8 "ex3.lex"
 
-
-#line 733 "lex.yy.c"
+#line 685 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -757,13 +709,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 21 )
+				if ( yy_current_state >= 34 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 20 );
+		while ( yy_base[yy_current_state] != 38 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -789,140 +741,115 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 72 "ex4.lex"
-{ int16_t num = (int16_t)strtol(yytext, NULL, 10); 
-                            push(num);
-                          }
+#line 10 "ex3.lex"
+{ ECHO; BEGIN(INCLUDE); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 76 "ex4.lex"
-{ int16_t a = pop(); 
-                            int16_t b = pop();
-                            if ( error ) {
-                                reset_error(); BEGIN(ERROR_HANDLER); 
-                            } else { 
-                                push(b + a);
-                            } 
-                          }
+#line 11 "ex3.lex"
+{ ECHO; BEGIN(STRING); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 85 "ex4.lex"
-{ int16_t a = pop(); 
-                            int16_t b = pop(); 
-                            if ( error ) {
-                                reset_error(); BEGIN(ERROR_HANDLER); 
-                            } else { 
-                                push(b - a);
-                            }
-                          }
+#line 13 "ex3.lex"
+{ BEGIN(SINGLE_LINE_REMOVE); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 94 "ex4.lex"
-{ int16_t a = pop(); 
-                            int16_t b = pop(); 
-                            if ( error ) {
-                                reset_error(); BEGIN(ERROR_HANDLER); 
-                            } else { 
-                                push(b * a);
-                            }
-                          }
+#line 15 "ex3.lex"
+{ if ( doxygen ) {
+                                        ECHO;
+                                        BEGIN(INITIAL);
+                                    } else {
+                                        BEGIN(SINGLE_LINE_REMOVE);
+                                    }
+                                 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 103 "ex4.lex"
-{ int16_t a = pop(); 
-                            if ( a == 0 ) {
-                                printf("Error: can't divide by zero!\n");
-                                reset_error(); BEGIN(ERROR_HANDLER);
-                            } else {
-                                int16_t b = pop();
-                                if ( error ) {
-                                    reset_error(); BEGIN(ERROR_HANDLER); 
-                                } else { 
-                                    push(b / a);
-                                }
-                            }
-                          }
+#line 23 "ex3.lex"
+{ BEGIN(MULTI_LINE_REMOVE); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 117 "ex4.lex"
-{ int16_t a = pop(); 
-                            int16_t b = pop();
-                            if ( error ) {
-                                reset_error(); BEGIN(ERROR_HANDLER); 
-                            } else { 
-                                push((uint16_t)pow((double)b, (double)a)); 
-                            }
-                          }
+#line 25 "ex3.lex"
+{ if ( doxygen ) {
+                                        ECHO;
+                                        BEGIN(INITIAL);
+                                    } else {
+                                        BEGIN(MULTI_LINE_REMOVE);
+                                    } 
+                                 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 126 "ex4.lex"
-{ int16_t a = pop(); 
-                            int16_t b = pop(); 
-                            if ( error ) {
-                                reset_error(); BEGIN(ERROR_HANDLER);
-                            } else { 
-                                push(b % a); 
-                            }
-                          }
+#line 33 "ex3.lex"
+{ ECHO; }
 	YY_BREAK
+
+
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 135 "ex4.lex"
-{ if ( top > stack + 1 ) {
-                                printf("Error: not enough operators!\n");
-                                reset_error(); BEGIN(INITIAL);
-                            } else {
-                                int16_t num = pop();
-                                if ( error ) {
-                                    reset_error(); BEGIN(INITIAL);
-                                } else { 
-                                    printf("= %" PRId16 "\n\n", num);
-                                }
-                            }
-                          }
+#line 38 "ex3.lex"
+{ BEGIN(INITIAL); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 148 "ex4.lex"
+#line 39 "ex3.lex"
 {}
 	YY_BREAK
+
+
 case 10:
+/* rule 10 can match eol */
 YY_RULE_SETUP
-#line 150 "ex4.lex"
-{ printf("Error: unexpected symbol %s\n\n", yytext);
-                            reset_error();
-                            BEGIN(ERROR_HANDLER); 
-                          }
+#line 45 "ex3.lex"
+{ BEGIN(INITIAL); }
 	YY_BREAK
-
-
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 157 "ex4.lex"
-{ BEGIN(INITIAL);}
-	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 158 "ex4.lex"
-{  }                
+#line 46 "ex3.lex"
+{}
 	YY_BREAK
 
+
+case 12:
+YY_RULE_SETUP
+#line 50 "ex3.lex"
+{ ECHO; BEGIN(INITIAL); }
+	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 161 "ex4.lex"
+#line 51 "ex3.lex"
+{ ECHO; }
+	YY_BREAK
+
+
+case 14:
+YY_RULE_SETUP
+#line 55 "ex3.lex"
+{ ECHO; BEGIN(INITIAL); }
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 56 "ex3.lex"
+{ ECHO; }          
+	YY_BREAK
+
+case 16:
+YY_RULE_SETUP
+#line 58 "ex3.lex"
 ECHO;
 	YY_BREAK
-#line 923 "lex.yy.c"
+#line 846 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(ERROR_HANDLER):
+case YY_STATE_EOF(COMMENT_INIT):
+case YY_STATE_EOF(SINGLE_LINE_REMOVE):
+case YY_STATE_EOF(MULTI_LINE_REMOVE):
+case YY_STATE_EOF(INCLUDE):
+case YY_STATE_EOF(STRING):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1218,7 +1145,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 21 )
+			if ( yy_current_state >= 34 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1246,11 +1173,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 21 )
+		if ( yy_current_state >= 34 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 20);
+	yy_is_jam = (yy_current_state == 33);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1926,23 +1853,29 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 161 "ex4.lex"
+#line 58 "ex3.lex"
 
-int main() {
 
-    stack = (int16_t*)malloc(STACK_SIZE * sizeof(int16_t));
-    if ( !stack ) {
-        printf("Couldn't allocate memory! :(\n");
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        printf("Insufficient number of arguments! 1. input 2. leave doxygen comments\n");
         exit(1);
     }
 
-    top = stack;
+    if (argc > 2 ) doxygen = 1;
 
-    yylex();
+    FILE *fp = fopen(argv[1], "r");
+    if (!fp) {
+        printf("Couldn't open the file! :(\n");
+        exit(1);
+    }
 
-    free(stack);
-    top = NULL;
+    yyin = fp;
 
+    while (yylex());
+
+    fclose(fp);
     return 0;
 }
+
 

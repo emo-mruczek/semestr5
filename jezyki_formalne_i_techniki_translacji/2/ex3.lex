@@ -3,10 +3,12 @@
     int doxygen = 0;
 %}
 
-%x COMMENT_INIT SINGLE_LINE_REMOVE MULTI_LINE_REMOVE 
+%x COMMENT_INIT SINGLE_LINE_REMOVE MULTI_LINE_REMOVE INCLUDE STRING
 
 %%
 <INITIAL>{
+                "<"              { ECHO; BEGIN(INCLUDE); }
+                "\""             { ECHO; BEGIN(STRING); }
 
                 "//"             { BEGIN(SINGLE_LINE_REMOVE); }
 
@@ -42,6 +44,16 @@
 
                     "*/"|"*/\n"  { BEGIN(INITIAL); }
                     .|\n         {}
+}
+
+<INCLUDE>{
+                    ">"          { ECHO; BEGIN(INITIAL); }
+                    .            { ECHO; }
+}
+
+<STRING>{
+                    "\""         { ECHO; BEGIN(INITIAL); }
+                    .            { ECHO; }          
 }
 %%
 
