@@ -12,7 +12,7 @@
 \date{Lista 2}
 \begin{document}
 \maketitle
-TODO OPIS, czy zadanie 2? CO SIE STALO Z GNUPLOTEM zadanie 3, ta bogusowa tabela w 4, zadanie 5 opis i wnioski, zadanie 6, opisy funkcji
+TODO OPIS, czy zadanie 2? CO SIE STALO Z GNUPLOTEM zadanie 3, ta bogusowa tabela w 4, zadanie 5 opis i wnioski, zadanie 6, opisy funkcji, wnioski koncowe, wszystkie bogusowe tabele i obrazki
 
 \vspace{0.5cm}
 
@@ -260,5 +260,83 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
     \caption{Model logistyczny - wyniki}
 \end{longtable}
 
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+% zadanie 6
+ 
+\vspace{0.5cm}
+
+
+\noindent\textbf{Zadanie 6.} W zadaniu tym, podobnie jak w poprzednim, należało rozważyć równanie rekurencyjne  
+\[
+    x_{n+1} := x_n^2 + c \quad \mathrm{dla} \quad n = 0, 1, \ldots
+\]
+Należało, w arytmetyce \verb|Float64|, iterować 40-sto krotnie powyższe równanie, z różnymi wartościami początkowymi \verb|x| oraz \verb|c|. Poniżej znajdują się reprezentacje graficzne, wykonane przy pomocy paczki Plots języka Julia, dla poszczególnych wartości.
+
+\vspace{0.5cm}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_1_plot.png}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_2_plot.png}
+\end{figure}
+
+\vspace{0.5cm}
+
+\noindent Powyższe wykresy są są stałe.
+
+\vspace{0.5cm}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_3_plot.png}
+\end{figure}
+
+\vspace{0.5cm}
+
+\noindent Dla wykresu z \verb|x = 1.99999999999999|, po pewnym czasie otrzymujemy bardzo niepoprawne wyniki, mniejsze od 2, chociaż, według intuicji, powinny one być bliskie 2.
+
+\vspace{0.5cm}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_4_plot.png}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_5_plot.png}
+\end{figure}
+
+\vspace{0.5cm}
+
+\noindent Dla powyższych wykresów, wyniki są stabilne, oscylują wokół przewidywanych wartości.
+
+\vspace{0.5cm}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_6_plot.png}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/6_7_plot.png}
+\end{figure}
+
+\vspace{0.5cm}
+
+\noindent Wykresy dla \verb|x = 0.75| oraz \verb|x = 0.25| po czasie stabilizują się i przyjmują, na zmianę, wartości -1 oraz 0.
+
+\vspace{0.5cm}
+
+\noindent Fakt, że dokładność arytmetyki liczb zmiennopozycyjnych jest skończona, wpływa na wyniki (wykresy dla \verb|x = 0.75| oraz \verb|x = 0.25|, które zaczynają zbiegać do liczb całkowitych).  Ponadto kumulowanie się błędu (jak podczas obliczeń z \verb|x = 1.99999999999999|) powoduje znaczące odbieganie wyników od ich wartości prawidłowej. Gdy \verb|x| jest liczbą całkowitą, wyniki zachowują się poprawnie.\\\\
+Niewielkie zmiany w danych prowadzą w tym zadaniu do róznych wyników - możemy wnioskować, że jest to zadanie źle uwarunkowane.
 
 \end{document}
