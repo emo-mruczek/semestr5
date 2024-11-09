@@ -211,7 +211,20 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 5.}  
+\noindent\textbf{Zadanie 5.} W tym zadaniu należało rozważyć \verb|model logistyczny|:
+\[
+p_{n+1} := p_n + r p_n (1 - p_n), \quad \mathrm{dla } \quad n = 0, 1, \ldots
+\]
+gdzie \(r\) jest pewną daną stałą, \(r(1 - p_n)\) jest czynnikiem wzrostu populacji, a \(p_0\) jest
+wielkością populacji stanowiąca procent maksymalnej wielkości populacji dla danego
+stanu środowiska.\\\\
+\noindent Należało przeprowadzić trzy eksperymenty: \\\\
+\noindent 1. 40 iteracji modelu logistycznego dla danych \(p_0 = 0.01\) i \(r = 3\) w \verb|Float32| \\
+\noindent 2. 10 iteracji modelu logistycznego dla tych samych danych, obcięcie wyniku do trzech miejsc po przecinku, i kontynuowanie iteracji aż do 40-tej, w \verb|Float32| \\
+\noindent 3. powtórzenie 1-go eksperymentu dla \verb|Float64| \\\\
+
+\noindent W tabeli poniżej zaprezentowane są wyniki dla powyższych eksperymentów. 
+\vspace{0.5cm}
 
 \begin{longtable}{|c|c|c|c|}
         \hline
@@ -262,12 +275,16 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 
 \vspace{0.5cm}
 
+\noindent Jak można zauwazyć, ostateczny wynik po obcięciu różni się od tego bez ponad czterokrotnie. Co więcej, w arytmetyce \verb|Float64|, obliczenia bez obciącia dają nam jeszcze inny, stukrotnie mniejszy wynik od tego z obcięciem we \verb|Float32|. Wynika to z szybkiej kumulacji błędów obliczeń.\\\\
+\noindent Można więc wnioskować, że powyższe zadanie zostało źle uwarunkowane. Obcięcie niewiele znaczących cyfr znacznie zmieniło wyniki. Dodatkowo widać ogromny wpływ użytej prezycji. Zwiększenie jej może pomóc w otrzymaniu dokładniejszego wyniku, jednakże gdyby kontynuować symulację, błąd byłby znaczący.
+
+\vspace{0.5cm}
+
 \noindent\hrulefill
 
 % zadanie 6
  
 \vspace{0.5cm}
-
 
 \noindent\textbf{Zadanie 6.} W zadaniu tym, podobnie jak w poprzednim, należało rozważyć równanie rekurencyjne  
 \[
