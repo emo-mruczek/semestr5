@@ -19,7 +19,7 @@
 
 \vspace{0.5cm}
 
-\noindent\textbf{Zadanie 5.} Czy język \( \{ ww^R x : w, x \in \{0,1\}^* \land w, x \neq \varepsilon \} \), gdzie \( w^R \) oznacza odwrócenie kolejności liter w słowie \( w \), jest regularny?
+\noindent\textbf{Zadanie 5.} Czy język \( \{ \omega \omega^R x : \omega, x \in \{0,1\}^* \land \omega, x \neq \varepsilon \} \), gdzie \( \omega^R \) oznacza odwrócenie kolejności liter w słowie \( \omega \), jest regularny?
 
 \vspace{0.5cm}
 
@@ -27,21 +27,47 @@
 
 \vspace{0.5cm}
 
-\noindent\textbf{Szkic}
+\noindent \textbf{Lemat o pompowaniu}
+Niech \(L\) będzie językiem regularnym. Wtedy istnieje stała \(n\) taka, że jeśli \(z\) jest dowolnym słowem z \(L\) oraz \(|z| \geq n\), to \(z\) możemy przedstawić w postaci \(z = uvw\), gdzie \(|uv| \leq n\) i \(|v| \geq 1\) oraz \(uv^{i}w\) należy do \(L\) dla każdego \(i \geq 0\).
+\(n\) w tym lemacie jest nie większe niż liczba stanów najmniejszego \(DFA\) akceptującego \(L\).
 
-Co to język regularny
-Co to język nieregularny
+\vspace{0.5cm}
 
-Wykorzystam lemat o pompowaniu, gdyż używa się go do dowodzenia, że dany język \verb|L| nie jest językiem regularnym. 
+\noindent Technicznie rzecz biorąc, słowa z języka \(L\) spełniają lemat o pompowaniu. Dlaczego? Dla założeń z polecenia:
 
-lemat definicja
+\vspace{0.5cm}
 
-proof by contradiction
+\noindent \textbf{gdy \(|\omega| =  1\)}  
 
-czemu zwykly lemat nie dziala,a uogolniony juz tak
+\vspace{0.5cm}
 
-opis uogolnionego
+\noindent Skoro \(\omega\) jest długości 1, to \(\omega^R\) - jego odwrócenie - również będzie tej długości, i w dodatku \(\omega = \omega^R\). Wtedy \( z = \omega \omega x \), w którym \( |x| \geq n - 1\). Biorąc \(z\) z lematu, mamy \(u = \omega \omega\) oraz \( |vw| = x \), gdzie dowolne \(v \) spełnia \( 1 \leq |v| \leq n-2 \). Pompujemy wtedy \( v \): dla dowolnego \( i \), \( z' = uv^i w = \omega' \omega'^R x' \) w \( L \), gdzie \( \omega' = \omega \) oraz \( x' = v^iw \). Lemat jest spełniony. 
 
+\vspace{0.5cm}
 
+\noindent \textbf{gdy \(|\omega| \geq 2\)}
+
+\vspace{0.5cm}
+
+\noindent Niech \( \omega \) to będzie \(ab\) i \(|a| = 1\). Ciąg więc zaczyna się palindromem złożonym z dwóch różnych znaków: \(z = abb^Rax\). Biorąc \(z\) z lematu, mamy: \(u = \varepsilon \), \( v = a\) i \( w = bb^Rax \). Pompując \(v\), otrzymujemy:\\
+dla \(i = 0 \), \(z' = uv^0w = uw = w \), a \(w\) z wyżej poczynionych założeń było równe \(bb^Rax \), dalej  \(bb^Rax = \omega' \omega'^R x' \) w \(L\), gdzie \( \omega' = b \) oraz \(x' = ax\). \\
+dla \(i = 1\), \( z' = uv^1w = uvw = z \) w \(L\).\\
+dla \(i \geq 2\), \( z' = uv^iw = v^iw = a^ibb^Rax = aaa^{i-2}bb^Rax \), jak widać \( aa \) to palindrom, więc dalej \(aaa^{i-2}bb^Rax = \omega' \omega'^R x' \) w \(L\), gdzie \(\omega' = a\) oraz \( x' = a^{i-1}bb^Rax \).\\
+Lemat jest więc spełniony.
+
+\vspace{0.5cm}
+
+\noindent Mimo powyższych rozważań, twierdzę, że ten język \textbf{nie jest regularny}. Dowiodę tego używając \textbf{uogólnionej wersji lematu o pompowaniu}:
+
+\vspace{0.5cm}
+
+\noindent \textbf{Wersja ogólna lematu o pompowaniu}
+Niech \(L\) będzie językiem regularnym. Wtedy istnieje takie \(p \geq 1\), że każde \(uwv\), gdzie \(|w| \geq p\), należące do \(L\) może zostać zapisane w postaci \(uwv = uxyzv\), gdzie \(|xy| \leq p\) i \(|y| \geq 1\) oraz \(uxy^izv\) jest w \(L\) dla każdego \(i \geq 0\).
+
+\vspace{0.5cm}
+
+\noindent Ta wersja lematu o pompowaniu pozwala na udowadnianie nieregularności języków, gdy zwykły lemat o pompowaniu zawodzi, gdyż jego założenia są bardziej rygorystyczne - mogę pompować słowo w jego dowolnym miejscu.
+
+\vspace{0.5cm}
 
 \end{document}
