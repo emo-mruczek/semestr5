@@ -52,7 +52,7 @@ Niech \(L\) będzie językiem regularnym. Wtedy istnieje stała \(n\) taka, że 
 \noindent Niech \( \omega \) to będzie \(ab\) i \(|a| = 1\). Ciąg więc zaczyna się palindromem złożonym z dwóch różnych znaków: \(z = abb^Rax\). Biorąc \(z\) z lematu, mamy: \(u = \varepsilon \), \( v = a\) i \( w = bb^Rax \). Pompując \(v\), otrzymujemy:\\
 dla \(i = 0 \), \(z' = uv^0w = uw = w \), a \(w\) z wyżej poczynionych założeń było równe \(bb^Rax \), dalej  \(bb^Rax = \omega' \omega'^R x' \) w \(L\), gdzie \( \omega' = b \) oraz \(x' = ax\). \\
 dla \(i = 1\), \( z' = uv^1w = uvw = z \) w \(L\).\\
-dla \(i \geq 2\), \( z' = uv^iw = v^iw = a^ibb^Rax = aaa^{i-2}bb^Rax \), jak widać \( aa \) to palindrom, więc dalej \(aaa^{i-2}bb^Rax = \omega' \omega'^R x' \) w \(L\), gdzie \(\omega' = a\) oraz \( x' = a^{i-1}bb^Rax \).\\
+dla \(i \geq 2\), \( z' = uv^iw = v^iw = a^ibb^Rax = aaa^{i-2}bb^Rax \), jak widać \( aa \) to palindrom, więc dalej \(aaa^{i-2}bb^Rax = \omega' \omega'^R x' \) w \(L\), gdzie \(\omega' = a\) oraz \( x' = a^{i-2}bb^Rax \).\\
 Lemat jest więc spełniony.
 
 \vspace{0.5cm}
@@ -62,12 +62,18 @@ Lemat jest więc spełniony.
 \vspace{0.5cm}
 
 \noindent \textbf{Wersja ogólna lematu o pompowaniu}
-Niech \(L\) będzie językiem regularnym. Wtedy istnieje takie \(p \geq 1\), że każde \(uwv\), gdzie \(|w| \geq p\), należące do \(L\) może zostać zapisane w postaci \(uwv = uxyzv\), gdzie \(|xy| \leq p\) i \(|y| \geq 1\) oraz \(uxy^izv\) jest w \(L\) dla każdego \(i \geq 0\).
+Niech \(L\) będzie językiem regularnym. Wtedy istnieje takie stałe \(n \geq 1\), że dla dowolnego słowa \(z\) z \(L\), gdzie \(|z| \geq n\), istnieje przedstawienie w postaci \(z = yuvw\) dla każdych \(y\) pozwalających spełnić warunki: \(|uvw| \geq n\), \(|uv| \leq n\) oraz \(|v| \geq 1\), gdzie \(yuw^iw\) będzie należeć do \(L\) dla każdego \(i \geq 0\).
 
 \vspace{0.5cm}
 
-\noindent Ta wersja lematu o pompowaniu pozwala na udowadnianie nieregularności języków, gdy zwykły lemat o pompowaniu zawodzi, gdyż jego założenia są bardziej rygorystyczne - mogę pompować słowo w jego dowolnym miejscu.
+\noindent Ta wersja lematu o pompowaniu pozwala na udowadnianie nieregularności języków, gdy zwykły lemat o pompowaniu zawodzi. Dzięki niemu mogę pompować słowo w dowolnym jego miejscu.
 
 \vspace{0.5cm}
+
+\noindent \textbf{Dowód} Zakładam, że język \(L\) jest językiem regularnym. \(n, z\) biorę z wersji ogólnej lematu o pompowaniu. Niech \(z = (10)^n(01)^n1\) - spełnia to założenia z polecenia. \\
+Widać też, że \(|z| = 4n + 1 \) oraz że dla każdego podziału spełniającego warunki lematu z \(y = (10)^n0\), \(|uvw| = 2n\).\\
+Weźmy \(i = 0 \). Wtedy \( z' = yuv^0w \). Zakładamy, że \(z'\) jest w \(L\) - wtedy \(z' = \omega' \omega'^Rx'\), gdzie \(w'\) oraz \(x'\) są niepuste.\\
+Skoro \( \omega \omega^R \) tworzą palindrom, to "`w środku"' muszą pojawić się dwa takie same znaki. W naszym przypadku to dwa ostatnie znaki w \(y\): \(1(01)^{n-1}00\), więc \(|w'| \geq 2n \), z czego wynika, że \( |z'| = |\omega' \omega'^R x'| = 2|\omega'| + |x'| \geq 4n + 1\). A wiemy, że \(|z'| = |yuv^0w| = |yuvw| - |v| = |z| - |v| \leq 4n + 1 - 1 = 4n \). A więc sprzeczność!
+
 
 \end{document}
