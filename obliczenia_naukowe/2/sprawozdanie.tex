@@ -12,9 +12,8 @@
 \date{Lista 2}
 \begin{document}
 \maketitle
-TODO OPIS, czy zadanie 2? CO SIE STALO Z GNUPLOTEM zadanie 3, ta bogusowa tabela w 4, zadanie 5 opis i wnioski, zadanie 6, opisy funkcji, wnioski koncowe, wszystkie bogusowe tabele i obrazki, dlaczego w 4 zespolone??????????????
 
-:3333333333333333333333333333333333333333333333333333 im insane
+\noindent Rozwiązania zadań z 1. listy na przedmiot Obliczenia Naukowe. Programy zostały napisane w języku Julia. 
 
 \vspace{0.5cm}
 
@@ -27,9 +26,8 @@ TODO OPIS, czy zadanie 2? CO SIE STALO Z GNUPLOTEM zadanie 3, ta bogusowa tabela
 \noindent\textbf{Zadanie 1.} Niewielkie zmiany danych oraz ich wpływ na wyniki obliczeń.\\
 
 \noindent W ramach przypomnienia zadania: na poprzedniej liście  należało obliczyć iloczyny skalarne dwóch wektorów na cztery rózne sposoby.\\\\
-Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "w przód", od pierwszych indeksów, funkcja \verb|b| "w tył", analogicznie, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.\\\\
+Zaimplementowałem każdy z podanych w poleceniu sposobów, tak więc funkcja \verb|a| liczy "`w przód"'', od pierwszych indeksów, funkcja \verb|b| "`w tył"', analogicznie, a \verb|c| oraz \verb|d| liczą, odpowiednio, od największego do najmniejszego oraz od najmniejszego do największego względem ich wartości absolutnej.\\\\
 Różnica w tym zadaniu, a zadaniu 5. z poprzedniej listy polegała na dokonaniu drobnej zmiany w niektórych wartościach wektora. Poniżej prezentuję wyniki otrzymane po, jak i przed tej zmianie:
-
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -48,13 +46,15 @@ Różnica w tym zadaniu, a zadaniu 5. z poprzedniej listy polegała na dokonaniu
 
 \vspace{0.5cm}
 
-\noindent gdzie wartość prawidłowa wynosi: \[\verb|-1.00657107000000e-11|\]
+\noindent gdzie wartość prawidłowa wynosi: \[\verb|-0.004296343192495245|\]
 
-Jak widać, wyniki dla typu \verb|Float32| nie zmieniły się. Jest to spowodowane niewystarczającą do zauważenia różnicy precyzją zapisu liczby zmiennopozycyjnej w tym typie.\\\\
+\noindent Jak widać, wyniki dla typu \verb|Float32| nie zmieniły się. Jest to spowodowane niewystarczającą do zauważenia różnicy precyzją zapisu liczby zmiennopozycyjnej w tym typie.\\\\
 Natomiast w typie \verb|Float64| różnica jest znaczna mimo tak niewielkiej zmiany danych. Mimo że wyniki nadal odbiegają od prawidłowego, są one mu znacznie bliższe. \\\\
 Można więc stwierdzić, że zadanie to było \textbf{źle uwarunkowane} - o wysokim wskaźniku uwarunkowania. Wskaźnik ten określa, w jakim stopniu błąd reprezentacji numerycznej danych wejściowych dla danego problemu będzie wpływać na błąd wyniku. Małe zmany danych w tym zadaniu spowodowały znaczną zmianę wyników. 
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \noindent\hrulefill
 
@@ -96,6 +96,8 @@ w dwóch różnych programach do wizualizacji danych. Zdecydowałem się na uży
 \noindent Dzieje się tak, gdyż dla \verb|x > 30| wartości $e^{x}$ są już tak duże, że mnożenie jej z niewielką wartością $ln(1 + e^{-x})$ skutkuje znacznymi błędami przybliżenia, które dla ok \verb|x = 38| powodują zwracanie wartości 0. Jest to spowodowane przybliżeniem $1 + e^{-x} \approx 1$, i tym samym całej wartości logarytmu do 0. Tak więc algorytm obliczający wartości \verb|f(x)| nie jest stabilny numerycznie.
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \noindent\hrulefill
 
@@ -143,6 +145,7 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 
 \vspace{0.5cm}
 
+\pagebreak
 
 \begin{table}[ht]
     \begin{adjustbox}{max width=\textwidth}
@@ -175,10 +178,12 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 
 \vspace{0.5cm}
 
-\noindent Tak jak przy macierzach Hilberta, w wynikach dla macierzy losowych można zaobserwować rosnący błąd względny. Ponadto widać, że funkcja cond() nie oblicza dokładnie uwarunkowania, tylko je przybliża. Ponadto wartości tych przybliżeń są różne dla różnych procesorów. \\\\
+\noindent Tak jak przy macierzach Hilberta, w wynikach dla macierzy losowych można zaobserwować rosnący błąd względny. Ponadto widać, że funkcja cond() nie oblicza dokładnie uwarunkowania, tylko je przybliża. W dodatku wartości tych przybliżeń są różne dla różnych procesorów. \\\\
 \noindent Powyższe tabele pozwalają na wyciągnięcie wniosku, że zadanie to było źle uwarunkowane, zwłaszcza dla macierzy Hilberta - wraz ze wzrostem stopnia macierzy ostro rośnie też wskaźnik uwarunkowania i, jednocześnie, błąd względny. Dla macierzy losowych dzieje się podobnie, jednakże ten wzrost jest wolniejszy (błędy są mniejsze).
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \noindent\hrulefill
 
@@ -233,6 +238,7 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 
 \vspace{0.5cm}
 
+\pagebreak
 
 \begin{table}[h]
     \centering
@@ -271,6 +277,8 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 \noindent Pomimo dokonania niewielkiej zmiany, pierwiastki są teraz rozmieszczone inaczej. Poprzednio były one rozmieszczone w sposób równomierny. Pojawiły się także liczby zespolone. Udowadnia to, że wyznaczanie pierwiastków wielomianu Wilkinsona jest bardzo źle uwarunkowanym zadaniem.
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \noindent\hrulefill
 
@@ -347,6 +355,8 @@ stanu środowiska.\\\\
 
 \vspace{0.5cm}
 
+\pagebreak
+
 \noindent\hrulefill
 
 % zadanie 6
@@ -373,9 +383,11 @@ Należało, w arytmetyce \verb|Float64|, iterować 40-sto krotnie powyższe rów
 
 \vspace{0.5cm}
 
-\noindent Powyższe wykresy są są stałe.
+\noindent Powyższe wykresy są stałe.
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \begin{figure}[h]
     \centering
@@ -387,6 +399,8 @@ Należało, w arytmetyce \verb|Float64|, iterować 40-sto krotnie powyższe rów
 \noindent Dla wykresu z \verb|x = 1.99999999999999|, po pewnym czasie otrzymujemy bardzo niepoprawne wyniki, mniejsze od 2, chociaż, według intuicji, powinny one być bliskie 2.
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \begin{figure}[h]
     \centering
@@ -400,9 +414,11 @@ Należało, w arytmetyce \verb|Float64|, iterować 40-sto krotnie powyższe rów
 
 \vspace{0.5cm}
 
-\noindent Dla powyższych wykresów, wyniki są stabilne, oscylują wokół przewidywanych wartości.
+\noindent Dla powyższych wykresów wyniki są stabilne, oscylują wokół przewidywanych wartości.
 
 \vspace{0.5cm}
+
+\pagebreak
 
 \begin{figure}[h]
     \centering
