@@ -1,0 +1,87 @@
+# Zadanie 4
+# Felix Zieliński 272336
+
+# klonowanie repozytorium
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+# tworzenie podkatalogu z własnością externals, kropka czyli na bierzącym katalogu
+
+mkdir externals
+
+svn propset svn:externals "externals https://repo.cs.pwr.edu.pl/info" .
+property 'svn:externals' set on '.'
+
+svn add externals/
+A         externals
+
+svn commit -m 'add: externals'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Sending        .
+Adding         externals
+Committing transaction...
+Committed revision 31.
+
+# tworzenie innej kopii roboczej i sprawdzanie repozytorium zewnętrznego
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+cd mk1-272336
+
+# pobranie zawartosci z zewnetrznego repozytorium
+
+svn up
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': ********
+
+
+Fetching external item into 'ŚP/2/externals':
+External at revision 25.
+
+At revision 32.
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+cd mk1-272336
+
+# aktualizacja repozytorium bez uwzględnienia katalogu externals
+
+svn up --ignore-externals
+
+
+# pobranie repozytorium razem z zewnętrznym
+
+svn co --ignore-externals https://repo.cs.pwr.edu.pl/mk1-272336
+
+~/kik2/mk1-272336/ŚP/2]$ ls
+a  skrypt.sh  test_file.txt
+
+# brak folderu externals
+
+# svn log
+
+r32 | 272336 | 2024-10-31 15:30:32 +0100 (czw, 31 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2
+   D /ŚP/2/externals
+
+add: externals
+------------------------------------------------------------------------
+r31 | 272336 | 2024-10-31 15:28:54 +0100 (czw, 31 paź 2024) | 1 line
+Changed paths:
+   M /ŚP/2
+   A /ŚP/2/externals
+
+add: externals

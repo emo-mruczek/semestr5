@@ -1,0 +1,121 @@
+# Zadanie 5
+# Felix Zieliński 272336
+
+# stworzenie pliku przeznaczonego do testów
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+echo "test blokady" > test_blokady.txt
+
+ svn add test_blokady.txt 
+A         test_blokady.txt
+
+svn commit -m "add: test_blokady.txt"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': Adding         test_blokady.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 33.
+
+# zakładanie blokady
+
+svn lock test_blokady.txt -m "blokada!"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': ********
+
+'test_blokady.txt' locked by user '272336'.
+
+# tworze nowe repozytorium
+
+svn checkout https://repo.cs.pwr.edu.pl/mk1-272336
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336':
+
+# proba modyfikacji pliku 
+
+echo "proba modyfikacji" > test_blokady.txt 
+
+cat test_blokady.txt 
+proba modyfikacji
+
+svn commit -m "test modyfikacji"
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Sending        test_blokady.txt
+Transmitting file data .svn: E195022: Commit failed (details follow):
+svn: E195022: File '/home/felix/kik2/2/mk1-272336/ŚP/2/test_blokady.txt' is locked in another working copy
+svn: E160038: While preparing '/home/felix/kik2/2/mk1-272336/ŚP/2/test_blokady.txt' for commit
+svn: E160038: '/mk1-272336/!svn/txr/33-z/%C5%9AP/2/test_blokady.txt': no lock token available
+
+# zwrywanie blokady w pierwotnej kopii roboczej
+
+svn unlock test_blokady.txt 
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+'test_blokady.txt' unlocked.
+
+# proba modyfikacji w drugiej kopii roboczej
+
+svn commit -m "test modyfikacji"
+
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+Sending        test_blokady.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 34.
+
+# aby zademonstrowac podkradanie blokady, powtarzam poprzednie kroki z zakladaniem blokady
+
+svn lock test_blokady.txt -m "do podkradnięcia"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': ********
+
+'test_blokady.txt' locked by user '272336'.
+
+# przechodze do drugiego repozytorium i pokradam blokade przy uzyciu --force
+
+svn lock --force test_blokady.txt -m "podkradanie"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+'test_blokady.txt' locked by user '272336'.
+
+# logi
+
+svn log
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+r34 | 272336 | 2024-10-31 17:22:08 +0100 (czw, 31 paź 2024) | 2 lines
+Changed paths:
+   M /ŚP/2/test_blokady.txt
+
+test modyfikacji'
+
+------------------------------------------------------------------------
+r33 | 272336 | 2024-10-31 15:50:05 +0100 (czw, 31 paź 2024) | 1 line
+Changed paths:
+   A /ŚP/2/test_blokady.txt
+
+add: test_blokady.txt
+
+# drugie repozytorium
+
+ svn log
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository mk1-272336
+Password for '272336': 
+
+------------------------------------------------------------------------
+r33 | 272336 | 2024-10-31 15:50:05 +0100 (czw, 31 paź 2024) | 1 line
+
+add: test_blokady.txt
+
