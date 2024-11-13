@@ -13,7 +13,6 @@
 \begin{document}
 \maketitle
 
-
 \noindent\hrulefill
 
 \vspace{0.5cm}
@@ -39,7 +38,7 @@
 \noindent\textbf{Ograniczenia:}
 
 \begin{itemize}
-    \item \(x_{ij}\) - ilość paliwa musi być nieujemna
+    \item \(x_{ij} \geq 0 \) - ilość paliwa musi być nieujemna
     \item \(\sum_{i}x_{ij} = z_j\)  - suma dostaw do danego lotniska musi zaspokoić jego zapotrzebowanie 
     \item \(\sum_{j}x_{ij} \leq p_i \) - firma nie może dostarczyć więcej paliwa, niż sama produkuje
 \end{itemize}
@@ -65,21 +64,71 @@ TBD
 \noindent\textbf{Uogólnione parametry z zadania:}
 
 \begin{itemize}
-    \item \( L_j \) - j-te lotnisko
-    \item \( F_i \) - i-ta firma
-    \item \( z_j \) - zapotrzebowanie j-tego lotniska
-    \item \( p_i \) - podaż paliwa z i-tej firmy
-    \item \( k_{ij} \) - koszt zakupu galonu paliwa od i-tej firmy przez j-te lotnisko
+    \item \( L_i \) - i-ty wyrób
+    \item \( M_j \) - j-ta maszyna
+    \item \( cp_{ij} \) - czas (w minutach na kilogram) obróbki i-tego wyroby na j-tej maszynie
+    \item \( C_j \) - czas dostępności j-tej maszyny w godzinach
+    \item \( sp_i \) - cena sprzedaży i-tego wyrobu
+    \item \( kp_j \) - koszt za godzinę pracy j-tej maszyny
+    \item \( km_{i} \) - koszt materiałowy za kilogram i-tego wyrobu
+    \item \( z_{i} \) - maksymalny tygodniowy popyt na i-ty wyrób
 \end{itemize}
 
 \noindent\textbf{Zmienne decezyjne:}\\
 
-\(x_{ij}\) - ilość paliwa dostarczona przez i-tą firmę na j-te lotnisko.\\
+\(x_{i}\) - liczba kilogramów wyprodukowanego i-tego wyrobu.\\
+
+\noindent\textbf{Ograniczenia:}
+
+% TODO: MINUTY KUWA
+% TODO: koszty produkcji?
+% uxglednic, ze to tygodniowe
+
+\begin{itemize}
+    \item \(x_{ij} \geq 0 \) - ilość wyprodukowanego wyrobu musi być nieujemna
+    \item \(\sum_{i}x_{i} * cp_{ij} \leq C_j / 60\)  - maszyny mają ograniczony czas pracy 
+    \item \(x_{i} \leq z_i \) - nie ma sensu produkować więcej wyrobu, niż jest na niego popyt 
+\end{itemize}
+
+\noindent\textbf{Funkcja celu:}\\
+
+Zysk, jako różnica między przychodem a kosztami zmiennymi:\\ \(max( x_{i} * ( \sum_{i}( sp_i - km_{i} ) - \sum_{j}(kp_j / 60) * \sum_{i}(cp_{ij} / 60)  ))\)\\
+
+\noindent\textbf{Rozwiazanie:}\\ 
+
+TBD
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+% zadanie 3
+
+\noindent\textbf{Zadanie 2.} W tym zadaniu należało zmaksymalizować zysk zakładu poprzez wyznaczenie optymalnego tygodniowego planu placy.\\
+
+\noindent\textbf{Uogólnione parametry z zadania:}
+
+\begin{itemize}
+    \item \( L_i \) - i-ty wyrób
+    \item \( M_j \) - j-ta maszyna
+    \item \( cp_{ij} \) - czas (w minutach na kilogram) obróbki i-tego wyroby na j-tej maszynie
+    \item \( C_j \) - czas dostępności j-tej maszyny
+    \item \( sp_i \) - cena sprzedaży i-tego wyrobu
+    \item \( kp_j \) - koszt za godzinę pracy j-tej maszyny
+    \item \( km_{i} \) - koszt materiałowy za kilogram i-tego wyrobu
+    \item \( z_{i} \) - maksymalny tygodniowy popyt na i-ty wyrób
+\end{itemize}
+
+\noindent\textbf{Zmienne decezyjne:}\\
+
+\(x_{i}\) - liczba kilogramów wyprodukowanego i-tego wyrobu.\\
 
 \noindent\textbf{Ograniczenia:}
 
 \begin{itemize}
-    \item \(x_{ij}\) - ilość paliwa musi być nieujemna
+    \item \(x_{i}\) - ilość  
     \item \(\sum_{i}x_{ij} = z_j\)  - suma dostaw do danego lotniska musi zaspokoić jego zapotrzebowanie 
     \item \(\sum_{j}x_{ij} \leq p_i \) - firma nie może dostarczyć więcej paliwa, niż sama produkuje
 \end{itemize}
