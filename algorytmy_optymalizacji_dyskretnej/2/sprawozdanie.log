@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  14 NOV 2024 09:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  14 NOV 2024 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -670,36 +670,96 @@ Underfull \hbox (badness 10000) in paragraph at lines 152--153
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--189
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
-[4] (./sprawozdanie.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
+
+ []
+
+[6] (./sprawozdanie.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -722,16 +782,19 @@ blic/amsfonts/cm/cmmi7.pfb></nix/store/fqq1mb83jbarg2f4wm63pxid043r5c0l-texlive
 83jbarg2f4wm63pxid043r5c0l-texlive-2023-env-texmfdist/fonts/type1/public/amsfon
 ts/cm/cmr7.pfb></nix/store/fqq1mb83jbarg2f4wm63pxid043r5c0l-texlive-2023-env-te
 xmfdist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></nix/store/fqq1mb83jbarg2f4w
-m63pxid043r5c0l-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfbx1000
+m63pxid043r5c0l-texlive-2023-env-texmfdist/fonts/type1/public/amsfonts/cm/cmsy5
 .pfb></nix/store/fqq1mb83jbarg2f4wm63pxid043r5c0l-texlive-2023-env-texmfdist/fo
-nts/type1/public/cm-super/sfrm1000.pfb></nix/store/fqq1mb83jbarg2f4wm63pxid043r
-5c0l-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfrm1200.pfb></nix/
+nts/type1/public/amsfonts/cm/cmsy7.pfb></nix/store/fqq1mb83jbarg2f4wm63pxid043r
+5c0l-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfbx1000.pfb></nix/
 store/fqq1mb83jbarg2f4wm63pxid043r5c0l-texlive-2023-env-texmfdist/fonts/type1/p
-ublic/cm-super/sfrm1728.pfb>
-Output written on sprawozdanie.pdf (4 pages, 129771 bytes).
+ublic/cm-super/sfrm1000.pfb></nix/store/fqq1mb83jbarg2f4wm63pxid043r5c0l-texliv
+e-2023-env-texmfdist/fonts/type1/public/cm-super/sfrm1200.pfb></nix/store/fqq1m
+b83jbarg2f4wm63pxid043r5c0l-texlive-2023-env-texmfdist/fonts/type1/public/cm-su
+per/sfrm1728.pfb>
+Output written on sprawozdanie.pdf (6 pages, 155384 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 91 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

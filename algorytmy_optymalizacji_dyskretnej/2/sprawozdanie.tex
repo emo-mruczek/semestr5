@@ -161,33 +161,40 @@ TBD
 
 % zadanie 4
 
-\noindent\textbf{Zadanie 1.} W tym zadaniu należało zminimalizowad koszty zakupu paliwa poprzez wyznaczenie planu zakupu i dostaw paliwa na lotniska.\\
+% TODO: to jedno ograniczenie 
+% TODO: ograniczenie na T
+
+\noindent\textbf{Zadanie 4.} W tym zadaniu należało zminimalizować koszt podróży z miasta \(i^\circ\) do miasta \(j^\circ\) poprzez znalezienie połączenia, które nie przekracza z góry zadanego czasu.\\
 
 \noindent\textbf{Uogólnione parametry z zadania:}
 
 \begin{itemize}
-    \item \( L_j \) - j-te lotnisko
-    \item \( F_i \) - i-ta firma
-    \item \( z_j \) - zapotrzebowanie j-tego lotniska
-    \item \( p_i \) - podaż paliwa z i-tej firmy
-    \item \( k_{ij} \) - koszt zakupu galonu paliwa od i-tej firmy przez j-te lotnisko
-\end{itemize}
+    \item \( T \) - zadany czas T, którego całkowity czas przejazdu nie może przekroczyć
+    \item \( G = (N, A) \) - skierowany graf połączeń między miastami
+    \item \( N \) - zbiór miast
+    \item \( A \) - zbiór połączeń
+    \item \( c_{ij} \) - koszt przejazdu z miasta i do j
+    \item \( t_{ij} \) - czas przejazdu z miasta i do j
+    \item \( i^\circ \) - miasto początkowe
+    \item \( j^\circ \) - miasto końcowe 
+\end{itemize} 
 
 \noindent\textbf{Zmienne decezyjne:}\\
 
-\(x_{ij}\) - ilość paliwa dostarczona przez i-tą firmę na j-te lotnisko.\\
+\noindent \(x_{ij}\) - zmienna boolowska oznaczająca, czy dane połączenie między miastem i oraz j jest używane.\\
 
 \noindent\textbf{Ograniczenia:}
 
 \begin{itemize}
-    \item \(x_{ij} \geq 0 \) - ilość paliwa musi być nieujemna
-    \item \(\sum_{i}x_{ij} = z_j\)  - suma dostaw do danego lotniska musi zaspokoić jego zapotrzebowanie 
+    \item \(x_{ij} \in \{0, 1\} \)
+    \item \(\sum_{j}x_{i^\circ j} = 1 \) - należy zacząć ścieżkę w mieście początkowym 
+    \item \(\sum_{j}x_{ij^\circ} = 1 \) - należy zakończyć ścieżkę w mieście końcowym 
     \item \(\sum_{j}x_{ij} \leq p_i \) - firma nie może dostarczyć więcej paliwa, niż sama produkuje
 \end{itemize}
 
 \noindent\textbf{Funkcja celu:}\\
 
-Koszt wszystkich dostaw: \(min \sum_{i, j}x_{ij} * k_{ij} \)\\
+Koszt przejazdu: \(min \sum_{i, j}c_{ij} * x_{ij} \)\\
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
@@ -199,7 +206,83 @@ TBD
 
 \vspace{0.5cm}
 
+% zadanie 5
 
+\noindent\textbf{Zadanie 5.} W tym zadaniu należało zminimalizować całkowitą liczbę radiowozów poprzez wyznaczenie przydziału radiowozów spełniających zadane wymagania.\\
+
+\noindent\textbf{Uogólnione parametry z zadania:}
+
+\begin{itemize}
+    \item \( p_i \) - i-ta dzielnica
+    \item \( z_j \) - j-ta zmiana
+    \item \( min_{ij} \) - minimalna liczba radiowozów dla i-tej dzielnicy i j-tej zmiany
+    \item \( max_{ij} \) - maksymalna liczba radiowozów dla i-tej dzielnicy i j-tej zmiany
+    \item \( zmin_{j} \) - minimalna liczba radiowozów dla j-tej zmiany 
+    \item \( dmin_{i} \) - minimalna liczba radiowozów dla i-tej dzielnicy
+\end{itemize}
+
+\noindent\textbf{Zmienne decezyjne:}\\
+
+\(x_{ij}\) - liczba radiowozów przydzielona dzielnicy i podczas zmiany j\\
+
+\noindent\textbf{Ograniczenia:}
+
+\begin{itemize}
+    \item \(x_{ij} \geq 0 \) - liczba radiowozów musi być nieujemna
+    \item \( x_{ij} \leq max_{ij} \) - liczba radiowozów musi być mniejsza od maksymalnej
+    \item \( x_{ij} \geq min_{ij} \) - liczba radiowozów musi być większa od minimalnej
+    \item \(\sum_{i}x_{ij} \geq zmin_j \) - liczba radiowozów musi spełniać minimalną liczbę dla j-tej zmiany
+    \item \(\sum_{j}x_{ij} \geq dmin_i \) - liczba radiowozów musi spełniać minimalną liczbę dla i-tej dzielnicy
+\end{itemize}
+
+\noindent\textbf{Funkcja celu:}\\
+
+Liczba radiowozów: \(min \sum_{i}\sum_{j}x_{ij} \)\\
+
+\noindent\textbf{Rozwiazanie:}\\ 
+
+TBD
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+% zadanie 6
+
+\noindent\textbf{Zadanie 6.} W tym zadaniu należało zminimalizować liczbę kamer poprzez odpowiednie ich rozmieszczenie.\\
+
+\noindent\textbf{Uogólnione parametry z zadania:}
+
+\begin{itemize}
+    \item \( m \) - szerokość terenu (w kwadratach)
+    \item \( n \) - wysokość terenu (w kwadratach)
+    \item \( k \) - zasięg kamery (w kwadratach)
+    \item \( r_{ij} \) - zmienna boolowska, rozmieszczenie kamer
+\end{itemize}
+
+\noindent\textbf{Zmienne decezyjne:}\\
+
+\(x_{ij}\) - zmienna boolowska oznaczająca, czy w kwadracie ij umieszczona jest kamera.\\
+
+\noindent\textbf{Ograniczenia:}
+
+\begin{itemize}
+    \item \(x_{ij} \in \{0, 1\} \)
+    \item \(x_{ij} + r_{ij} \leq 1 \) - nie można postawić kamery tam, gdzie jest kontener
+    \item \(\sum_{l = max(i-k, 1)}^{min(i+k,m)}x_{lj} + \sum_{s = max(j-k, 1)}^{min(i+k,m)}x_{is} \geq 1 \)  - suma dostaw do danego lotniska musi zaspokoić jego zapotrzebowanie 
+\end{itemize}
+
+\noindent\textbf{Funkcja celu:}\\
+
+Liczba kamer: \(min \sum_{i}\sum_{j}x_{ij} \)\\
+
+\noindent\textbf{Rozwiazanie:}\\ 
+
+TBD
+
+\vspace{0.5cm}
 
 
 
