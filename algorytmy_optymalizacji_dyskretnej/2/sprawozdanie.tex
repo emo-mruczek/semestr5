@@ -106,36 +106,48 @@ TBD
 
 % zadanie 3
 
-\noindent\textbf{Zadanie 2.} W tym zadaniu należało zmaksymalizować zysk zakładu poprzez wyznaczenie optymalnego tygodniowego planu placy.\\
+\noindent\textbf{Zadanie 3.} W tym zadaniu należało zminimalizować łączny koszt produkcji w firmie poprzez wyznaczenie optymalnego planu produkcji oraz magazynowania.\\
 
 \noindent\textbf{Uogólnione parametry z zadania:}
 
 \begin{itemize}
-    \item \( L_i \) - i-ty wyrób
-    \item \( M_j \) - j-ta maszyna
-    \item \( cp_{ij} \) - czas (w minutach na kilogram) obróbki i-tego wyroby na j-tej maszynie
-    \item \( C_j \) - czas dostępności j-tej maszyny
-    \item \( sp_i \) - cena sprzedaży i-tego wyrobu
-    \item \( kp_j \) - koszt za godzinę pracy j-tej maszyny
-    \item \( km_{i} \) - koszt materiałowy za kilogram i-tego wyrobu
-    \item \( z_{i} \) - maksymalny tygodniowy popyt na i-ty wyrób
+    \item \( m_j \) - maksymalna produkcja towaru w j-tym okresie (w jednostkach)
+    \item \( k_j \) - j-ty okres (w którym wytwarzane jest maksymalnie 100 jednostek towaru)
+    \item \( c_j \) - koszt produkcji jednej jednostki towaru w j-tym okresie
+    \item \( a_j \) - maksymalna wielkość (w jednostkach) opcjonalnej produkcji ponadwymiarowej w j-tym okresie
+    \item \( o_j \) - koszt jednostkowy w j-tej opcjonalnej produkcji ponadwymiarowej
+    \item \( d_j \) - zapotrzebowanie na towar w j-tym okresie
+    \item \( s \) - maksymalna ilość jednostek możliwa do przechowania z jednego okresu na kolejny
+    \item \( sm_j \) - stan magazynu na początku okresu
+    \item \( km \) - koszt magazynowania za jednostkę 
+    \item \( mp \) - początkowa ilość jednostek w magazynie
 \end{itemize}
 
-\noindent\textbf{Zmienne decezyjne:}\\
+\noindent\textbf{Zmienne decezyjne:}
 
-\(x_{i}\) - liczba kilogramów wyprodukowanego i-tego wyrobu.\\
+\begin{itemize}
+    \item \( x_j \) - ilość jednostek wyprodukowanych w j-tym okresie
+    \item \( y_j \) - ilość jednostek wyprodukowanych w j-tym okresie w produkcji opcjonalnej
+    \item \( z_j \) - ilość jednostek do przechowania na koniec j-tego okresu
+\end{itemize}
 
 \noindent\textbf{Ograniczenia:}
 
 \begin{itemize}
-    \item \(x_{i}\) - ilość  
-    \item \(\sum_{i}x_{ij} = z_j\)  - suma dostaw do danego lotniska musi zaspokoić jego zapotrzebowanie 
-    \item \(\sum_{j}x_{ij} \leq p_i \) - firma nie może dostarczyć więcej paliwa, niż sama produkuje
+    \item \(x_{j} \geq 0 \) - ilość jednostek wyprodukowanych w j-tym okresie musi być nieujemna
+    \item \(y_{j} \geq 0 \) - ilość jednostek wyprodukowanych w j-tym okresie w produkcji opcjonalnej musi być nieujemna
+    \item \(z_{j} \geq 0 \) - ilość jednostek do przechowania na koniec j-tego okresu musi być nieujemna
+    \item \( x_{j} \leq m_j \) - nie można wyprodukować jednostek ponad maksymalną produkcję towaru w j-tym okresie     
+    \item \( y_{j} \leq a_j\) - nie można wyprodukować jednostek dodatkowych ponad maksymalną opcjonalną produkcję towaru w j-tym okresie     
+    \item \( z_j \leq s \) - nie można przechowywać jednostek ponad maksymalną ilość jednostek możliwą do przechowania z jednego okresu na kolejny
+    \item koszt produkcji jednostek opcjonalnych przewyższa koszt produkcji podstawowej, a więc nie ma potrzeby ograniczania wykorzystania wszystkich jednostek przed rozpoczęciem produkcji opcjonalnej
+    \item \( s_1 = mp \) - na początku pierwszego okresu stan magazynu jest równy stanowi początkowemu 
+    \item \( s_K+1 = 0 \) - na koniec nie powinno zostać jednostek w magazynie
 \end{itemize}
 
 \noindent\textbf{Funkcja celu:}\\
 
-Koszt wszystkich dostaw: \(min \sum_{i, j}x_{ij} * k_{ij} \)\\
+Koszt produkcji oraz magazynowania: \(min \sum_{j=1}^{K}(x_{j} * c_{j} + y_{j} * o_{j} + z_{j} * km)\)\\
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
