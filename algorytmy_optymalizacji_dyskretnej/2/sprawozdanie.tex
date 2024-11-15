@@ -1,3 +1,4 @@
+%TODO 4 pondpunkty ostatnie
 \documentclass[15pt, a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[polish]{babel}
@@ -7,6 +8,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \title{Algorytmy Optymalizacji Dyskretnej}
 \author{Felix Zieliński 272336}
 \date{Lista 2}
@@ -47,9 +49,33 @@
 
 Koszt wszystkich dostaw: \(min \sum_{i, j}x_{ij} * k_{ij} \)\\
 
+\pagebreak
+
 \noindent\textbf{Rozwiazanie:}\\ 
 
-TBD
+\begin{longtable}{|c|c|c|c|c|}
+\hline
+           & \textbf{Firma 1} & \textbf{Firma 2} & \textbf{Firma 3} & \textbf{Firma 4} \\
+\hline
+    \textbf{Lotnisko 1} & 0.0      & 110000.0 & 0.0 & 110000.0      \\
+\hline
+    \textbf{Lotnisko 2} & 165000.0 & 55000.0  & 0.0 & 220000.0    \\
+\hline
+    \textbf{Lotnisko 3} & 0.0      & 0.0      & 330000.0 & 330000.0 \\
+\hline
+    \textbf{Lotnisko 4} & 110000.0 & 0.0      & 330000.0 & 440000.0 \\
+\hline
+    \textbf{Suma} & 275000.0 & 165000.0 & 660000.0 & \\ \hline
+\caption{Optymalne dostawy, w galonach}
+\end{longtable}
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item Minimalny łączny koszt dostaw wymaganych ilości paliwa wynosi \textbf{8525000} 
+    \item Każda z firm dostarcza paliwo
+    \item 1. oraz 3. firma wyczerpały możliwości swoich dostaw
+\end{enumerate}
 
 \vspace{0.5cm}
 
@@ -67,9 +93,9 @@ TBD
     \item \( L_i \) - i-ty wyrób
     \item \( M_j \) - j-ta maszyna
     \item \( cp_{ij} \) - czas (w minutach na kilogram) obróbki i-tego wyroby na j-tej maszynie
-    \item \( C_j \) - czas dostępności j-tej maszyny w godzinach
+    \item \( C_j \) - czas dostępności j-tej maszyny w minutach
     \item \( sp_i \) - cena sprzedaży i-tego wyrobu
-    \item \( kp_j \) - koszt za godzinę pracy j-tej maszyny
+    \item \( kp_j \) - koszt za minutę pracy j-tej maszyny
     \item \( km_{i} \) - koszt materiałowy za kilogram i-tego wyrobu
     \item \( z_{i} \) - maksymalny tygodniowy popyt na i-ty wyrób
 \end{itemize}
@@ -80,23 +106,55 @@ TBD
 
 \noindent\textbf{Ograniczenia:}
 
-% TODO: MINUTY KUWA
-% TODO: koszty produkcji?
-% uxglednic, ze to tygodniowe
-
 \begin{itemize}
     \item \(x_{ij} \geq 0 \) - ilość wyprodukowanego wyrobu musi być nieujemna
-    \item \(\sum_{i}x_{i} * cp_{ij} \leq C_j / 60\)  - maszyny mają ograniczony czas pracy 
+    \item \(\sum_{i}x_{i} * cp_{ij} \leq C_j\)  - maszyny mają ograniczony czas pracy 
     \item \(x_{i} \leq z_i \) - nie ma sensu produkować więcej wyrobu, niż jest na niego popyt 
 \end{itemize}
 
 \noindent\textbf{Funkcja celu:}\\
 
-Zysk, jako różnica między przychodem a kosztami zmiennymi:\\ \(max( x_{i} * ( \sum_{i}( sp_i - km_{i} ) - \sum_{j}(kp_j / 60) * \sum_{i}(cp_{ij} / 60)  ))\)\\
+Zysk, jako różnica między przychodem a kosztami zmiennymi:\\ \(max( x_{i} * ( \sum_{i}( sp_i - km_{i} ) - \sum_{j}(kp_j) * \sum_{i}(cp_{ij})  ))\)\\
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
-TBD
+W celu sprawniejszych obliczeń, dane z zadania zamieniam na minuty. 
+
+
+\begin{longtable}{|c|c|c|c|}
+\hline
+& \textbf{Maszyna 1} &  \textbf{Maszyna 2} & \textbf{Maszyna 3} \\ 
+\hline
+\textbf{Produkt 1} & 625.0 & 1250.0 & 750.0  \\ 
+\hline
+\textbf{Produkt 2} & 300.0 & 600.0 & 400.0  \\ 
+\hline
+\textbf{Produkt 3} & 600.0 & 750.0 & 450.0  \\ 
+\hline
+\textbf{Produkt 4} & 2000.0 & 1000.0 & 500.0  \\ 
+\hline
+\caption{Czas na maszynę}
+\end{longtable}
+
+
+\begin{longtable}{|c|c|}
+    \hline
+    & \textbf{Kilogram wyrobu} \\ 
+    \hline
+    \textbf{Produkt 1} & 125.0 \\ 
+    \hline
+    \textbf{Produkt 2} & 100.0 \\ 
+    \hline
+    \textbf{Produkt 3} & 150.0 \\ 
+    \hline
+    \textbf{Produkt 4} & 500.0 \\ 
+    \hline
+\caption{Produkcja (w kilogramach) każdego z wyrobów}
+\end{longtable}
+
+\vspace {0.5cm}
+
+Zysk wynosi \textbf{3632.5} dolarów.
 
 \vspace{0.5cm}
 
@@ -141,8 +199,9 @@ TBD
     \item \( y_{j} \leq a_j\) - nie można wyprodukować jednostek dodatkowych ponad maksymalną opcjonalną produkcję towaru w j-tym okresie     
     \item \( z_j \leq s \) - nie można przechowywać jednostek ponad maksymalną ilość jednostek możliwą do przechowania z jednego okresu na kolejny
     \item koszt produkcji jednostek opcjonalnych przewyższa koszt produkcji podstawowej, a więc nie ma potrzeby ograniczania wykorzystania wszystkich jednostek przed rozpoczęciem produkcji opcjonalnej
-    \item \( s_1 = mp \) - na początku pierwszego okresu stan magazynu jest równy stanowi początkowemu 
+    \item \( sm_1 = mp \) - na początku pierwszego okresu stan magazynu jest równy stanowi początkowemu 
     \item \( s_K+1 = 0 \) - na koniec nie powinno zostać jednostek w magazynie
+    \item \( x_j + y_j + z_j - d_j = z_{j+1} \) - zapotrzebowanie na towar musi zostać spełnione
 \end{itemize}
 
 \noindent\textbf{Funkcja celu:}\\
@@ -151,7 +210,28 @@ Koszt produkcji oraz magazynowania: \(min \sum_{j=1}^{K}(x_{j} * c_{j} + y_{j} *
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
-TBD
+\begin{longtable}{|c|c|c|c|}
+    \hline
+    & \textbf{Produkcja normalna} & \textbf{Produkcja dodatkowa} & \textbf{Stan magazynu} \\ 
+    \hline
+    \textbf{Period 1} & 100.0 & 15.0 & 15.0 \\ 
+    \hline
+    \textbf{Period 2} & 100.0 & 50.0 & 0.0 \\ 
+    \hline
+    \textbf{Period 3} & 100.0 & 0.0 & 70.0 \\ 
+    \hline
+    \textbf{Period 4} & 100.0 & 50.0 & 45.0 \\ 
+    \hline
+    \textbf{Period 5} & & & 0.0 \\ 
+    \hline
+\caption{Produkcja (w kilogramach) każdego z wyrobów}
+\end{longtable}
+
+\begin{enumerate}
+    \item Minimalny łączny koszt produkcji oraz magazynowania wynosi \textbf{3842500}
+    \item Firma musi zaplanować produkcję ponadwymiarową w okresach: 1., 2., 4.
+    \item Możliwości magazynowania są wyczerpane w okresie 2. na 3.
+\end{enumerate}
 
 \vspace{0.5cm}
 
@@ -160,9 +240,6 @@ TBD
 \vspace{0.5cm}
 
 % zadanie 4
-
-% TODO: to jedno ograniczenie 
-% TODO: ograniczenie na T
 
 \noindent\textbf{Zadanie 4.} W tym zadaniu należało zminimalizować koszt podróży z miasta \(i^\circ\) do miasta \(j^\circ\) poprzez znalezienie połączenia, które nie przekracza z góry zadanego czasu.\\
 
@@ -198,7 +275,67 @@ Koszt przejazdu: \(min \sum_{i, j}c_{ij} * x_{ij} \)\\
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
-TBD
+\textbf{egzemplarz prowadzącego} 
+
+\begin{longtable}{|c|c|c|c|}
+    \hline
+    \textbf{Miasto i} & \textbf{Miasto j} & \textbf{Koszt} & \textbf{Czas} \\ 
+    \hline
+    1 & 2 & 3.0 & 4.0 \\ 
+    \hline
+    2 & 3 & 2.0 & 3.0 \\ 
+    \hline
+    3 & 5 & 2.0 & 2.0 \\ 
+    \hline
+    5 & 7 & 3.0 & 3.0 \\ 
+    \hline
+    7 & 9 & 1.0 & 1.0 \\ 
+    \hline
+    9 & 10 & 2.0 & 2.0 \\
+    \hline
+\caption{Optymalne połączenia}
+\end{longtable}
+
+Łączny czas wyniósł 15, a koszt - 13.\\
+
+\textbf{egzemplarz własny}\\
+
+Dane: 
+
+\begin{itemize}
+    \item \(N\) - 10
+    \item \(i^{\circ}\) - 1
+    \item \(j^{\circ}\) - 5
+    \item \(T \) - 9
+    \item krawędzie -  [1, 2, 10, 2],
+    [2, 3, 15, 3],
+    [3, 4, 20, 5],
+    [4, 5, 10, 2],
+    [1, 6, 25, 4],
+    [6, 7, 15, 3],
+    [7, 5, 10, 2],
+    [1, 8, 30, 6],
+    [8, 9, 20, 3],
+    [9, 10, 25, 4],
+    [10, 5, 15, 3]
+\end{itemize}
+
+\begin{longtable}{|c|c|c|c|}
+    \hline
+    \textbf{Miasto i} & \textbf{Miasto j} & \textbf{Koszt} & \textbf{Czas} \\ 
+    \hline
+    1 & 6 & 25.0 & 4.0 \\ 
+    \hline
+    6 & 7 & 15.0 & 3.0 \\ 
+    \hline
+    7 & 5 & 10.0 & 2.0 \\ 
+    \hline
+\caption{Optymalne połączenia - egzemplarz własny}
+\end{longtable}
+
+Łączny czas wyniósł 9, a koszt - 50.\\
+
+Ograniczenie na całkowitoliczbowość zmiennych decyzyjnych nie jest potrzebne, gdyż za każdym razem otrzymamy identyczne rozwiązanie. 
 
 \vspace{0.5cm}
 
@@ -241,7 +378,20 @@ Liczba radiowozów: \(min \sum_{i}\sum_{j}x_{ij} \)\\
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
-TBD
+\begin{longtable}{|c|c|c|c|}
+    \hline
+    & \textbf{Zmiana 1} & \textbf{Zmiana 2} & \textbf{Zmiana 3} \\ 
+    \hline
+    \textbf{Dzielnica 1} & 2.0 & 5.0 & 3.0 \\ 
+    \hline
+    \textbf{Dzielnica 2} & 3.0 & 7.0 & 5.0 \\ 
+    \hline
+    \textbf{Dzielnica 3} & 5.0 & 8.0 & 10.0 \\ 
+    \hline
+\caption{Optymalne rozłożenie radiowozów}
+\end{longtable}
+
+Całkowita liczba wykorzystanych radiowozów wynosi 48.
 
 \vspace{0.5cm}
 
@@ -271,7 +421,7 @@ TBD
 \begin{itemize}
     \item \(x_{ij} \in \{0, 1\} \)
     \item \(x_{ij} + r_{ij} \leq 1 \) - nie można postawić kamery tam, gdzie jest kontener
-    \item \(\sum_{l = max(i-k, 1)}^{min(i+k,m)}x_{lj} + \sum_{s = max(j-k, 1)}^{min(i+k,m)}x_{is} \geq 1 \)  - suma dostaw do danego lotniska musi zaspokoić jego zapotrzebowanie 
+    \item \(\sum_{l = max(i-k, 1)}^{min(i+k,m)}x_{lj} + \sum_{s = max(j-k, 1)}^{min(i+k,m)}x_{is} \geq 1 \)  - każdy kontener musi być obserwowany
 \end{itemize}
 
 \noindent\textbf{Funkcja celu:}\\
@@ -280,7 +430,67 @@ Liczba kamer: \(min \sum_{i}\sum_{j}x_{ij} \)\\
 
 \noindent\textbf{Rozwiazanie:}\\ 
 
-TBD
+\textbf{egzemplarz 1:}
+
+
+\[
+\begin{bmatrix}
+1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1
+\end{bmatrix}
+\]
+
+Zasięg = 2 \\
+
+Rozwiązanie:
+
+\[
+\begin{bmatrix}
+1 & -1 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & -1 & 1 & -1 \\
+-1 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1
+\end{bmatrix}
+\]
+
+Postawiono 4 kamery. \\
+
+
+\textbf{egzemplarz 2:}
+
+\[
+\begin{bmatrix}
+1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1
+\end{bmatrix}
+\]
+
+Zasięg = 4 \\
+
+Rozwiązanie:
+
+\[
+\begin{bmatrix}
+1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & -1 & 1 & 0 \\
+-1 & 1 & 1 & 0 & 1 \\
+1 & -1 & 1 & 0 & 1
+\end{bmatrix}
+\]
+
+Postawiono 3 kamery.
 
 \vspace{0.5cm}
 
