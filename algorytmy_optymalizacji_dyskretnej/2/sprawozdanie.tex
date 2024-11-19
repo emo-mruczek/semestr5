@@ -266,7 +266,8 @@ Koszt produkcji oraz magazynowania: \(min \sum_{j=1}^{K}(x_{j} * c_{j} + y_{j} *
     \item \(x_{ij} \in \{0, 1\} \)
     \item \(\sum_{j}x_{i^\circ j} = 1 \) - należy zacząć ścieżkę w mieście początkowym 
     \item \(\sum_{j}x_{ij^\circ} = 1 \) - należy zakończyć ścieżkę w mieście końcowym 
-    \item \(\sum_{j}x_{ij} \leq p_i \) - firma nie może dostarczyć więcej paliwa, niż sama produkuje
+    \item \(\sum_{j}x_{ij} * t_{ij} \leq T \) - nie można przekroczyć maksymalnego czasu przejazdu
+    \item \(\sum x_{kj} = \sum x_{ik} \) - każde miasto (nie licząc miasta początkowego oraz końcowego) musi mieć tyle samo połączeń wchodzących, co wychodzących
 \end{itemize}
 
 \noindent\textbf{Funkcja celu:}\\
@@ -335,7 +336,22 @@ Dane:
 
 Łączny czas wyniósł 9, a koszt - 50.\\
 
-Ograniczenie na całkowitoliczbowość zmiennych decyzyjnych nie jest potrzebne, gdyż za każdym razem otrzymamy identyczne rozwiązanie. 
+Ograniczenie na całkowitoliczbowość zmiennych decyzyjnych jest potrzebne. Gdy optymalne rozwiązanie nie będzie spełniać ograniczeń czasowych, zmienne decyzyjne będą przyjmować wartości niecałkowite. Poniższe dane spowodują pojawienie się takich rozwiazań:
+
+\begin{itemize}
+    \item \(N\) - 11
+    \item \(i^{\circ}\) - 2
+    \item \(j^{\circ}\) - 11
+    \item \(T \) - 6
+    \item krawędzie -  [2, 3, 1, 6],
+    [3, 11, 1, 2],
+    [2, 11, 1, 9]
+\end{itemize}
+
+Koszt po usunięciu ograniczeń: \textbf{1.75}\\
+
+W przypadku usunięciu ograniczenia na czasy przejazdu w modelu bez ograniczeń, otrzymane połączenie nie zawsze jest akceptowalne, bo solver może wyznaczyć rozwiązanie bez uzwględnienia maksymalnego czasu.
+
 
 \vspace{0.5cm}
 

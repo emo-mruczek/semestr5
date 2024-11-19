@@ -9,7 +9,7 @@ function solve(T::Int, G::Matrix, c::Matrix, t::Matrix, i::Int, j::Int, N::Int)
         
     model = Model(HiGHS.Optimizer)
 
-    @variable(model, 0 <= x[1:N, 1:N] <= 1, Int)
+    @variable(model, 0 <= x[1:N, 1:N] <= 1)
     println(typeof(x))
     
     for k in 1:N, l in 1:N
@@ -26,6 +26,7 @@ function solve(T::Int, G::Matrix, c::Matrix, t::Matrix, i::Int, j::Int, N::Int)
             @constraint(model, vec(sum(x, dims = 1))[k] == vec(sum(x, dims = 2))[k])
         end
     end
+
 
     @constraint(model, sum(x .* t) <= T)
     
@@ -83,4 +84,11 @@ b::Input = Input(10, 1, 5, 9, [
 ]
 )
 
-construct_and_solve(b)
+c::Input = Input(11, 2, 11, 6, [
+    [2, 3, 1, 3],
+    [3, 11, 1, 2],
+    [2, 11, 1, 9],
+]
+)
+
+construct_and_solve(c)
