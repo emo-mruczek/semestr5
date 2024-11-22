@@ -59,5 +59,31 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \noindent Wyznaczam miejsca przecięć siecznych funkcji z osią \(OX\), rozpoczynając od siecznej mającej swój początek w punkcie \((x_0, f(x_0))\) oraz koniec w \((x_1, f(x_1))\). Sieczna ta przecina oś \(OX\) w \(x_2\), którego używam do wyznaczenia kolejnej siecznej i jej przecięcia z osią. \\\\
 \noindent Szukanie przybliżenia pierwiastka kończy się, gdy przybliżenie zera będzie odpowiednio małe (zgodne z podanym do funkcji), bądź gdy różnica między kolejnymi przybliżeniami będzie wystarczająco mała (zgodna z podanym do funkcji).
 
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+%zadanie 4
+
+\noindent\textbf{Zadanie 4} W tym zadaniu należało wyznaczyć pierwiastki funkcji \(\sin x - \left(\frac{1}{2}x\right)^2\) przy użyciu metod zaprogramowanych w poprzednich zadaniach.\\\\
+\noindent Wyniki dla poszczególnych metod przedstawia poniższa tabela:
+
+
+\begin{longtable}{|c|c|c|c|c|}
+    \hline
+    \textbf{Metoda} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
+    \hline
+    Medota bisekcji & 1.9337539672851562 & -2.7027680138402843e-7 & 16 & false \\
+    \hline
+    Metoda Newtona & 1.933753779789742 & -2.2423316314856834e-8 & 4 & 0 \\
+    \hline
+    Metoda siecznych & 1.933753644474301 & 1.564525129449379e-7 & 4 & false \\
+    \hline
+\end{longtable}
+
+\noindent Metoda bisekcji potrzebowała najwiecej iteracji, bo aż 16, podczas gdy pozostałe metody potrzebowały ich tylko 4. Metoda Newtora oraz siecznych mają mniejszą złożoność. Każda z metod obliczyła wartość pierwiastka z podobną dokładnością.
+
 
 \end{document}
