@@ -1,3 +1,5 @@
+# Felix Zielinski 272336
+
 include("./metody.jl")
 using .metody
 

@@ -1,3 +1,5 @@
+# Felix Zielinski 272336
+
 module metody
 
 export mbisekcji, mstycznych, msiecznych
@@ -21,9 +23,9 @@ export mbisekcji, mstycznych, msiecznych
 function mstycznych(f::Function, pf::Function, x0::Float64, delta::Float64, epsilon::Float64, maxit::Int)::Tuple{Float64, Float64, Int, Int} 
     val::Float64 = f(x0)
 
-    if abs(val) < epsilon return x0, v, 0, 0 end
+    if abs(val) < epsilon return x0, val, 0, 0 end
 
-    if abs(pf(x0)) < epsilon return NaN, NaN, NaN, 2 end
+    if abs(pf(x0)) < epsilon return NaN, NaN, 0, 2 end
 
     x::Float64 = zero(Float64)
 
@@ -36,7 +38,7 @@ function mstycznych(f::Function, pf::Function, x0::Float64, delta::Float64, epsi
         x0 = x
     end
 
-    return NaN, NaN, NaN, 1
+    return NaN, NaN, 0, 1
 end
 
 # funckcja rozwiązująca równanie f (x) = 0 metodą siecznych 
