@@ -7,6 +7,9 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{amsfonts}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{amsmath}
 \title{Obliczenia naukowe}
 \author{Felix Zieliński 272336}
 \date{Lista 2}
@@ -40,6 +43,50 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \noindent W ten sposób jednak, otrzymam tylko jedno miejsce zerowe, nawet jeśli jest ich więcej na tym odcinku.\\\\ 
 \noindent Innym warunkiem zakończenia jest warunek \(|f(c)| < \epsilon \) lub \(|b - a| < \delta \). Te stałe są podane przy wywołaniu funkcji i decydują o dokładności wyniku, bowiem dla typu zmennoprzecinkowego \(Float64\) mogą oczywiście nastąpić błędy przybliżeń. \( \epsilon \) jest wartością błędu przybliżenia, a \(\delta\) - pożądaną bliskością otrzymanej wartości iloczynu do zera. 
 
+\pagebreak
+
+\begin{algorithm}
+\caption{Metoda bisekcji}
+\label{alg:metoda_bisekcji}
+\begin{algorithmic}[1]
+\Function{mbisekcji}{$f$, $a$, $b$, $\delta$, $\epsilon$}
+    \State $a\_val \gets f(a)$
+    \State $b\_val \gets f(b)$
+    \State $interval \gets b - a$
+    \State $iterations \gets 0$
+    \State $c \gets 0$
+    \State $middle\_val \gets 0$\\
+
+    \If{$\text{sign}(a\_val) = \text{sign}(b\_val)$}
+        \State \Return \text{error}
+    \EndIf\\
+
+    \While{$interval > \epsilon$}
+        \State $iterations \gets iterations + 1$
+        \State $interval \gets interval / 2$
+        \State $c \gets a + interval$
+        \State $middle\_val \gets f(c)$\\
+
+        \If{$|middle\_val| < \epsilon$ \textbf{or} $|interval| < \delta$}
+            \State \Return $(c, middle\_val, iterations, 0)$
+        \EndIf\\
+
+        \If{$\text{sign}(middle\_val) = \text{sign}(a\_val)$}
+            \State $a \gets c$
+            \State $a\_val \gets middle\_val$
+        \Else
+            \State $b \gets c$
+            \State $b\_val \gets middle\_val$
+        \EndIf
+    \EndWhile\\
+
+    \State \Return $(c, middle\_val, iterations, 0)$\\
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+
 \vspace{0.5cm}
 
 \noindent\hrulefill
@@ -51,6 +98,40 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \noindent\textbf{Zadanie 2.} Funkcja rozwiązująca równanie \( f(x) = 0 \) metodą Newtona.\\\\
 \noindent To inaczej metoda stycznych. Działa ona dla funkcji, która w przedziale \([a, b]\) musi znajdować się dokładnie jeden jej pierwiastek,  \(f(a) * f(x) < 0 \) oraz jej pierwsza i druga pochodna mają stały znak w przedziale \( [a, b] \).\\\\
 \noindent Liczę punkty przecięcia stycznych do funkcji z osią \( OX \), zaczynając od prostej stycznej w \( f(x_0) \). Współrzędnia \(x\), w której styczna przecina oś \(OX\), jest przybliżeniem pierwiastka funkcji. Szukam dalej przybliżeń, aż w końcu któreś spełni dane założenia. 
+
+
+\begin{algorithm}
+\caption{Metoda stycznych}
+\label{alg:metoda_stycznych}
+\begin{algorithmic}[1]
+\Function{mstycznych}{$f$, $pf$, $x_0$, $\delta$, $\epsilon$, $maxit$}
+    \State $val \gets f(x_0)$\\
+
+    \If{$|val| < \epsilon$}
+        \State \Return $(x_0, val, 0, 0)$
+    \EndIf\\
+
+    \If{$|pf(x_0)| < \epsilon$}
+        \State \Return \text{error}
+    \EndIf\\
+
+    \State $x \gets 0$\\
+
+    \For{$i \gets 1$ \textbf{to} $maxit$}
+        \State $x \gets x_0 - \frac{val}{pf(x_0)}$
+        \State $val \gets f(x)$\\
+
+        \If{$|val| < \epsilon$ \textbf{or} $|x - x_0| < \delta$}
+            \State \Return $(x, val, i, 0)$
+        \EndIf\\
+
+        \State $x_0 \gets x$
+    \EndFor\\
+
+    \State \Return \text{error}\\
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 \vspace{0.5cm}
 
@@ -66,6 +147,37 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \noindent Wyznaczam miejsca przecięć siecznych funkcji z osią \(OX\), rozpoczynając od siecznej mającej swój początek w punkcie \((x_0, f(x_0))\) oraz koniec w \((x_1, f(x_1))\). Sieczna ta przecina oś \(OX\) w \(x_2\), którego używam do wyznaczenia kolejnej siecznej i jej przecięcia z osią. \\\\
 \noindent Szukanie przybliżenia pierwiastka kończy się, gdy przybliżenie zera będzie odpowiednio małe (zgodne z podanym do funkcji), bądź gdy różnica między kolejnymi przybliżeniami będzie wystarczająco mała (zgodna z podanym do funkcji).
 
+
+\begin{algorithm}
+\caption{Metoda siecznych}
+\label{alg:secant_method}
+\begin{algorithmic}[1]
+\Function{msiecznych}{$f$, $x_0$, $x_1$, $\delta$, $\epsilon$, $maxit$}
+    \State $f_a \gets f(x_0)$
+    \State $f_b \gets f(x_1)$\\
+
+    \For{$i \gets 1$ \textbf{to} $maxit$}
+        \If{$|f_a| > |f_b|$}
+            \State $(f_a, f_b) \gets (f_b, f_a)$
+            \State $(x_0, x_1) \gets (x_1, x_0)$
+        \EndIf\\
+
+        \State $s \gets \frac{x_1 - x_0}{f_b - f_a}$
+        \State $x_1 \gets x_0$
+        \State $f_b \gets f_a$
+        \State $x_0 \gets x_0 - (f_a \cdot s)$
+        \State $f_a \gets f(x_0)$\\
+
+        \If{$|x_1 - x_0| < \delta$ \textbf{or} $|f_a| < \epsilon$}
+            \State \Return $(x_0, f_a, i, 0)$
+        \EndIf
+    \EndFor\\ 
+
+    \State \Return \text{error}\\
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
 \vspace{0.5cm}
 
 \noindent\hrulefill
@@ -77,8 +189,9 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \noindent\textbf{Zadanie 4} W tym zadaniu należało wyznaczyć pierwiastki funkcji \(\sin x - \left(\frac{1}{2}x\right)^2\) przy użyciu metod zaprogramowanych w poprzednich zadaniach.\\\\
 \noindent Wyniki dla poszczególnych metod przedstawia poniższa tabela:
 
-
-\begin{longtable}{|c|c|c|c|c|}
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Metoda} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -88,7 +201,10 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
     \hline
     Metoda siecznych & 1.933753644474301 & 1.564525129449379e-7 & 4 & false \\
     \hline
-\end{longtable}
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
 
 \noindent Metoda bisekcji potrzebowała najwiecej iteracji, bo aż 16, podczas gdy pozostałe metody potrzebowały ich tylko 4. Metoda Newtora oraz siecznych mają mniejszą złożoność. Każda z metod obliczyła wartość pierwiastka z podobną dokładnością.
 
@@ -101,11 +217,18 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 %zadanie 5
 
 \noindent\textbf{Zadanie 5.} Wyznaczenie wartości zmiennej x, dla której wykresy \( y = 3x \) oraz \( y = e^x \) się przecinają.\\\\
-\noindent W zadaniu tym posłużę się faktem, że skoro \(3x = e^x \), to \(3x - e^x = 0 \). Dla takiej też funkcji będę wyszukiwał miejsce zerowe. Aby móc jednak wyznaczyć je tą metodą, muszę poznać, jak przebiega jej zmienność, aby wyznaczyć punkty a oraz b, dlatego też narysowałem jej wykres:\\\\\
-% TODO  Wykres
+\noindent W zadaniu tym posłużę się faktem, że skoro \(3x = e^x \), to \(3x - e^x = 0 \). Dla takiej też funkcji będę wyszukiwał miejsce zerowe. Aby móc jednak wyznaczyć je tą metodą, muszę poznać, jak przebiega jej zmienność w celu odpowiedniego dobrania punktów a oraz b, dlatego też narysowałem wykresy obu funkcji:\\\\\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/wykreszad5.png}
+\end{figure}
+
 \noindent Wyniki przedstawia poniższa tabela
 
-\begin{longtable}{|c|c|c|c|c|}
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Przedział} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -113,7 +236,16 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
     \hline
     [1.0, 2.0] & 1.5120849609375 & 7.618578602741621e-5 & 13 & false \\
     \hline
-\end{longtable}
+    [0.0, 2.0] & NaN & NaN & 0 & true \\
+    \hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\noindent Jak widać, aby dobrze wyznaczyć punkty przecięcia funkcji (miejsca zerowe) przy użyciu metody bisekcji, powinno się posiadać informacje o przebiegu zmienności funkcji. W przypadku złebo dobrania przedziału, nie będzie można uzyskać prawidłowego wyniku (jak dla [0.0, 2.0], gdzie na jego krańcach funkcja nie zmienia znaku). W tym zadaniu, prawdopodobnie lepiej byłoby zastosować metodę Newtona bądź siecznych, gdyż one nie wymagają one dokładnej znajomości jej przebiegu.
+
+%TODO: CZY NEI PISZE GLUPOT
+
 
 \vspace{0.5cm}
 
@@ -130,8 +262,10 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 
 \noindent Najpierw sprawdziłem, jakie wyniki otrzymam metodą bisekcji. Dobrałem w tym celu rózne przedziały.
 
-
-\begin{longtable}{|c|c|c|c|c|}
+\noindent Wyniki dla f1:
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Przedział} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -143,11 +277,14 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
     \hline
     [-0.0, 2.0] & 1.0 & 0.0 & 1 & false \\
     \hline
-    \caption{Wyniki dla f1}
-\end{longtable}
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
-
-\begin{longtable}{|c|c|c|c|c|}
+\noindent Wyniki dla f2:
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Przedział} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -159,14 +296,18 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
     \hline
     [-0.5, 0.5] & 0.0 & 0.0 & 1 & false \\
     \hline
-    \caption{Wyniki dla f2}
-\end{longtable}
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
 \noindent Można zauważyć, że dobrany przedział wpływa na dokładność wyniku, oraz na liczbę potrzebnych iteracji tej metody.\\\\
 
 \noindent Dla metody Newtona przyjąłem \(maxit = 100 \).
 
-\begin{longtable}{|c|c|c|c|c|}
+\noindent Wyniki dla f1:
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Początkowe x0} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -182,10 +323,14 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
     \hline
     10.0 & NaN & NaN & - & 1 \\
     \hline
-    \caption{Wyniki dla f1}
-\end{longtable}
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
-\begin{longtable}{|c|c|c|c|c|}
+\noindent Wyniki dla f2:
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|}
     \hline
     \textbf{Początkowe x0} & \textbf{x0} & \textbf{f(x0)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -201,8 +346,11 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
     \hline
     10.0 & 14.380524159896261 & 8.173205649825554e-6 & 4 & 0 \\
     \hline
-    \caption{Wyniki dla f2}
-\end{longtable}
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
 
 \noindent W tej metodzie również odpowiednio dobrana wartość początkowa \( x_0 \) pozwala na ograniczenie liczby iteracji, oraz w ogóle na poprawność wyniku. 
 
@@ -214,8 +362,10 @@ Metoda Newtona dla \(f2\), w przypadku dobrania nieodpowiedniej wartości począ
 
 \noindent Dla metody siecznych przyjąłem taką samą wartość maxit.
 
-
-\begin{longtable}{|c|c|c|c|c|c|}
+\noindent Wyniki dla f1:
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|c|}
     \hline
     \textbf{Początkowe x0} & \textbf{Początkowe x1} & \textbf{x} & \textbf{f(x)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -231,11 +381,14 @@ Metoda Newtona dla \(f2\), w przypadku dobrania nieodpowiedniej wartości począ
     \hline
     10.0 & 14.0 & 10.0 & -0.9998765901959134 & 2 & false \\
     \hline
-    \caption{Wyniki dla f1}
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
-\end{longtable}
-
-\begin{longtable}{|c|c|c|c|c|c|}
+\noindent Wyniki dla f2:
+\begin{table}[ht]
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|c|c|c|c|c|c|}
     \hline
     \textbf{Początkowe x0} & \textbf{Początkowe x1} & \textbf{x} & \textbf{f(x)} & \textbf{Iteracje} & \textbf{Czy błąd} \\
     \hline
@@ -251,8 +404,9 @@ Metoda Newtona dla \(f2\), w przypadku dobrania nieodpowiedniej wartości począ
     \hline
     10.0 & 15.0 & 15.05105056651027 & 4.375005536508203e-6 & 1 & false \\
     \hline
-    \caption{Wyniki dla f2}
-\end{longtable}
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
 \noindent Wybór odpowiednich wartości początkowych również i przy tej metodzie ma wpływ na ilość iteracji. Niepoprawne dobranie ich dla funkcji \(f2\) również i tutaj powoduje pojawienie się skrajnie niepoprawnych wyników przez jej zbieżność do 0 w nieskończoności. 
 

@@ -101,7 +101,7 @@ function mbisekcji(f::Function, a::Float64, b::Float64, delta::Float64, epsilon:
     b_val::Float64 = f(b)
     interval::Float64 = b - a 
 
-    if sign(a_val) == sign(b_val) return NaN, NaN, NaN, 1 end
+    if sign(a_val) == sign(b_val) return NaN, NaN, 0, 1 end
 
     iterations::Int = 0
     c::Float64 = zero(Float64)
