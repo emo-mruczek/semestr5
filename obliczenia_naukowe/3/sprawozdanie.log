@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  24 NOV 2024 00:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  24 NOV 2024 00:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -737,27 +737,27 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 ex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 38--45
+Underfull \hbox (badness 10000) in paragraph at lines 33--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--45
+Underfull \hbox (badness 10000) in paragraph at lines 33--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--45
+Underfull \hbox (badness 10000) in paragraph at lines 33--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--45
+Underfull \hbox (badness 10000) in paragraph at lines 33--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--45
+Underfull \hbox (badness 10000) in paragraph at lines 33--40
 
  []
 
@@ -766,106 +766,131 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--45
 {/nix/store/a0bqrx7ms5yaw2ynb61dxf6vrb13mf8b-texlive-2023-env/share/texmf-var/f
 onts/map/pdftex/updmap/pdftex.map}{/nix/store/7iad1axfkgxp0l8qn5r3yf95frkkkkih-
 texlive-2023-env-texmfdist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
+Underfull \hbox (badness 10000) in paragraph at lines 93--96
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
+Underfull \hbox (badness 10000) in paragraph at lines 93--96
 
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 144--149
+Underfull \hbox (badness 10000) in paragraph at lines 139--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--149
+Underfull \hbox (badness 10000) in paragraph at lines 139--144
 
  []
 
 
-Overfull \hbox (46.43439pt too wide) in paragraph at lines 144--149
+Overfull \hbox (46.43439pt too wide) in paragraph at lines 139--144
 []$\T1/cmr/m/n/10 . Sama me-toda siecz-nych opi-sana jest wzo-rem $\OML/cmm/m/i
 t/10 x[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m
 /it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 )[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--149
+Underfull \hbox (badness 10000) in paragraph at lines 139--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--149
+Underfull \hbox (badness 10000) in paragraph at lines 139--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--191
+Underfull \hbox (badness 10000) in paragraph at lines 184--186
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 219--221
+Underfull \hbox (badness 10000) in paragraph at lines 214--216
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--221
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 219--221
+Underfull \hbox (badness 10000) in paragraph at lines 214--216
 
  []
 
 <img/wykreszad5.png, id=33, 1257.69875pt x 990.70125pt>
 File: img/wykreszad5.png Graphic file (type png)
 <use img/wykreszad5.png>
-Package pdftex.def Info: img/wykreszad5.png  used on input line 224.
+Package pdftex.def Info: img/wykreszad5.png  used on input line 219.
 (pdftex.def)             Requested size: 172.5pt x 135.87038pt.
 [5 <./img/wykreszad5.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 258--260
+Underfull \hbox (badness 10000) in paragraph at lines 252--254
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--260
+Underfull \hbox (badness 10000) in paragraph at lines 252--254
+
+ []
+
+<img/wykreszad6.png, id=40, 1749.53625pt x 873.2625pt>
+File: img/wykreszad6.png Graphic file (type png)
+<use img/wykreszad6.png>
+Package pdftex.def Info: img/wykreszad6.png  used on input line 257.
+(pdftex.def)             Requested size: 172.5pt x 86.09215pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--260
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--304
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--304
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
 
  []
 
-[6] [7] (./sprawozdanie.aux)
+[6 <./img/wykreszad6.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 412--413
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 416--418
+
+ []
+
+[8] (./sprawozdanie.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 16422 strings out of 474116
- 334311 string characters out of 5720541
- 1949187 words of memory out of 5000000
- 38455 multiletter control sequences out of 15000+600000
+ 16429 strings out of 474116
+ 334485 string characters out of 5720541
+ 1943187 words of memory out of 5000000
+ 38462 multiletter control sequences out of 15000+600000
  570455 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,10n,107p,542b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,10n,107p,538b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </nix/store/7iad1axfkgxp0l8qn5r3yf95frkkkkih-texlive-2023-env-texmfdist/fonts
 /type1/public/amsfonts/cm/cmex10.pfb></nix/store/7iad1axfkgxp0l8qn5r3yf95frkkkk
 ih-texlive-2023-env-texmfdist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></nix/s
@@ -889,10 +914,10 @@ exmfdist/fonts/type1/public/cm-super/sfrm0800.pfb></nix/store/7iad1axfkgxp0l8qn
 .pfb></nix/store/7iad1axfkgxp0l8qn5r3yf95frkkkkih-texlive-2023-env-texmfdist/fo
 nts/type1/public/cm-super/sfrm1200.pfb></nix/store/7iad1axfkgxp0l8qn5r3yf95frkk
 kkih-texlive-2023-env-texmfdist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on sprawozdanie.pdf (7 pages, 268609 bytes).
+Output written on sprawozdanie.pdf (8 pages, 328508 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 71 compressed objects within 1 object stream
+ 120 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

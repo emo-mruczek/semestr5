@@ -16,15 +16,10 @@
 \begin{document}
 \maketitle
 
-\noindent TESTY STETTY SRESTY
-wykresy 
 nwm jakies wnioski, czym sie roznia te metody czy cos, nazwy returnowanych w kodzie
-wykresy do 5, wnioski do 5\\
 metoda DOJEBANEGO Eulera (tak naprawde to nie ale bardzo chcialem to napisac)
-wykresy do 6
 iteracje w 6.2 dla f1???
 moze wiecej testow bo nwm w sumie cyz nie za malo + jakies jak sie wysrywa + moze dla innych funkcji
-formatowanie tych zasranych tabeli umre kiedys tutaj
 wnioski koncowe idk
 
 \vspace{0.5cm}
@@ -217,7 +212,7 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 %zadanie 5
 
 \noindent\textbf{Zadanie 5.} Wyznaczenie wartości zmiennej x, dla której wykresy \( y = 3x \) oraz \( y = e^x \) się przecinają.\\\\
-\noindent W zadaniu tym posłużę się faktem, że skoro \(3x = e^x \), to \(3x - e^x = 0 \). Dla takiej też funkcji będę wyszukiwał miejsce zerowe. Aby móc jednak wyznaczyć je tą metodą, muszę poznać, jak przebiega jej zmienność w celu odpowiedniego dobrania punktów a oraz b, dlatego też narysowałem wykresy obu funkcji:\\\\\
+\noindent W zadaniu tym posłużę się faktem, że skoro \(3x = e^x \), to \(3x - e^x = 0 \). Dla takiej też funkcji będę wyszukiwał miejsce zerowe. Aby móc jednak wyznaczyć je tą metodą, muszę poznać, jak przebiega jej zmienność w celu odpowiedniego dobrania punktów a oraz b, dlatego też narysowałem wykresy obu funkcji:\\
 
 \begin{figure}[h]
     \centering
@@ -242,10 +237,9 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \end{adjustbox}
 \end{table}
 
-\noindent Jak widać, aby dobrze wyznaczyć punkty przecięcia funkcji (miejsca zerowe) przy użyciu metody bisekcji, powinno się posiadać informacje o przebiegu zmienności funkcji. W przypadku złebo dobrania przedziału, nie będzie można uzyskać prawidłowego wyniku (jak dla [0.0, 2.0], gdzie na jego krańcach funkcja nie zmienia znaku). W tym zadaniu, prawdopodobnie lepiej byłoby zastosować metodę Newtona bądź siecznych, gdyż one nie wymagają one dokładnej znajomości jej przebiegu.
+\noindent Jak widać, aby dobrze wyznaczyć punkty przecięcia funkcji (miejsca zerowe) przy użyciu metody bisekcji, powinno się posiadać informacje o przebiegu zmienności funkcji. W przypadku złebo dobrania przedziału, nie będzie można uzyskać prawidłowego wyniku (jak dla [0.0, 2.0], gdzie na jego krańcach funkcja nie zmienia znaku). W tym zadaniu, prawdopodobnie lepiej byłoby zastosować metodę Newtona bądź siecznych, gdyż nie wymagają one dokładnej znajomości jej przebiegu.
 
 %TODO: CZY NEI PISZE GLUPOT
-
 
 \vspace{0.5cm}
 
@@ -255,12 +249,17 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 
 %zadanie 6
 
-\noindent\textbf{Zadanie 6.} Znalezienie miejsc zerowych funkcji \( f_1(x) = e^{1-x} - 1 \) oraz \(f_2(x) = xe^(-x)\) za pomocą trzech powyższych metod.\\\\
-\noindent W celu wyznaczenia przedziału, zwizualizowałem wykresy tych funkcji: \\\\
+\noindent\textbf{Zadanie 6.} Znalezienie miejsc zerowych funkcji \( f_1(x) = e^{1-x} - 1 \) oraz \(f_2(x) = xe^{-x}\) za pomocą trzech powyższych metod.\\\\
+\noindent W celu wyznaczenia przedziału, zwizualizowałem wykresy tych funkcji: \\
 
-\noindent Z powyższego wykresu można odczytać, że funkcja \(f_1 \) ma miejce zerowe w 1, a \(f_2\) w 0. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/wykreszad6.png}
+\end{figure}
 
-\noindent Najpierw sprawdziłem, jakie wyniki otrzymam metodą bisekcji. Dobrałem w tym celu rózne przedziały.
+\noindent Z powyższego wykresu można odczytać, że funkcja \(f_1 \) ma miejce zerowe w 1, a \(f_2\) w 0.\\ 
+
+\noindent Najpierw sprawdziłem, jakie wyniki otrzymam metodą bisekcji. Dobrałem w tym celu rózne przedziały.\\
 
 \noindent Wyniki dla f1:
 \begin{table}[ht]
@@ -302,7 +301,9 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 
 \noindent Można zauważyć, że dobrany przedział wpływa na dokładność wyniku, oraz na liczbę potrzebnych iteracji tej metody.\\\\
 
-\noindent Dla metody Newtona przyjąłem \(maxit = 100 \).
+\pagebreak
+
+\noindent Dla metody Newtona przyjąłem \(maxit = 100 \).\\
 
 \noindent Wyniki dla f1:
 \begin{table}[ht]
@@ -350,15 +351,15 @@ Korzysta ona z faktu, że funkcja ciągła w przedziale \( [a, b] \), która zmi
 \end{adjustbox}
 \end{table}
 
-
-
-\noindent W tej metodzie również odpowiednio dobrana wartość początkowa \( x_0 \) pozwala na ograniczenie liczby iteracji, oraz w ogóle na poprawność wyniku. 
+\noindent W tej metodzie również odpowiednio dobrana wartość początkowa \( x_0 \) pozwala na ograniczenie liczby iteracji, oraz w ogóle na poprawność wyniku.\\ 
 
 %TODO: f1???????? dla duzyc?????
 
-Metoda Newtona dla \(f2\), w przypadku dobrania nieodpowiedniej wartości początkowej (np \(x_0 > 1\)) szuka miejsca zerowego zmierzając w kierunku zbiegania funkcji do 0 (bowiem, jak widać na wykresie, funkcja ta jest zbieżna do 0 w nieskończoności), co skutkuje nieprawidłowym wynikiem. 
+\noindent Metoda Newtona dla \(f2\), w przypadku dobrania nieodpowiedniej wartości początkowej (np \(x_0 > 1\)) szuka miejsca zerowego zmierzając w kierunku zbiegania funkcji do 0 (bowiem, jak widać na wykresie, funkcja ta jest zbieżna do 0 w nieskończoności), co skutkuje nieprawidłowym wynikiem. 
 
 %TODO  czy to prawda w ogole?
+
+\pagebreak
 
 \noindent Dla metody siecznych przyjąłem taką samą wartość maxit.
 
@@ -408,11 +409,11 @@ Metoda Newtona dla \(f2\), w przypadku dobrania nieodpowiedniej wartości począ
 \end{adjustbox}
 \end{table}
 
-\noindent Wybór odpowiednich wartości początkowych również i przy tej metodzie ma wpływ na ilość iteracji. Niepoprawne dobranie ich dla funkcji \(f2\) również i tutaj powoduje pojawienie się skrajnie niepoprawnych wyników przez jej zbieżność do 0 w nieskończoności. 
+\noindent Wybór odpowiednich wartości początkowych również i przy tej metodzie ma wpływ na ilość iteracji. Niepoprawne dobranie ich dla funkcji \(f2\) również i tutaj powoduje pojawienie się skrajnie niepoprawnych wyników przez jej zbieżność do 0 w nieskończoności.\\ 
 
 %TODOL ZNOWU, CZY NIE PISZE GLUPOT
 
-\noindent Dla metody bisekcji, przydatna jest znajomość przebiegu funkcji, aby odpowiednio dobrać przedział. Najlepsze wyniki są wtedy, gdy przedział jest odpowiednio wąski, a miejsce zerowe znajduje się na jego środku. \\
+\noindent Dla metody bisekcji, przydatna jest znajomość przebiegu funkcji, aby odpowiednio dobrać przedział. Najlepsze wyniki są wtedy, gdy przedział jest odpowiednio wąski, a miejsce zerowe znajduje się na jego środku. \\\\
 Dla metody Newtona oraz siecznych wpływ wartości początkowych \(x_0\) oraz \(x_1\) jest znaczny. Im są one lepszymi przybliżeniami faktycznego miejsca zerowego, tym dokładniejszy będzie wynik. 
 
 
