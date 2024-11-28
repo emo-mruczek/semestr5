@@ -179,7 +179,7 @@ W tabelach przedstawiłem błędy względne dla zadanych algorytmów: eliminacji
 \vspace{0.5cm}
 
 \noindent Tak jak przy macierzach Hilberta, w wynikach dla macierzy losowych można zaobserwować rosnący błąd względny. Ponadto widać, że funkcja cond() nie oblicza dokładnie uwarunkowania, tylko je przybliża. W dodatku wartości tych przybliżeń są różne dla różnych procesorów. \\\\
-\noindent Powyższe tabele pozwalają na wyciągnięcie wniosku, że zadanie to było źle uwarunkowane, zwłaszcza dla macierzy Hilberta - wraz ze wzrostem stopnia macierzy ostro rośnie też wskaźnik uwarunkowania i, jednocześnie, błąd względny. Dla macierzy losowych dzieje się podobnie, jednakże ten wzrost jest wolniejszy (błędy są mniejsze).
+\noindent Powyższe tabele pozwalają na wyciągnięcie wniosku, że zadanie to było źle uwarunkowane, zwłaszcza dla macierzy Hilberta - wraz ze wzrostem stopnia macierzy ostro rośnie też wskaźnik uwarunkowania i, jednocześnie, błąd względny. Dla macierzy losowych dzieje się podobnie, jednakże ten wzrost jest wolniejszy oraz niemonotoniczny (błędy są mniejsze).
 
 \vspace{0.5cm}
 
@@ -350,8 +350,8 @@ stanu środowiska.\\\\
 
 \vspace{0.5cm}
 
-\noindent Jak można zauwazyć, ostateczny wynik po obcięciu różni się od tego bez ponad czterokrotnie. Co więcej, w arytmetyce \verb|Float64|, obliczenia bez obciącia dają nam jeszcze inny, stukrotnie mniejszy wynik od tego z obcięciem we \verb|Float32|.\\\\
-\noindent Można więc wnioskować, że powyższe zadanie zostało źle uwarunkowane. Obcięcie niewiele znaczących cyfr znacznie zmieniło wyniki. Dodatkowo widać ogromny wpływ użytej prezycji. Zwiększenie jej może pomóc w otrzymaniu dokładniejszego wyniku, jednakże gdyby kontynuować symulację, błąd byłby znaczący.
+\noindent Jak można zauwazyć, ostateczny wynik po obcięciu różni się od tego bez ponad czterokrotnie. Co więcej, w arytmetyce \verb|Float64|, obliczenia bez obcięcia dają nam jeszcze inny, stukrotnie mniejszy wynik od tego z obcięciem we \verb|Float32|.\\\\
+\noindent Można więc wnioskować, że powyższe zadanie zostało źle uwarunkowane. Obcięcie znaczących cyfr znacznie zmieniło wyniki - jest więc to algorytm niestabilny numerycznie.  Dodatkowo widać ogromny wpływ użytej prezycji. Zwiększenie jej może pomóc w otrzymaniu dokładniejszego wyniku, jednakże gdyby kontynuować symulację, błąd byłby znaczący.
 
 \vspace{0.5cm}
 

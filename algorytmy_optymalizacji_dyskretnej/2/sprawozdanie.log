@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  19 NOV 2024 12:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/nixos.org) (preloaded format=pdflatex 1980.1.1)  19 NOV 2024 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -792,7 +792,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 211--212
  []
 
 
-Overfull \hbox (33.90536pt too wide) in alignment at lines 213--228
+Overfull \hbox (29.95633pt too wide) in alignment at lines 213--228
  [] [] [] [] 
  []
 

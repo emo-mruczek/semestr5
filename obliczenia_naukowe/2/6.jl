@@ -7,6 +7,12 @@ using Plots
 c::Vector{Float64} = [-2.0, -2.0, -2.0, -1.0, -1.0, -1.0, -1.0]
 x::Vector{Float64} = [1.0, 2.0, 1.99999999999999, 1.0, -1.0, 0.75, 0.25]
 
+# function experiment
+# params:
+#   x - x_0
+#   c - constant
+# returns results of a given experiment
+
 function experiment(x::Float64, c::Float64)::Vector{Float64} 
     res::Vector{Float64} = Vector{Float64}()
     push!(res, x)
@@ -18,6 +24,9 @@ function experiment(x::Float64, c::Float64)::Vector{Float64}
 
     return res
 end
+
+# function get_results
+# returns cumulated resuts of a multiple runs of the experiment
 
 function get_results()::Vector{Vector{Float64}}
     ret::Vector{Vector{Float64}}  = Vector{Vector{Float64}}()

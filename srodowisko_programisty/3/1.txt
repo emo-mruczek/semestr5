@@ -1,0 +1,994 @@
+
+[felix@izolda:~/kik3]$ svn checkout https://repo.cs.pwr.edu.pl/p-1/
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+A    p-1/app_1
+A    p-1/app_1/tags
+A    p-1/app_1/tags/v_272333
+A    p-1/app_1/tags/v_999
+A    p-1/app_1/branches
+A    p-1/app_1/branches/999
+A    p-1/app_1/trunk
+A    p-1/app_1/trunk/program.h
+A    p-1/app_1/tags/v_272333/README
+A    p-1/app_1/tags/v_272333/main.c
+A    p-1/app_1/trunk/program_usage.c
+A    p-1/app_1/trunk/s999_podprogram.c
+A    p-1/app_1/tags/v_272333/makefile
+A    p-1/app_1/tags/v_272333/program.h
+A    p-1/app_1/tags/v_272333/s272333_podprogram.c
+A    p-1/app_1/tags/v_272333/program_usage.c
+A    p-1/app_1/tags/v_272333/s0_podprogram.c
+A    p-1/app_1/tags/v_272333/s999_podprogram.c
+A    p-1/app_1/tags/v_999/README
+A    p-1/app_1/tags/v_999/main.c
+A    p-1/app_1/tags/v_999/makefile
+A    p-1/app_1/tags/v_999/program.h
+A    p-1/app_1/tags/v_999/program_usage.c
+A    p-1/app_1/tags/v_999/s0_podprogram.c
+A    p-1/app_1/tags/v_999/s999_podprogram.c
+A    p-1/app_1/branches/999/README
+A    p-1/app_1/branches/999/main.c
+A    p-1/app_1/branches/999/makefile
+A    p-1/app_1/branches/999/program.h
+A    p-1/app_1/branches/999/program_usage.c
+A    p-1/app_1/branches/999/s0_podprogram.c
+A    p-1/app_1/branches/999/s999_podprogram.c
+A    p-1/app_1/trunk/README
+A    p-1/app_1/trunk/main.c
+A    p-1/app_1/trunk/makefile
+A    p-1/app_1/trunk/s272333_podprogram.c
+A    p-1/app_1/trunk/s0_podprogram.c
+ U   p-1
+Checked out revision 20.
+
+[felix@izolda:~/kik3]$ ls
+p-1
+
+[felix@izolda:~/kik3]$ cd p-1/
+
+[felix@izolda:~/kik3/p-1]$ ls
+app_1
+
+[felix@izolda:~/kik3/p-1]$ cd app_1/
+
+[felix@izolda:~/kik3/p-1/app_1]$ ls
+branches  tags  trunk
+
+[felix@izolda:~/kik3/p-1/app_1]$ cd t
+-bash: cd: t: No such file or directory
+
+[felix@izolda:~/kik3/p-1/app_1]$ cd trunk/
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ ls
+main.c    program.h        README           s272333_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s999_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ n s272333_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ ls
+main.c    program.h        README           s272333_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s999_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ n README
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ ls
+main.c    program.h        README           s272333_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s999_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ cd ../branches/
+
+[felix@izolda:~/kik3/p-1/app_1/branches]$ ls
+999
+
+[felix@izolda:~/kik3/p-1/app_1/branches]$ cd ..
+
+[felix@izolda:~/kik3/p-1/app_1]$ svn copy https://repo.cs.pwr.edu.pl/p-1/app_1/trunk https://repo.cs.pwr
+.edu.pl/p-1/app_1/branches/272336 -m "add: 272336 branch"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+Committing transaction...
+Committed revision 21.
+
+
+[felix@izolda:~/kik3/p-1]$ cd ..
+
+[felix@izolda:~/kik3]$ ls
+log2  my_log1  p-1
+
+[felix@izolda:~/kik3]$ svn checkout https://repo.cs.pwr.edu.pl/p-1/app_1/branches/272336
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+A    272336/README
+A    272336/main.c
+A    272336/makefile
+A    272336/program.h
+A    272336/s272333_podprogram.c
+A    272336/program_usage.c
+A    272336/s0_podprogram.c
+A    272336/s999_podprogram.c
+ U   272336
+Checked out revision 21.
+
+[felix@izolda:~/kik3]$ ls
+272336  log2  my_log1  p-1
+
+[felix@izolda:~/kik3]$ cd 272336/
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s999_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ s272336_podprogram.c
+s272336_podprogram.c: command not found
+
+[felix@izolda:~/kik3/272336]$ n s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ n program.h
+
+[felix@izolda:~/kik3/272336]$ m s0_podprogram.c
+m: command not found
+
+[felix@izolda:~/kik3/272336]$ n s0_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ n program_usage.c
+
+[felix@izolda:~/kik3/272336]$ n main.c
+
+[felix@izolda:~/kik3/272336]$ n program.h
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ n makefile
+
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ svn add s272336_podprogram.c
+A         s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ svn commit -m 'add: student 272336 program'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+Sending        main.c
+Sending        makefile
+Sending        program.h
+Adding         s272336_podprogram.c
+Transmitting file data ....done
+Committing transaction...
+Committed revision 23.
+
+
+[felix@izolda:~/kik3/272336]$ svn update
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+At revision 23.
+
+
+[felix@izolda:~/kik3/272336]$ svn merge ^/app_1/trunk
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+--- Recording mergeinfo for merge of r21 through r23 into '.':
+ U   .
+
+[felix@izolda:~/kik3/272336]$ svn status
+ M      .
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ svn diff
+Index: .
+===================================================================
+--- .   (revision 23)
++++ .   (working copy)
+
+Property changes on: .
+___________________________________________________________________
+Modified: svn:mergeinfo
+## -0,0 +0,1 ##
+   Merged /app_1/trunk:r21-23
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ n s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ svn commit -m 'merge: 272336 branch'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+Sending        .
+Committing transaction...
+Committed revision 24.
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ svn update
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+At revision 24.
+
+[felix@izolda:~/kik3/272336]$ svn merge --reintegrate ^/app_1/branches/272336
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ svn merge --reintegrate ^/app_1/branches/272336
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+
+[felix@izolda:~/kik3/272336]$ ls
+main.c    program.h        README           s272333_podprogram.c  s999_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s272336_podprogram.c
+
+[felix@izolda:~/kik3/272336]$ cd ..
+
+[felix@izolda:~/kik3]$ ls
+272336  log2  my_log1  p-1
+
+[felix@izolda:~/kik3]$ cd p-1/
+
+[felix@izolda:~/kik3/p-1]$ ls
+app_1
+
+[felix@izolda:~/kik3/p-1]$ cd app_1/
+
+[felix@izolda:~/kik3/p-1/app_1]$ ls
+branches  tags  trunk
+
+[felix@izolda:~/kik3/p-1/app_1]$ cd trunk/
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ ls
+main.c    program.h        README           s272333_podprogram.c
+makefile  program_usage.c  s0_podprogram.c  s999_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ cd ../../../
+
+[felix@izolda:~/kik3]$ cd p-1/
+
+[felix@izolda:~/kik3/p-1]$ svn update
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+At revision 24.
+
+[felix@izolda:~/kik3/p-1]$ cd app_1/trunk/
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ svn merge --reintegrate ^/app_1/branches/272336
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+--- Merging differences between repository URLs into '.':
+U    main.c
+U    makefile
+U    program.h
+A    s272336_podprogram.c
+ U   .
+--- Recording mergeinfo for merge between repository URLs into '.':
+ U   .
+
+
+[felix@izolda:~/kik3/p-1]$ svn update
+Updating '.':
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+At revision 24.
+
+[felix@izolda:~/kik3/p-1]$ ls
+app_1
+
+[felix@izolda:~/kik3/p-1]$ cd app_1/
+
+[felix@izolda:~/kik3/p-1/app_1]$ ls
+branches  tags  trunk
+
+[felix@izolda:~/kik3/p-1/app_1]$ cd branches/
+
+[felix@izolda:~/kik3/p-1/app_1/branches]$ ls
+272336  272348  999
+
+[felix@izolda:~/kik3/p-1/app_1/branches]$ svn delete 272336/
+D         272336
+D         272336/README
+D         272336/main.c
+D         272336/makefile
+D         272336/program.h
+D         272336/program_usage.c
+D         272336/s0_podprogram.c
+D         272336/s272333_podprogram.c
+D         272336/s272336_podprogram.c
+D         272336/s999_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1/branches]$ svn commit -m 'del: branch 272336'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+Deleting       272336
+Committing transaction...
+Committed revision 25.
+
+[felix@izolda:~/kik3/p-1/app_1/branches]$ ls
+272348  999
+
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ n README
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ svn commit -m "fix: readme"
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+Sending        .
+Sending        README
+Sending        main.c
+Sending        makefile
+Sending        program.h
+Adding         s272336_podprogram.c
+Transmitting file data ....done
+Committing transaction...
+Committed revision 26.
+
+[felix@izolda:~/kik3/p-1/app_1]$ svn copy --revision=26 trunk/ tags/v_272336
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+A         tags/v_272336
+A         tags/v_272336/README
+A         tags/v_272336/main.c
+A         tags/v_272336/makefile
+A         tags/v_272336/program.h
+A         tags/v_272336/s272336_podprogram.c
+A         tags/v_272336/s272333_podprogram.c
+A         tags/v_272336/program_usage.c
+A         tags/v_272336/s0_podprogram.c
+A         tags/v_272336/s999_podprogram.c
+
+[felix@izolda:~/kik3/p-1/app_1]$ ls
+branches  tags  trunk
+
+[felix@izolda:~/kik3/p-1/app_1]$ cd tags/
+
+[felix@izolda:~/kik3/p-1/app_1/tags]$ ls
+v_272333  v_272336  v_999
+
+[felix@izolda:~/kik3/p-1/app_1/tags]$ cd ..
+
+[felix@izolda:~/kik3/p-1/app_1]$ svn add tags/v_
+v_272333/ v_272336/ v_999/
+
+[felix@izolda:~/kik3/p-1/app_1]$ svn add tags/v_
+v_272333/ v_272336/ v_999/
+
+[felix@izolda:~/kik3/p-1/app_1]$ svn add tags/v_272336/
+svn: warning: W150002: '/home/felix/kik3/p-1/app_1/tags/v_272336' is already under version control
+svn: E200009: Could not add all targets because some targets are already versioned
+svn: E200009: Illegal target for the requested operation
+
+[felix@izolda:~/kik3/p-1/app_1]$ svn commit -m 'add: tab'
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+Adding         tags/v_272336
+Committing transaction...
+Committed revision 28.
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ make
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ ./program
+wywołanie: program <nr_indeksu>
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ ./program 272336
+Felix Zieliński nr indeksu: 272336
+Program, w którym użytkownik ma za zadanie zgadnąć liczbę wybraną losowo na wykładzie z Obliczeń Naukowy
+ch.
+Podaj liczbę dodatnią, całkowitą, mieszczącą się w uint32: 12
+Liczba jest ZA MAŁA!
+Podaj liczbę dodatnią, całkowitą, mieszczącą się w uint32: 1200
+Liczba jest ZA MAŁA!
+Podaj liczbę dodatnią, całkowitą, mieszczącą się w uint32: 3000
+Liczba jest ZA DUŻA!
+Podaj liczbę dodatnią, całkowitą, mieszczącą się w uint32: 2137
+
+GRATULACJE UŻYTKOWNIKU! Liczba jest POPRAWNA!
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ svn propget svn:mergeinfo .
+/app_1/branches/268486:59-62
+/app_1/branches/268488:127-136
+/app_1/branches/268491:121-122
+/app_1/branches/268492:181-182
+/app_1/branches/268494:165-167
+/app_1/branches/268495:102-104
+/app_1/branches/268497:34-38
+/app_1/branches/268504:171-172
+/app_1/branches/268509:112-115
+/app_1/branches/268896:121-126
+/app_1/branches/268952:142-158
+/app_1/branches/269560:49-51
+/app_1/branches/272333:16-17
+/app_1/branches/272336:21-24
+/app_1/branches/272337:93-95
+/app_1/branches/272343:83-86
+/app_1/branches/272345:40-45,70-71
+/app_1/branches/272347:143-146
+/app_1/branches/272348:22-29
+/app_1/branches/999:2-9
+
+
+[felix@izolda:~/kik3/p-1/app_1/trunk]$ svn blame README
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+   149     272347 Ten plik README utworzony, żeby studenci mogli umieszczać
+     3        999 tu opisy działania swoich podprogramów.
+     3        999
+     7      admin
+     3        999 Wywołanie programu:
+     3        999
+     3        999    program ARG
+     3        999
+     3        999 Dla poszczególnych wartości ARG program działa następująco:
+     3        999
+    39     268497       0 - wyświetla ogólny opis działania podprogramów;
+    39     268497       999 - wczytuje liczbę i drukuje jej kwadrat.
+    39     268497       272333 - wczytuje liczbę i sprawdza czy jest pierwsza;
+    39     268497       272336 - użytkownik zgaduje liczbę!
+    39     268497       272348 - drukuje liczbe 5 na standardowe wyjscie;
+    39     268497       268497 - wyliczanie potęgi 2
+    46     272345       272345 - wypisanie Hello World na standardowym wyjsciu
+    52     269560       269560 - dodaje dwie liczby podane przez użytkownika
+    61     268486       268486 - podaje aktualną godzinę
+    89     272343       272343 - wczytuje liczbę n i sprawdza czy n-kąt foremny jest konstruowalny
+   105     268495       268495 - oblicza n-tą liczbę ciągu Fibonacciego
+   114     268509       268509 - wczytuje liczbę i drukuje liczbę dwa razy od niej większą.
+   149     272347       268488 - wypisuje na standardowe wyjście ASCII art kota.
+   128     268896       268896 - wypisuje na wyjscie to co uzytkownik wpisal na wejscie
+   149     272347       272347 - sprawdza ile student godzin uczył się na egzamin z jftt i wróży, czy go
+ zda
+   160     268952       268952 - wypisuje na standardowe wyjście ASCII art pieska.
+   168     268494       268494 - wczytuje liczbę i sprawdza czy jest tam 5
+   173     268504       268504 - mnoży 3 podane przez uzytkownika liczby
+   183     268492       268492 - wczytuje liczbe i drukuje jej szescian.
+   149     272347 Dodatkowo, po zreintegrowaniu swojej gałęzi do trunk-a student ma utworzyć
+   149     272347 w katalogu:
+     7      admin
+    12      admin ^/app_1/tags
+     7      admin
+     7      admin własnego taga tej wersji o nazwie: v_<nr_indeksu>
+
+
+[felix@izolda:~/kik3/p-1/app_1/trunk/trunk/trunk]$ svn blame s272336_podprogram.c
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+    23     272336 #include "program.h"
+    23     272336 #include <inttypes.h>
+    23     272336 #include <stdio.h>
+    23     272336
+    23     272336 void s272336_podprogram() {
+    23     272336     printf("Felix Zieliński nr indeksu: 272336\n");
+    23     272336     printf("Program, w którym użytkownik ma za zadanie zgadnąć liczbę wybraną losowo n
+a wykładzie z Obliczeń Naukowych.\n");
+    23     272336
+    23     272336     uint32_t random_number = 2137;
+    23     272336     uint32_t user_input = 0;
+    23     272336
+    23     272336     while (user_input != random_number) {
+    23     272336         printf("Podaj liczbę dodatnią, całkowitą, mieszczącą się w uint32: ");
+    23     272336         scanf("%" SCNu32, &user_input);
+    23     272336
+    23     272336         if (user_input > random_number) printf("Liczba jest ZA DUŻA!\n");
+    23     272336         if (user_input < random_number) printf("Liczba jest ZA MAŁA!\n");
+    23     272336     }
+    23     272336
+    23     272336     printf("\nGRATULACJE UŻYTKOWNIKU! Liczba jest POPRAWNA!\n");
+    23     272336 }
+    23     272336
+
+
+[felix@izolda:~/kik3/p-1/app_1/trunk/trunk/trunk]$ svn blame main.c
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+     1      admin #include "program.h"
+     1      admin
+     1      admin int main(int argc, char *argv[])
+     1      admin {
+    39     268497   if (argc != 2) {
+    39     268497     program_usage();
+    39     268497     exit(EXIT_FAILURE);
+    39     268497   } else {
+     1      admin     int idx=atoi(argv[1]);
+    39     268497     switch( idx ) {
+    39     268497       case 0:
+    39     268497         s0_podprogram() ; // podprogram studenta o numerze indeksu 0
+    39     268497         break;
+    39     268497       case 999:
+    39     268497         s999_podprogram() ; // podprogram studenta o numerze indeksu 999
+    39     268497         break;
+    39     268497       case 272333:
+    39     268497         s272333_podprogram(); // podprogram studenta o numerze indeksu 272333
+    39     268497         break;
+    39     268497           case 272336:
+    39     268497         s272336_podprogram(); /* podprogram studenta o numerze indeksu 272336 */
+    39     268497         break;
+    39     268497           case 272348:
+    39     268497         s272348_podprogram(); // podprogram studenta o numerze indeksu 272348
+    39     268497         break;
+    39     268497       case 268497:
+    39     268497         s268497_podprogram();
+    39     268497         break;
+    46     272345       case 272345:
+    72     272345         s272345_podprogram(); // podprogram studenta o numerze  272345
+    46     272345         break;
+    52     269560       case 269560:
+    52     269560         s269560_podprogram();
+    52     269560         break;
+    61     268486       case 268486:
+    61     268486         s268486_podprogram();
+    61     268486       break;
+    30     272348       default:
+    39     268497         printf("\nStudent o numerze indeksu %d nie wykonał jeszcze zadania\n\n",idx);
+    39     268497         break;
+    39     268497     }
+     1      admin   }
+     1      admin   exit(EXIT_SUCCESS);
+     1      admin }
+
+
+[felix@izolda:~/kik3/p-1/app_1/trunk/trunk/trunk]$ svn blame program.h
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+     1      admin #include <stdlib.h>
+     1      admin #include <stdio.h>
+     1      admin #include <string.h>
+     1      admin
+     1      admin
+     1      admin /* deklaracje funkcji używanych w programie */
+     1      admin void program_usage( );
+     1      admin
+     1      admin
+     1      admin /* tu studenci mogą deklarować własne funkcje.
+     1      admin    Wszystkie nazwy funkcji studenta o numerze indeksu NNNNNN
+     1      admin    powinny rozpoczynać się od przedrostka sNNNNNN_
+     1      admin    aby nie kolidowały z nazwami funkcji innych studentów */
+     1      admin
+     1      admin void s0_podprogram(); /* funkcja studenta 0 */
+    10        999 void s999_podprogram(); /* funkcja studenta 999 */
+    39     268497 void s268497_podprogram();
+    18     272333 void s272333_podprogram(); /* funkcja „studenta 272333" */
+    30     272348 void s272348_podprogram();
+    26     272336 void s272336_podprogram(); /* funckja studenta 272336 */
+    72     272345 void s272345_podprogram(); /* funkcja  272345 */
+    52     269560 void s269560_podprogram();
+    61     268486 void s268486_podprogram();
+     1      admin
+     1      admin
+
+
+[felix@izolda:~/kik3/p-1/app_1/trunk/trunk/trunk]$ svn log -g
+Authentication realm: <https://repo.cs.pwr.edu.pl:443> Subversion Repository
+Password for '272336': ********
+
+------------------------------------------------------------------------
+r136 | 268488 | 2024-11-17 13:27:03 +0100 (nie, 17 lis 2024) | 1 line
+
+merged 268488
+------------------------------------------------------------------------
+r135 | 268488 | 2024-11-17 13:21:10 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136
+
+Conflicts resolved
+------------------------------------------------------------------------
+r129 | 268491 | 2024-11-17 13:01:52 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136, r135
+
+Zmiana kodowania na UTF-8 268491
+------------------------------------------------------------------------
+r128 | 268896 | 2024-11-17 13:00:10 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136, r135
+
+Reintegracja 268896 z trunkiem
+------------------------------------------------------------------------
+r126 | 268896 | 2024-11-17 12:38:16 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136, r135, r128
+
+Added subprogram 268896
+------------------------------------------------------------------------
+r134 | 268488 | 2024-11-17 13:12:50 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136
+
+Updated README 268488
+------------------------------------------------------------------------
+r132 | 268488 | 2024-11-17 13:10:42 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136
+
+Added s268488 module
+------------------------------------------------------------------------
+r127 | 268488 | 2024-11-17 12:54:28 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136
+
+268488 branch created
+------------------------------------------------------------------------
+r123 | 268491 | 2024-11-17 12:29:25 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136
+
+Reintegracja 268491 z trunkiem
+------------------------------------------------------------------------
+r122 | 268491 | 2024-11-17 12:23:06 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136, r123
+
+Dodanie własnego podprogramu go gałęzi 268491
+------------------------------------------------------------------------
+r121 | 268491 | 2024-11-17 12:08:44 +0100 (nie, 17 lis 2024) | 1 line
+Merged via: r136, r123
+
+Tworzenie własnej gałęzi dla podpgrogramu 268491
+------------------------------------------------------------------------
+r116 | 268509 | 2024-11-16 21:01:37 +0100 (sob, 16 lis 2024) | 1 line
+Merged via: r136
+
+konflikt rozwiązany
+------------------------------------------------------------------------
+r115 | 268509 | 2024-11-16 20:56:41 +0100 (sob, 16 lis 2024) | 1 line
+Merged via: r136, r116
+
+Poprawienie pliku makefile poniewaz student z indeksem 272337 nie dodal odpowiedniej linii. Make nie dzi
+alal.
+------------------------------------------------------------------------
+r114 | 268509 | 2024-11-16 20:46:11 +0100 (sob, 16 lis 2024) | 1 line
+
+Reintegracja gałęzi studenta 268509 z trunk
+------------------------------------------------------------------------
+r113 | 268509 | 2024-11-16 20:39:37 +0100 (sob, 16 lis 2024) | 1 line
+
+Dodanie brancha studenta 268509
+------------------------------------------------------------------------
+r112 | 268509 | 2024-11-16 20:32:41 +0100 (sob, 16 lis 2024) | 1 line
+
+Tworzenie gałęzi dla studenta 268509
+------------------------------------------------------------------------
+r105 | 268495 | 2024-11-16 13:27:13 +0100 (sob, 16 lis 2024) | 1 line
+
+Scalenie 268495 z trunk
+------------------------------------------------------------------------
+r104 | 268495 | 2024-11-16 13:14:10 +0100 (sob, 16 lis 2024) | 1 line
+Merged via: r105
+
+Poprawki 268495
+------------------------------------------------------------------------
+r103 | 268495 | 2024-11-16 13:03:20 +0100 (sob, 16 lis 2024) | 1 line
+Merged via: r105
+
+Dodanie modulu 268495
+------------------------------------------------------------------------
+r102 | 268495 | 2024-11-16 12:51:30 +0100 (sob, 16 lis 2024) | 1 line
+Merged via: r105
+
+Utworzenie brancha 268495
+------------------------------------------------------------------------
+r101 | 272337 | 2024-11-15 13:51:56 +0100 (pią, 15 lis 2024) | 1 line
+
+brak ;
+------------------------------------------------------------------------
+r100 | 272337 | 2024-11-15 13:50:58 +0100 (pią, 15 lis 2024) | 1 line
+
+brak ;
+------------------------------------------------------------------------
+r96 | 272337 | 2024-11-15 13:27:13 +0100 (pią, 15 lis 2024) | 1 line
+
+proba 3
+------------------------------------------------------------------------
+r95 | 272337 | 2024-11-15 13:24:57 +0100 (pią, 15 lis 2024) | 1 line
+Merged via: r96
+
+proba 2
+------------------------------------------------------------------------
+r94 | 272337 | 2024-11-15 13:15:26 +0100 (pią, 15 lis 2024) | 1 line
+Merged via: r96
+
+272337 dodaje prace
+------------------------------------------------------------------------
+r93 | 272337 | 2024-11-15 12:52:02 +0100 (pią, 15 lis 2024) | 1 line
+Merged via: r96
+
+Tworzenie własnej gałęzi dla 272337
+------------------------------------------------------------------------
+r92 | 272343 | 2024-11-15 11:56:03 +0100 (pią, 15 lis 2024) | 1 line
+
+zrobione :)
+------------------------------------------------------------------------
+r89 | 272343 | 2024-11-15 11:30:56 +0100 (pią, 15 lis 2024) | 1 line
+
+Module from 272343
+------------------------------------------------------------------------
+r86 | 272343 | 2024-11-15 11:20:13 +0100 (pią, 15 lis 2024) | 1 line
+Merged via: r89
+
+Branch 272343 updated
+------------------------------------------------------------------------
+r85 | 272343 | 2024-11-15 11:18:26 +0100 (pią, 15 lis 2024) | 1 line
+Merged via: r89
+
+Branch 272343 updated
+------------------------------------------------------------------------
+r83 | 272343 | 2024-11-15 10:06:09 +0100 (pią, 15 lis 2024) | 1 line
+Merged via: r89
+
+Making new branch
+------------------------------------------------------------------------
+r89 | 272343 | 2024-11-15 11:30:56 +0100 (pią, 15 lis 2024) | 1 line
+
+Module from 272343
+------------------------------------------------------------------------
+r84 | 272343 | 2024-11-15 10:56:25 +0100 (pią, 15 lis 2024) | 1 line
+
+Making new branch
+------------------------------------------------------------------------
+r72 | 272345 | 2024-11-14 21:32:47 +0100 (czw, 14 lis 2024) | 1 line
+
+zmiany w podprogramie
+------------------------------------------------------------------------
+r71 | 272345 | 2024-11-14 21:30:56 +0100 (czw, 14 lis 2024) | 1 line
+Merged via: r72
+
+zmiany w projekcie
+------------------------------------------------------------------------
+r70 | 272345 | 2024-11-14 21:25:33 +0100 (czw, 14 lis 2024) | 1 line
+Merged via: r72
+
+
+------------------------------------------------------------------------
+r63 | 268486 | 2024-11-13 20:22:07 +0100 (śro, 13 lis 2024) | 1 line
+
+reintegracja galezi 268486 z trunk
+------------------------------------------------------------------------
+r62 | 268486 | 2024-11-13 20:20:11 +0100 (śro, 13 lis 2024) | 1 line
+Merged via: r63
+
+dodanie programu
+------------------------------------------------------------------------
+r61 | 268486 | 2024-11-13 20:17:20 +0100 (śro, 13 lis 2024) | 1 line
+
+Reintegracja gałęzi 268486 z trunk
+------------------------------------------------------------------------
+r60 | 268486 | 2024-11-13 20:16:27 +0100 (śro, 13 lis 2024) | 1 line
+Merged via: r61
+
+Synchronizacja gałęzi 268486 z trunk
+------------------------------------------------------------------------
+r59 | 268486 | 2024-11-13 20:01:25 +0100 (śro, 13 lis 2024) | 1 line
+Merged via: r61
+
+Tworzenie gałęzi 268486
+------------------------------------------------------------------------
+r52 | 269560 | 2024-11-13 00:42:47 +0100 (śro, 13 lis 2024) | 1 line
+
+student 269560 reintegruje swoją gałąź z trunkiem
+------------------------------------------------------------------------
+r51 | 269560 | 2024-11-13 00:37:55 +0100 (śro, 13 lis 2024) | 1 line
+Merged via: r52
+
+student 269560 synchronizuje swoją gałąź z trunkiem
+------------------------------------------------------------------------
+r50 | 269560 | 2024-11-13 00:29:55 +0100 (śro, 13 lis 2024) | 1 line
+Merged via: r52
+
+student 269560 dodaje swój program
+------------------------------------------------------------------------
+r49 | 269560 | 2024-11-13 00:03:13 +0100 (śro, 13 lis 2024) | 2 lines
+Merged via: r52
+
+student 269560 tworzy własną gałąź
+
+------------------------------------------------------------------------
+r46 | 272345 | 2024-11-12 22:52:10 +0100 (wto, 12 lis 2024) | 1 line
+
+dodanie do trunka 272345
+------------------------------------------------------------------------
+r45 | 272345 | 2024-11-12 22:49:06 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r46
+
+dodanie nowego podprogramu ktory wyswietla helloworld
+------------------------------------------------------------------------
+r44 | 272345 | 2024-11-12 22:47:45 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r46
+
+dodanie nowego podprogramu ktory wyswietla helloworld
+------------------------------------------------------------------------
+r43 | 272345 | 2024-11-12 22:30:59 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r46
+
+dodanie nowego podprogramu ktory wyswietla helloworld
+------------------------------------------------------------------------
+r42 | 272345 | 2024-11-12 22:29:31 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r46
+
+dodanie nowego podprogramu ktory wyswietla helloworld
+------------------------------------------------------------------------
+r41 | 272345 | 2024-11-12 22:28:04 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r46
+
+dodanie nowego podprogramu ktory wyswietla helloworld
+------------------------------------------------------------------------
+r40 | 272345 | 2024-11-12 21:36:52 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r46
+
+
+------------------------------------------------------------------------
+r39 | 268497 | 2024-11-12 20:17:49 +0100 (wto, 12 lis 2024) | 1 line
+
+Merge gałęzi 268497 z trunk'iem
+------------------------------------------------------------------------
+r38 | 268497 | 2024-11-12 20:15:57 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r39
+
+Ostateczny merge trnunk'a przed reintegracją
+------------------------------------------------------------------------
+r37 | 268497 | 2024-11-12 20:13:22 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r39
+
+Merge trunk'a do branches/268497
+------------------------------------------------------------------------
+r36 | 268497 | 2024-11-12 20:06:38 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r39
+
+Ustawienie svn:mime-type na plikach .c
+------------------------------------------------------------------------
+r35 | 268497 | 2024-11-12 20:01:53 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r39
+
+student 268497 dodaje swój program
+------------------------------------------------------------------------
+r34 | 268497 | 2024-11-12 20:00:42 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r39
+
+student 268497 tworzy własną gałąź https://156.17.7.16/svn/lab/piaskownica/app_1/branches/268497
+------------------------------------------------------------------------
+r30 | 272348 | 2024-11-12 12:55:09 +0100 (wto, 12 lis 2024) | 1 line
+
+Merge branch to trunk
+------------------------------------------------------------------------
+r29 | 272348 | 2024-11-12 12:49:53 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r30
+
+Daje merge
+------------------------------------------------------------------------
+r24 | 272336 | 2024-11-12 12:20:31 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r30, r29
+
+merge: 272336 branch
+------------------------------------------------------------------------
+r23 | 272336 | 2024-11-12 12:16:17 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r30, r29
+
+add: student 272336 program
+------------------------------------------------------------------------
+r21 | 272336 | 2024-11-12 11:46:37 +0100 (wto, 12 lis 2024) | 1 line
+Merged via: r30, r29
+
+add: 272336 branch
+------------------------------------------------------------------------
+r27 | 272348 | 2024-11-12 12:37:22 +0100 (wto, 12 lis 2024) | 1 line
+
+adding program
+------------------------------------------------------------------------
+r22 | 272348 | 2024-11-12 12:09:19 +0100 (wto, 12 lis 2024) | 1 line
+
+
+------------------------------------------------------------------------
+r26 | 272336 | 2024-11-12 12:33:41 +0100 (wto, 12 lis 2024) | 1 line
+
+fix: readme
+------------------------------------------------------------------------
+r18 | 272333 | 2024-11-04 20:04:21 +0100 (pon, 04 lis 2024) | 3 lines
+
+Integracja gałęzi z trunkiem
+
+
+------------------------------------------------------------------------
+r17 | 272333 | 2024-11-04 19:52:47 +0100 (pon, 04 lis 2024) | 1 line
+Merged via: r18
+
+Dodanie funkcjonalności (w gałęzi)
+------------------------------------------------------------------------
+r16 | 272333 | 2024-11-04 19:12:42 +0100 (pon, 04 lis 2024) | 3 lines
+Merged via: r18
+
+Stworzenie gałęzi
+
+
+------------------------------------------------------------------------
+r13 | mk1 | 2024-10-29 13:45:35 +0100 (wto, 29 paź 2024) | 2 lines
+
+wykonano: `svn propset svn:mime-type 'text/plain;charset=utf-8' $(find app_1/ -type f )`
+
+------------------------------------------------------------------------
+r12 | admin | 2020-11-12 10:52:01 +0100 (czw, 12 lis 2020) | 2 lines
+
+Poprawione kodowanie README i względny adres katalogu z tagami.
+
+------------------------------------------------------------------------
+r10 | 999 | 2016-10-24 13:55:29 +0200 (pon, 24 paź 2016) | 3 lines
+
+999 zreintegrował swoją gałąź z trunk-iem
+
+
+------------------------------------------------------------------------
+r9 | 999 | 2016-10-24 13:50:09 +0200 (pon, 24 paź 2016) | 2 lines
+Merged via: r10
+
+999 wprowadza opis swojego podprogramu do README - ostateczna wersja jego gałęzi
+
+------------------------------------------------------------------------
+r8 | 999 | 2016-10-24 13:46:37 +0200 (pon, 24 paź 2016) | 2 lines
+Merged via: r10
+
+999 ponownie synchronizuje swoją gałąź z trunk
+
+------------------------------------------------------------------------
+r5 | 999 | 2016-10-24 13:37:15 +0200 (pon, 24 paź 2016) | 3 lines
+Merged via: r10
+
+999 zaimplementował swoją procedurę
+
+
+------------------------------------------------------------------------
+r4 | 999 | 2016-10-24 13:21:53 +0200 (pon, 24 paź 2016) | 3 lines
+Merged via: r10
+
+999 synchronizuje swoją gałąź z trunk
+
+
+------------------------------------------------------------------------
+r2 | 999 | 2016-10-17 16:01:19 +0200 (pon, 17 paź 2016) | 1 line
+Merged via: r10
+
+student 999 tworzy własną gałąź https://156.17.7.16/svn/lab/piaskownica/app_1/branches/999
+------------------------------------------------------------------------
+r7 | admin | 2016-10-24 13:44:15 +0200 (pon, 24 paź 2016) | 3 lines
+
+Dodatkowe wyjaśnienia w pliku README o tworzeniu tag-ów
+
+
+------------------------------------------------------------------------
+r3 | 999 | 2016-10-24 13:04:10 +0200 (pon, 24 paź 2016) | 2 lines
+
+dodano plik README w trunk
+
+------------------------------------------------------------------------
+r1 | admin | 2016-10-17 14:28:36 +0200 (pon, 17 paź 2016) | 3 lines
+
+początkowa wersja projektu.
+
+
+------------------------------------------------------------------------
+

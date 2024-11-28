@@ -1,11 +1,19 @@
 # Felix Zieliński 272336
 
+# function model
+# params: 
+#   r - variable
+#   p - variable
+# returns results of one iteration of the model 
+
 function model(r::T, p::T)::T where T <: AbstractFloat
     return p + r * p * (one(T) - p)
 end
 
-# no idea how to make it T
-# its so ugly do not look at it
+# function experiment_1a
+# params: 
+#   T - Type of an AbstractFloat
+# returns vector with a results of the 1. experiment
 
 function experiment_1a(T::Type{<: AbstractFloat})::Vector{T}
     res::Vector{T} = Vector{T}()
@@ -20,6 +28,10 @@ function experiment_1a(T::Type{<: AbstractFloat})::Vector{T}
     
     return res
 end
+
+# function experiment_1b
+# 
+# returns vector with a results of the 2. experiment
 
 function experiment_1b()::Vector{Float32}
     res::Vector{Float32} = Vector{Float32}()

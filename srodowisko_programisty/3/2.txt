@@ -1,0 +1,44 @@
+[felix@izolda:~/semestr5/srodowisko_programisty/3]$ ./l3z2.bash 15 https://repo.cs.pwr.edu.pl/info/SP/l3/a/
+grep: (standard input): binary file matches
+     19 b
+     19 a
+     11 ab
+      6 bb
+      5 aa
+      4 abb
+      3 aab
+      2 bbb
+      2 bab
+      2 abbbb
+      2 abbab
+      2 ababb
+      2 abaab
+      2 aba
+      2 aabbb
+      2 aabab
+      2 aaabb
+      2 aaaab
+      1 aaa
+
+[felix@izolda:~/semestr5/srodowisko_programisty/3]$ ./l3z2.bash 23 https://repo.cs.pwr.edu.pl/info/SP/l3/a/
+grep: (standard input): binary file matches
+     11 a
+      9 b
+      7 ab
+      6 c
+      5 aa
+      4 d
+      3 aab
+      2 bb
+      2 bab
+      2 abbbb
+      2 abbab
+      2 abb
+      2 ababb
+      2 abaab
+      2 aba
+      2 aabbb
+      2 aabab
+      2 aaabb
+      2 aaaab
+      1 aaa
