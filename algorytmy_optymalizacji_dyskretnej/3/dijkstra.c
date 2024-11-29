@@ -7,7 +7,7 @@
 #include <getopt.h>
 #include <stdlib.h> 
 
-volatile bool debug = true;
+static bool debug = true;
 
 typedef struct Node {
     uint64_t vertex;
@@ -17,9 +17,9 @@ typedef struct Node {
     uint64_t w; // w(node, next)    
 } Node;
 
-static uint64_t num_of_vertices;
-static uint64_t num_of_edges;
-static Node** G;
+static uint64_t num_of_vertices = 0;
+static uint64_t num_of_edges = 0;
+static Node** G = NULL;
 
 static const char* data = NULL;
 static const char* in = NULL;
@@ -81,6 +81,8 @@ void add_edge(uint64_t v, uint64_t u, uint64_t c,  Node** Graph) {
     new->vertex = u;
     new->next = Graph[v];
     new->w = c;
+    new->pre = NULL;
+    new->d = UINT64_MAX; 
     Graph[v] = new;
 }
 
@@ -137,7 +139,7 @@ bool get_args(int argc, char* argv[]) {
             {"p2p", required_argument,  0,  'p' }, // shortest path between pairs
             {"op2p",  required_argument, 0, 'r'}, // returned file
             {"d", required_argument, 0, 'd'},
-            {0,         0,                 0,  0 }
+            {0, 0, 0, 0}
     };
 
     int c;
