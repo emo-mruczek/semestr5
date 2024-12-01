@@ -1,0 +1,70 @@
+\documentclass[15pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{adjustbox}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\title{Obliczenia naukowe}
+\author{Felix Zieliński 272336}
+\date{Lista 4}
+\begin{document}
+\maketitle
+
+\vspace{0.5cm}
+
+ZMIENIC TROCHE WYGLAD WZOROW W 1.
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+% zadanie 1
+
+\noindent\textbf{Zadanie 1.} W tym zadaniu należało napisać funkcję obliczającą ilorazy różnicowe (bez użycia macierzy).\\\\
+Ilorazem różnicowym n-tego rzędu funkcji \(f: X \rightarrow Y \) dla \(x_0, x_1, ..., x_n\) jest funkcja: \( f(x_0, x_1, \dots, x_n) := \sum_{i=0}^{n} \frac{f(x_i)}{\prod_{\substack{j=0 }}^{n} (x_i - x_j)} \).\\\\ Jednakże, aby nie używać macierzy w implementacji, użyłem następującej własności tego iloczynu: \\\\\( f[x_0, x_1, x_2, \ldots, x_n] = \frac{f[x_1, x_2, \ldots, x_n] - f[x_0, x_1, \ldots, x_{n-1}]}{x_n - x_0}\)\\\\
+Jak widać, mając poprzedni iloczyn, mogę obliczyć kolejny. 
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+% zadanie 2 
+
+\noindent\textbf{Zadanie 2.} W tym zadaniu należało napisać funkcję obliczającą wartość wielomianu interpolacyjnego stopnia n w postaci Newtona \(N_x(x)\) w punkcie \(x = t\), za pomocą uogólnionego algorytmu Hornera. Algorytm powinien mieć złożoność liniową.\\\\
+Pierwszą wartość biorę z końca tablicy, kolejne uzyskuję w myśl wzoru:\\\\
+\(w_k(x) = f[k] + w_{k+1}(x)*(x - x_k)\), gdzie \(f[k]\) to wartość ilorazu różnicowego.\\\\
+Zwracam ostatnią obliczoną wartość.\\\\
+Algorytm iteruje przez całą długość wektora, tak więc złożoność obliczeniowa wynosi \(O(n)\).
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+% zadanie 3 
+
+\noindent\textbf{Zadanie 3.} W tym zadaniu należało napisać funkcję obliczająca (w czasie kwadratowym) współczynniki postaci naturalnej wielomianu interpolacyjnego w postaci Newtona, znająć już jego ilorazy różnicowe oraz węzły.\\\\
+Korzystam z faktu, ze wartości ilorazów różnicowych oraz wartości węzłów są mi znane.\\\\
+Zadany wielomian mnożymy "od końca" (ostatnich potęg). Używam wzoru rekurencyjnego \(w_k(x) = f[k] - x_k * w_{k+1}(x)\), gdzie \(f[k]\) to wartość ilorazu różnicowego. Następnie muszę odpowiednio zauktualizować wartości poprzednich wspólczynników, co czyni ten algorytm algorytmem o złożoności \(O(n^2)\). 
+
+\vspace{0.5cm}
+
+\noindent\hrulefill
+
+\vspace{0.5cm}
+
+% zadanie 3 
+
+\noindent\textbf{Zadanie 4.} W tym zadaniu należało napisać funkcję interpolującą zadaną funkcję na przedziale \([a, b]\) za pomocą wielomianu interpolacyjnego stopnia n w postaci Newtona, oraz rysującą ją i rzeczony wielomian.\\\\
+Początkowo, obliczam odległość między węzłami i wartości interpolacji w nich. Potem obliczam ilorazy różnicowe (przy użycu funkcji z zadania 1.) 
+
+\end{document}
